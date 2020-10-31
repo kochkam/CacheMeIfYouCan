@@ -1,5 +1,3 @@
-var apiKey = "d88f7585c318ca84fe20c5e487101b1f";
-
 // add event listeners to each form submission button
 document.addEventListener("DOMContentLoaded", getWeather);
 
