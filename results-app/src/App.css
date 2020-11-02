@@ -3,6 +3,15 @@
 /* Styles for Results List */
 .list-item {
   background-color: lightgray;
-  margin-left: 2em;
-  margin-right: 2em;
+  min-height: auto;
+  height: 10em;
+  max-width: 50em;
+  margin: auto;
+}
+
+.result-img {
+  height: 10em;
+  object-fit: cover;
+  width: 10em;
+  float: left;
 }

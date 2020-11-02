@@ -12,7 +12,7 @@ var currentSearch = createResults();
 function createResults(){
   var searchResults = new SearchResults();
     for (var i = 1; i <= 10; i++){
-        searchResults.results.push(new Hike(i, "Title "+ i, "This is the summary for Hike: " + i, "difficulty: " + i));
+        searchResults.results.push(new Hike(i, "Title "+ i, "This is the summary for Hike " + i, i, "https://images.unsplash.com/photo-1500964757637-c85e8a162699?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1078&q=80", i, i));
     }
   return searchResults
 }
@@ -25,7 +25,7 @@ function App() {
     <div className = 'results-list'>
     {currentSearch.results.map(
       hike => (
-        <ListItem key = {hike.id} title = {hike.title} summary = {hike.summary} difficulty= {hike.difficulty}/>
+        <ListItem key = {hike.id} title = {hike.title} summary = {hike.summary} activityLevel = {hike.activityLevel} img = {hike.imgURL} distance = {hike.distance} temp = {hike.temp}/>
       )
     )}
     </div>
