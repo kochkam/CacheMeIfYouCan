@@ -1,6 +1,7 @@
 
 class Hike{
-    constructor(title, summary, difficulty){
+    constructor(id, title, summary, difficulty){
+        this.id = id;
         this.title = title;
         this.summary = summary;
         this.difficulty = difficulty;
