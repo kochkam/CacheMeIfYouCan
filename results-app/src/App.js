@@ -7,6 +7,16 @@ import Hike from './classes/Hike';
 // currentSearch object which contains assembled list of hikes
 var currentSearch = createResults();
 
+// Function fills a SearchResults object's results list with 10 hike objects and returns SearchResults object
+// THIS FUNCTION TO BE REPLACED WITH FUNCTION THAT PERFORMS ACTUAL SEARCH REQUEST FROM BACKEND
+function createResults(){
+  var searchResults = new SearchResults();
+    for (var i = 1; i <= 10; i++){
+        searchResults.results.push(new Hike(i, "Title "+ i, "This is the summary for Hike: " + i, "difficulty: " + i));
+    }
+  return searchResults
+}
+
 function App() {
   return (
 
@@ -21,16 +31,6 @@ function App() {
     </div>
 
   )
-}
-
-// Function fills a SearchResults object's results list with 10 hike objects and returns SearchResults object
-// THIS FUNCTION TO BE REPLACED WITH FUNCTION THAT PERFORMSACTUAL SEARCH REQUEST FROM BACKEND
-function createResults(){
-  var searchResults = new SearchResults();
-    for (var i = 1; i <= 10; i++){
-        searchResults.results.push(new Hike(i, "Title "+ i, "This is the summary for Hike: " + i, "difficulty: " + i));
-    }
-  return searchResults
 }
 
 export default App;
