@@ -1,4 +1,8 @@
 
+
+/* Styles for Results List */
 .list-item {
   background-color: lightgray;
+  margin-left: 2em;
+  margin-right: 2em;
 }
