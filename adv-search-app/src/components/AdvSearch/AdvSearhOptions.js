@@ -45,6 +45,16 @@ export default function AdvSearchOptions() {
     return(
         <div className="options-list">
             <LocationOption />
+            <LocationOption />
+            <LocationOption />
+            <LocationOption />
+            <LocationOption />
+            <LocationOption />
+            <LocationOption />
+            <LocationOption />
+            <LocationOption />
+            <LocationOption />
+            <LocationOption />
             <TimeOption />
             <DifficultyOption />
             <IncludedTagOption />
