@@ -34,7 +34,7 @@ function App() {
 }
 
 // Function is triggered when hike is clicked and id of hike is passed in
-// TRIGGER DETAIL VIEW HERE
+// TRIGGER RENDERING DETAIL VIEW HERE AND HIDE RESULTS LIST
 function hikeClick(hikeID){
   console.log("clicked Hike: " + hikeID);
 }
