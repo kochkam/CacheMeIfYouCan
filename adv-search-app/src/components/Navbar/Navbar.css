@@ -1,0 +1,26 @@
+.navbar {
+    background: linear-gradient(90deg, orange 0%, red 100%);
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.home-logo {
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.fa-hiking {
+    margin-right: 0.5rem;
+}
+
+.profile-logo {
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.fa-user-circle {
+    margin-right: 0.5rem;
+}
