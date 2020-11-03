@@ -42,10 +42,9 @@
 
 .result-detail-text {
   display: flex;
-  flex-direction: row;
+
   border-style:solid;
   border-width: .1em;
-  flex-grow: 1;
 }
 
 .result-temp{
