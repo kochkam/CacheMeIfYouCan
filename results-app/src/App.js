@@ -25,7 +25,7 @@ function App() {
     <div className = 'results-list'>
     {currentSearch.results.map(
       hike => (
-        <ListItem key = {hike.id} title = {hike.title} summary = {hike.summary} activityLevel = {hike.activityLevel} img = {hike.imgURL} distance = {hike.distance} temp = {hike.temp}/>
+        <ListItem id = {hike.id} title = {hike.title} summary = {hike.summary} activityLevel = {hike.activityLevel} img = {hike.imgURL} distance = {hike.distance} temp = {hike.temp} clickFunction = {hikeClick}/>
       )
     )}
     </div>
@@ -33,4 +33,9 @@ function App() {
   )
 }
 
+// Function is triggered when hike is clicked and id of hike is passed in
+// TRIGGER DETAIL VIEW HERE
+function hikeClick(hikeID){
+  console.log("clicked Hike: " + hikeID);
+}
 export default App;
