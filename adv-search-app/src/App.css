@@ -3,3 +3,13 @@
   margin: 0;
   padding: 0;
 }
+
+.App {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 50px;
+}
