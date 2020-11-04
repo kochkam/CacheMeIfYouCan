@@ -4,16 +4,16 @@ const app = express();
 
 const publicPath = path.join(__dirname, '..', 'build');
 
-app.use(express.static(publicPath));
-app.use(express.static("public"));
+app.use(express.static(publicPath))
 
-app.use((req,res,next) => {
+app.get('/*', function (req,res) {
     res.sendFile(path.join(publicPath, 'index.html'));
 });
 
 
-const port = process.env.Port || 3001;
+const port = process.env.Port || 3000;
 
 app.listen(port,() => {
     console.log('Server Up!');
 });
+
