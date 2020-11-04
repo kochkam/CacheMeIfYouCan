@@ -14,7 +14,7 @@ const LinkButton = (props) => {
     ...rest
   } = props
   return (
-    <button
+    <h1
       {...rest} // `children` is just another prop!
       onClick={(event) => {
         onClick && onClick(event)

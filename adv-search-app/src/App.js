@@ -1,6 +1,6 @@
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import AdvSearch from './components/AdvSearch/AdvSearch'
+import AdvSearch from '../../trails-app/src/components/AdvSearch/AdvSearch'
 import DetailView from './components/DetailView/DetailView'
 
 function App() {

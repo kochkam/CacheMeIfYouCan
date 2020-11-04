@@ -1,8 +1,8 @@
 import './App.css';
-import {
-  Route,
-  BrowserRouter,
-} from "react-router-dom";
+import Navbar from './components/Navbar/Navbar';
+import AdvSearch from './components/AdvSearch/AdvSearch'
+import DetailView from './components/DetailView/DetailView'
+import {Route, BrowserRouter} from "react-router-dom";
 import LinkButton from "./components/LinkButton";
 import Home from "./views/Home";
 import ResultsList from "./views/ResultsList";
@@ -13,11 +13,7 @@ import homeicon from './images/home.png';
 function App() {
   return (
     <BrowserRouter>
-      <div className="header">
-        <img class='homeIcon' src={homeicon} alt='Home Icon'/>
-        <LinkButton className='HomeBtn' exact to='/'>Home</LinkButton>
-        <LinkButton className='ProfBtn' exact to='/UserProfile'>Hiking Profile</LinkButton>
-      </div>
+      <Navbar />
       <div className="search-container">
         <h1>Find your next trail....</h1>
         <SearchForm/>
