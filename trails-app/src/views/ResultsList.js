@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import SearchResults from '../classes/SearchResults'
 import ListItem from '../components/ListItem'
 import Hike from '../classes/Hike';
-
-// currentSearch object which contains assembled list of hikes
-var currentSearch = createResults();
+import LinkButton from "../components/LinkButton";
+import { useParams } from 'react-router-dom';
 
 // Function fills a SearchResults object's results list with 10 hike objects and returns SearchResults object
 // THIS FUNCTION TO BE REPLACED WITH FUNCTION THAT PERFORMS ACTUAL SEARCH REQUEST FROM BACKEND
@@ -22,22 +21,24 @@ function hikeClick(hikeID){
   console.log("clicked Hike: " + hikeID);
 }
 
-class ResultsList extends Component {
-  render() {
-    return (
+export default function ResultsList() {
+  // currentSearch object which contains assembled list of hikes
+  var currentSearch = createResults();
 
-      // Build results list    
-      // for each hike in currentSearch.results render ListItem
-      <div className = 'results-list'>
-      {currentSearch.results.map(
-        hike => (
+  let {zip} = useParams();
+  return (
+
+    // Build results list    
+    // for each hike in currentSearch.results render ListItem
+    <div className = 'results-list'>
+    {currentSearch.results.map(
+      hike => (
+        <LinkButton exact to={"/detail-view/" + hike.id}>
           <ListItem id = {hike.id} title = {hike.title} summary = {hike.summary} activityLevel = {hike.activityLevel} img = {hike.imgURL} distance = {hike.distance} temp = {hike.temp} clickFunction = {hikeClick}/>
-        )
-      )}
-      </div>
-  
-    );
-  }
+        </LinkButton>
+      )
+    )}
+    </div>
+
+  );
 }
- 
-export default ResultsList;

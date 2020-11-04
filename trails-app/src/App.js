@@ -1,26 +1,24 @@
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import AdvSearch from './components/AdvSearch/AdvSearch'
-import DetailView from './components/DetailView/DetailView'
 import {Route, BrowserRouter} from "react-router-dom";
 import Home from "./views/Home";
 import ResultsList from "./views/ResultsList";
 import UserProfile from "./views/UserProfile";
+import DetailView from "./views/DetailView";
 
-function App() {
+export default function App() {
   return (
     <BrowserRouter>
       <Navbar />
       <div className='base-container'>
         <div className="content">
           <Route exact path="/" component={Home}/>
-          <Route path="/UserProfile" component={UserProfile}/>
-          <Route path="/resultslist" component={ResultsList}/>
+          <Route path="/user-profile" component={UserProfile}/>
+          <Route path="/results-list/:zip" children={<ResultsList />}/>
+          <Route path="/detail-view/:hike_id" children={<DetailView />}/>
         </div>
         
       </div>
     </BrowserRouter>
   );
 }
-
-export default App;
