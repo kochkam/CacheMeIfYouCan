@@ -21,7 +21,7 @@ class SearchForm extends React.Component{
         this.setState({error});
         if (error.length > 0) return;
         this.setState({zip:''});
-        this.props.history.push('/resultslist')
+        this.props.history.push('/results-list/' + zip)
     }
 
 
