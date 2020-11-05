@@ -6,16 +6,18 @@ class SearchResults{
         this.results = [];
         this.show = true;
         this.zip = zip
+        this.lat;
+        this.long;
         
     }
 
-    getHikeData(lat,lon) {
+    getHikeData() {
 
         let apiKey = "200964805-fbbd50c01b329d117306d1834dfd6a2d";
         let maxDistance = "&maxDistance=20";
 
         let req = new XMLHttpRequest();
-        let url = "https://www.hikingproject.com/data/get-trails?lat=" + lat + "&lon" + lon + maxDistance + apiKey;  // api info can be found here: https://www.hikingproject.com/data#_=_
+        let url = "https://www.hikingproject.com/data/get-trails?lat=" + this.lat + "&lon" + this.long + maxDistance + apiKey;  // api info can be found here: https://www.hikingproject.com/data#_=_
 
         req.open('GET', url, true);
 
@@ -47,9 +49,8 @@ class SearchResults{
 
             if (req.status >= 200 && req.status < 400) {
                 var data = JSON.parse(req.responseText)
-                var lat = data.results.geometry.location.lat
-                var long = data.results.geometry.location.lng
-                this.getHikeData(lat,long);
+                this.lat = data.results.geometry.location.lat
+                this.long = data.results.geometry.location.lng
 
             }
             else {
