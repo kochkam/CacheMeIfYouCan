@@ -6,13 +6,13 @@ import LinkButton from "../components/LinkButton";
 import { useParams } from 'react-router-dom';
 
 
-function translateZip(zip) { // Zip to location information api info can be found here: zipcodeapi.com/API#zipToLoc
+function getlocation(zip) { // Zip to location information api info can be found here: zipcodeapi.com/API#zipToLoc
 
-  var apiURL = "http://www.zipcodeapi.com/rest/gPpQfeppCMSXxaOPsb6MgxfBYNoxj6hb9bVFua9rKbqMRCnFE89VMZyWexRmKoRw/info.json/" + zip + "/degrees";
+  var apiURL = "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAD0zxi8coI49e0OF3HfOvzX9Ny_87pynQ";
 
   let req = new XMLHttpRequest();
 
-  req.open('GET', apiURL, true);
+  req.open('POST', apiURL, true);
 
   req.addEventListener('load', function () {
 
@@ -30,13 +30,13 @@ function translateZip(zip) { // Zip to location information api info can be foun
 
 }
 
-function getHikeData(zip){
+function getHikeData(){
 
-  let obj = translateZip(zip); //translate zip and return JSON obj
+  let obj = getlocation(); //translate zip and return JSON obj
   let apiKey = "200964805-fbbd50c01b329d117306d1834dfd6a2d";
   let maxDistance = "&maxDistance=20";
-  let lat = obj.lat; //get lat and long
-  let lon = obj.lng;
+  let lat = obj.location.lat; //get lat and long
+  let lon = obj.location.long;
 
   let req = new XMLHttpRequest();
   let url = "https://www.hikingproject.com/data/get-trails?lat=" + lat + "&lon" + lon + maxDistance + apiKey;  // api info can be found here: https://www.hikingproject.com/data#_=_
