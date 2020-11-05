@@ -17,8 +17,8 @@ function translateZip(zip) { // Zip to location information api info can be foun
   req.addEventListener('load', function () {
 
     if (req.status >= 200 && req.status < 400) {
-      var lat = req.responseText.results[0].geometry.location.lat
-      var long = req.responseText.results[0].geometry.location.lng
+      var lat = JSON.parse(req.responseText.results[0].geometry.location.lat)
+      var long = JSON.parse(req.responseText.results[0].geometry.location.lng)
 
       return [lat,long]; //return lat and long to caller
 
