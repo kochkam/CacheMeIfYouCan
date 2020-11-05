@@ -19,10 +19,18 @@ export default function ResultsList(props) {
   // currentSearch object from props which contains assembled list of hikes
   let {zip} = useParams();
 
-  // TEMPORARY BUILDING OF RESULTS - This will need to happen during the search
+
+  // 
+  // TEMPORARY BUILDING OF RESULTS - This will need to happen during the search in SearchForm.js. 
+  // will need to pass currentSearch object from app.js all the way down to SearchForm.js
+  // Change the zip to be what was enterred in the form
   props.searchObj.zip = 92037;
-  props.searchObj.translateZip();
+  // call these two functions
+  props.searchObj.translateZip(); 
   props.searchObj.getHikeData();
+  // render results list
+  //
+
 
   //for (var i = 1; i <= 10; i++){
   //  props.searchObj.results.push(new Hike(i, "Title "+ i, "This is the summary for Hike " + i, i, "https://images.unsplash.com/photo-1500964757637-c85e8a162699?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1078&q=80", i, i));
