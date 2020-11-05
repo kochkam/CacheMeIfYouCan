@@ -27,7 +27,13 @@ export default function ResultsList(props) {
   //for (var i = 1; i <= 10; i++){
   //  props.searchObj.results.push(new Hike(i, "Title "+ i, "This is the summary for Hike " + i, i, "https://images.unsplash.com/photo-1500964757637-c85e8a162699?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1078&q=80", i, i));
   //}
-
+  if(props.searchObj.results.length == 0){
+    return (
+      <div className = 'results-list'>
+        <p>No Results Found</p>
+      </div>
+    )
+  }
   return (
 
     // Build results list    
