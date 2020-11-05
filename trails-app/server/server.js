@@ -4,7 +4,6 @@ var cors = require('cors');
 const { response } = require("express");
 const app = express();
 
-response.setHeader('Content-Type', 'text/html')
 app.use(cors());
 const publicPath = path.join(__dirname, '..', 'build');
 
