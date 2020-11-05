@@ -5,7 +5,7 @@ class SearchResults{
     constructor(zip) {
         this.results = [];
         this.show = true;
-        this.zip = zip
+        this.zip = zip;
         this.lat;
         this.long;
         
@@ -24,8 +24,8 @@ class SearchResults{
         req.addEventListener('load', function () {
 
             if (req.status >= 200 && req.status < 400) {
-                var HikeData = JSON.parse(req.responseText);
-                return HikeData; // use HikeData.trails[i].<attr name> to access the attribute you need. Results returned will be 10. 
+                this.results = JSON.parse(req.responseText);
+                // use HikeData.trails[i].<attr name> to access the attribute you need. Results returned will be 10. 
 
             }
             else {
