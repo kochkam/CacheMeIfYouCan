@@ -7,6 +7,7 @@ class SearchResults{
         this.results = [];
         this.show = true;
         this.zip = zip;
+        this.url1 = "https://maps.googleapis.com/maps/api/geocode/json?address=" + this.zip + ",US&key=AIzaSyAD0zxi8coI49e0OF3HfOvzX9Ny_87pynQ";
         this.lat = null;
         this.long = null;
         
@@ -55,11 +56,10 @@ class SearchResults{
 
     translateZip() { // Zip to location information api info can be found here: zipcodeapi.com/API#zipToLoc
 
-        var apiURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + this.zip + ",US&key=AIzaSyAD0zxi8coI49e0OF3HfOvzX9Ny_87pynQ";
 
         let req = new XMLHttpRequest();
 
-        req.open('GET', apiURL, false);
+        req.open('GET', this.url1, false);
 
         req.addEventListener('load', function () {
 
