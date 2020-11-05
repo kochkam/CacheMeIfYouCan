@@ -59,7 +59,7 @@ class SearchResults{
 
         let req = new XMLHttpRequest();
 
-        req.open('GET', apiURL, true);
+        req.open('GET', apiURL, false);
 
         req.addEventListener('load', function () {
 
