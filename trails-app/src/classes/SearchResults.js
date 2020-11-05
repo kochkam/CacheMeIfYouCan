@@ -49,7 +49,7 @@ class SearchResults{
                 var data = JSON.parse(req.responseText)
                 var lat = data.results.geometry.location.lat
                 var long = data.results.geometry.location.lng
-
+                this.getHikeData(lat,long);
 
             }
             else {
@@ -59,7 +59,7 @@ class SearchResults{
 
         req.send(null);
 
-        this.getHikeData(lat,long);
+        
 
     }
 
