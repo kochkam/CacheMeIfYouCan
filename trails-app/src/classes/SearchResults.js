@@ -8,36 +8,9 @@ class SearchResults{
         this.zip = zip
         
     }
-    translateZip(zip) { // Zip to location information api info can be found here: zipcodeapi.com/API#zipToLoc
 
-        var apiURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + zip + ",US&key=AIzaSyAD0zxi8coI49e0OF3HfOvzX9Ny_87pynQ";
+    getHikeData() {
 
-        let req = new XMLHttpRequest();
-
-        req.open('GET', apiURL, true);
-
-        req.addEventListener('load', function () {
-
-            if (req.status >= 200 && req.status < 400) {
-                var data = JSON.parse(req.responseText)
-                var lat = data.results.geometry.location.lat
-                var long = data.results.geometry.location.lng
-
-                return [lat, long]; //return lat and long to caller
-
-            }
-            else {
-                console.log("error in network request: " + req.statusText);
-            }
-        });
-
-        req.send(null);
-
-    }
-
-    getHikeData(zip) {
-
-        var obj = translateZip(zip); //translate zip and return JSON obj
         let apiKey = "200964805-fbbd50c01b329d117306d1834dfd6a2d";
         let maxDistance = "&maxDistance=20";
         let lat = obj[0]; //get lat and long
@@ -63,6 +36,35 @@ class SearchResults{
         req.send(null);
 
     }
+
+    translateZip() { // Zip to location information api info can be found here: zipcodeapi.com/API#zipToLoc
+
+        var apiURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + this.zip + ",US&key=AIzaSyAD0zxi8coI49e0OF3HfOvzX9Ny_87pynQ";
+
+        let req = new XMLHttpRequest();
+
+        req.open('GET', apiURL, true);
+
+        req.addEventListener('load', function () {
+
+            if (req.status >= 200 && req.status < 400) {
+                var data = JSON.parse(req.responseText)
+                var lat = data.results.geometry.location.lat
+                var long = data.results.geometry.location.lng
+
+
+            }
+            else {
+                console.log("error in network request: " + req.statusText);
+            }
+        });
+
+        req.send(null);
+
+        this.getHikeData(lat,long);
+
+    }
+
 
     // function to sort results
     // function to filter results
