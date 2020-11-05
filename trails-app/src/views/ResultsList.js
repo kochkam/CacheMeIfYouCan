@@ -6,13 +6,13 @@ import LinkButton from "../components/LinkButton";
 import { useParams } from 'react-router-dom';
 
 
-function getlocation() { // Zip to location information api info can be found here: zipcodeapi.com/API#zipToLoc
+function translateZip(zip) { // Zip to location information api info can be found here: zipcodeapi.com/API#zipToLoc
 
-  var apiURL = "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAD0zxi8coI49e0OF3HfOvzX9Ny_87pynQ";
+  var apiURL = "https://maps.googleapis.com/maps/api/geocode/AIzaSyAD0zxi8coI49e0OF3HfOvzX9Ny_87pynQ" + "/json?address=" + zip;
 
   let req = new XMLHttpRequest();
 
-  req.open('POST', apiURL, true);
+  req.open('GET', apiURL, true);
 
   req.addEventListener('load', function () {
 
@@ -30,13 +30,13 @@ function getlocation() { // Zip to location information api info can be found he
 
 }
 
-function getHikeData(){
+function getHikeData(zip){
 
-  let obj = getlocation(); //translate zip and return JSON obj
+  let obj = translateZip(zip); //translate zip and return JSON obj
   let apiKey = "200964805-fbbd50c01b329d117306d1834dfd6a2d";
   let maxDistance = "&maxDistance=20";
-  let lat = obj.location.lat; //get lat and long
-  let lon = obj.location.long;
+  let lat = obj.results.location.lat; //get lat and long
+  let lon = obj.results.location.lng;
 
   let req = new XMLHttpRequest();
   let url = "https://www.hikingproject.com/data/get-trails?lat=" + lat + "&lon" + lon + maxDistance + apiKey;  // api info can be found here: https://www.hikingproject.com/data#_=_
@@ -61,8 +61,8 @@ function getHikeData(){
 
 // Function fills a SearchResults object's results list with 10 hike objects and returns SearchResults object
 // THIS FUNCTION TO BE REPLACED WITH FUNCTION THAT PERFORMS ACTUAL SEARCH REQUEST FROM BACKEND
-function createResults(){
-  let hikeDataArray = getHikeData()
+function createResults(zip){
+  let hikeDataArray = getHikeData(zip)
   var searchResults = new SearchResults();
     for (var i = 1; i <= 10; i++){
         searchResults.results.push(new Hike(i, "Title "+ i, "This is the summary for Hike " + i, i, "https://images.unsplash.com/photo-1500964757637-c85e8a162699?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1078&q=80", i, i));
