@@ -83,6 +83,7 @@ class SearchResults{
 
 
     // function to sort results
+    // will need to update hike index for sorting and filtering
     // function to filter results
 }
 
