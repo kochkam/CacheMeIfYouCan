@@ -27,7 +27,7 @@ export default function ResultsList(props) {
   props.searchObj.zip = 92037;
   // call these two functions
   props.searchObj.translateZip(); 
-  props.searchObj.getHikeData();
+  //props.searchObj.getHikeData();
   // render results list
   //
 
