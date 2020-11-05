@@ -23,42 +23,46 @@ class SearchResults{
                 var lat = data.results.geometry.location.lat
                 var long = data.results.geometry.location.lng
 
-
-                let apiKey = "200964805-fbbd50c01b329d117306d1834dfd6a2d";
-                let maxDistance = "&maxDistance=20";
-                let lat = obj[0]; //get lat and long
-                let lon = obj[1];
-
-                let Newreq = new XMLHttpRequest();
-                let url = "https://www.hikingproject.com/data/get-trails?lat=" + lat + "&lon" + lon + maxDistance + apiKey;  // api info can be found here: https://www.hikingproject.com/data#_=_
-
-                Newreq.open('GET', url, true);
-
-                Newreq.addEventListener('load', function () {
-
-                    if (Newreq.status >= 200 && Newreq.status < 400) {
-                        var HikeData = JSON.parse(Newreq.responseText);
-                        return HikeData; // use HikeData.trails[i].<attr name> to access the attribute you need. Results returned will be 10. 
-
-                    }
-                    else {
-                        console.log("error in network request: " + Newreq.statusText);
-                    }
-                });
-
-                Newreq.send(null);
+                return [lat, long]; //return lat and long to caller
 
             }
             else {
-                console.log("error in network request: " + Newreq.statusText);
+                console.log("error in network request: " + req.statusText);
             }
         });
 
-        Newreq.send(null);
-
+        req.send(null);
 
     }
 
+    getHikeData(zip) {
+
+        var obj = translateZip(zip); //translate zip and return JSON obj
+        let apiKey = "200964805-fbbd50c01b329d117306d1834dfd6a2d";
+        let maxDistance = "&maxDistance=20";
+        let lat = obj[0]; //get lat and long
+        let lon = obj[1];
+
+        let req = new XMLHttpRequest();
+        let url = "https://www.hikingproject.com/data/get-trails?lat=" + lat + "&lon" + lon + maxDistance + apiKey;  // api info can be found here: https://www.hikingproject.com/data#_=_
+
+        req.open('GET', url, true);
+
+        req.addEventListener('load', function () {
+
+            if (req.status >= 200 && req.status < 400) {
+                var HikeData = JSON.parse(req.responseText);
+                return HikeData; // use HikeData.trails[i].<attr name> to access the attribute you need. Results returned will be 10. 
+
+            }
+            else {
+                console.log("error in network request: " + req.statusText);
+            }
+        });
+
+        req.send(null);
+
+    }
 
     // function to sort results
     // function to filter results
