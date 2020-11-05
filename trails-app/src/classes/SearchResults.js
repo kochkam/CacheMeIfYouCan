@@ -1,3 +1,4 @@
+import Hike from "./Hike";
 
 class SearchResults{
     // class represents a collection of hike search results in the form of the results data member
@@ -24,9 +25,24 @@ class SearchResults{
         req.addEventListener('load', function () {
 
             if (req.status >= 200 && req.status < 400) {
-                this.results = JSON.parse(req.responseText);
-                // use HikeData.trails[i].<attr name> to access the attribute you need. Results returned will be 10. 
+                // build hikes into results
+                var response = JSON.parse(req.responseText);
+                for (var i = 0; i < response.length; i++){
+                    var hike = new Hike();
+                    hike.id = response[i].id;
+                    hike.title = response[i].name;
+                    hike.summary = response[i].summary;
+                    hike.activityLevel = response[i].difficulty;
+                    hike.imgURL = response[i].imgSmall;
+                    // attribute is titled "length" from api for hike distance. javascript doesnt like this
+                    hike.distance = response[i].length;
+                    hike.long = response[i].longitude;
+                    hike.lat = response[i].latitude;
+                    // add hike object to results
+                    this.results.push(hike);
 
+                }
+                // use HikeData.trails[i].<attr name> to access the attribute you need. Results returned will be 10. 
             }
             else {
                 console.log("error in network request: " + req.statusText);
