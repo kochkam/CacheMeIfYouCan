@@ -9,12 +9,10 @@ class SearchResults{
         
     }
 
-    getHikeData() {
+    getHikeData(lat,lon) {
 
         let apiKey = "200964805-fbbd50c01b329d117306d1834dfd6a2d";
         let maxDistance = "&maxDistance=20";
-        let lat = obj[0]; //get lat and long
-        let lon = obj[1];
 
         let req = new XMLHttpRequest();
         let url = "https://www.hikingproject.com/data/get-trails?lat=" + lat + "&lon" + lon + maxDistance + apiKey;  // api info can be found here: https://www.hikingproject.com/data#_=_
