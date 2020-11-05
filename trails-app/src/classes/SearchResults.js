@@ -6,8 +6,8 @@ class SearchResults{
         this.results = [];
         this.show = true;
         this.zip = zip;
-        this.lat;
-        this.long;
+        this.lat = lat;
+        this.long = long;
         
     }
 
