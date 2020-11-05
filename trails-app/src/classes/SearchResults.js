@@ -34,6 +34,7 @@ class SearchResults{
                     hike.summary = response[i].summary;
                     hike.activityLevel = response[i].difficulty;
                     hike.imgURL = response[i].imgSmall;
+                    hike.largeimgURL = response[i].imgMedium;
                     // attribute is titled "length" from api for hike distance. javascript doesnt like this
                     hike.distance = response[i].length;
                     hike.long = response[i].longitude;
