@@ -1,6 +1,6 @@
 
 class Hike{
-    constructor(id, title, summary, activityLevel, imgURL, largeimgURL, distance, temp, lat, long){
+    constructor(id, title, summary, activityLevel, imgURL, largeimgURL, distance, temp, lat, long, index){
         this.id = id;
         this.title = title;
         this.summary = summary;
@@ -11,6 +11,7 @@ class Hike{
         this.temp = temp;
         this.lat = lat;
         this.long = long;
+        this.index = index;
     }
 }
 

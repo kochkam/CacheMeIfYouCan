@@ -32,9 +32,11 @@ export default function ResultsList(props) {
   //
 
 
-  //for (var i = 1; i <= 10; i++){
-  //  props.searchObj.results.push(new Hike(i, "Title "+ i, "This is the summary for Hike " + i, i, "https://images.unsplash.com/photo-1500964757637-c85e8a162699?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1078&q=80", i, i));
-  //}
+  for (var i = 1; i <= 10; i++){
+    var hike = new Hike(i, "Title "+ i, "This is the summary for Hike " + i, i, "https://images.unsplash.com/photo-1500964757637-c85e8a162699?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1078&q=80", i, i)
+    hike.index = i - 1;
+    props.searchObj.results.push(hike);
+  }
   if(props.searchObj.results.length == 0){
     return (
       <div className = 'results-list'>
@@ -49,7 +51,7 @@ export default function ResultsList(props) {
     <div className = 'results-list'>
     {props.searchObj.results.map(
       hike => (
-        <LinkButton exact to={"/detail-view/" + hike.id}>
+        <LinkButton exact to={"/detail-view/" + hike.index}>
           <ListItem id = {hike.id} title = {hike.title} summary = {hike.summary} activityLevel = {hike.activityLevel} img = {hike.imgURL} distance = {hike.distance} temp = {hike.temp} clickFunction = {hikeClick}/>
         </LinkButton>
       )

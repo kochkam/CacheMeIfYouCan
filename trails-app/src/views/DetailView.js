@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { useParams } from 'react-router-dom';
 import Map from '../components/Map'
 
-//REPLACE WITH FUNCTION THAT CALLS BACKEND FOR ACTUAL HIKE INFO
-function getDetails(hike_id) {
+/*
+function getDetails(hike_id, searchResult) {
+  
   return {
     id: hike_id,
     img: "https://www.nps.gov/jotr/learn/nature/images/JoshuaTrees_LMcAfee.jpg",
@@ -13,14 +14,17 @@ function getDetails(hike_id) {
     distance: "5 miles",
     temp: "70 F"
   }
+  
+ return ;
 }
+*/
 
-export default function DetailView() {
+export default function DetailView(props) {
   let {hike_id} = useParams();
-  var props = getDetails(hike_id);
+  var props = props.searchResult[hike_id];
   return (
     <div className ="detail-row-container" id= {props.id}>
-        <img className="detail-img" src = {props.img}/>
+        <img className="detail-img" src = {props.imgURL}/>
         <div className="detail-column-container">
           <h1 className="detail-text">{props.title}</h1>
           <h2 className="detail-text">{props.summary}</h2>

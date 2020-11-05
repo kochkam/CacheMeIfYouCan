@@ -9,7 +9,6 @@ class SearchResults{
         this.zip = zip;
         this.lat = null;
         this.long = null;
-        
     }
 
     getHikeData() {
@@ -30,6 +29,7 @@ class SearchResults{
                 for (var i = 0; i < response.length; i++){
                     var hike = new Hike();
                     hike.id = response[i].id;
+                    hike.index = i;
                     hike.title = response[i].name;
                     hike.summary = response[i].summary;
                     hike.activityLevel = response[i].difficulty;
