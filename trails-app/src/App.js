@@ -8,7 +8,7 @@ import DetailView from "./views/DetailView";
 import SearchResults from "./classes/SearchResults.js";
 
 
-var currentSearch = new SearchResults();
+var currentSearch = new SearchResults("92037");
 
 export default function App() {
   return (
