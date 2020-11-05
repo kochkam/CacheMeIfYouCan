@@ -37,7 +37,7 @@ class SearchResults{
 
     getHikeData(zip) {
 
-        var obj = translateZip(zip); //translate zip and return JSON obj
+        var obj = this.translateZip(zip); //translate zip and return JSON obj
         let apiKey = "200964805-fbbd50c01b329d117306d1834dfd6a2d";
         let maxDistance = "&maxDistance=20";
         let lat = obj[0]; //get lat and long
