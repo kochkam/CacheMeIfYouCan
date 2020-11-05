@@ -18,7 +18,7 @@ function translateZip(zip) { // Zip to location information api info can be foun
 
     if (req.status >= 200 && req.status < 400) {
       var response = JSON.parse(req.responseText);
-      return response //return lat and long to caller
+      return response; //return lat and long to caller
 
     }
     else {
@@ -26,28 +26,28 @@ function translateZip(zip) { // Zip to location information api info can be foun
     }
   });
 
-  req.send(null)
+  req.send(null);
 
 }
 
 function getHikeData(zip){
 
-  obj = translateZip(zip); //translate zip and return JSON obj
-  apiKey = "200964805-fbbd50c01b329d117306d1834dfd6a2d";
-  maxDistance = "&maxDistance=20"
-  lat = obj.lat //get lat and long
-  lon = obj.lng
+  let obj = translateZip(zip); //translate zip and return JSON obj
+  let apiKey = "200964805-fbbd50c01b329d117306d1834dfd6a2d";
+  let maxDistance = "&maxDistance=20";
+  let lat = obj.lat; //get lat and long
+  let lon = obj.lng;
 
   let req = new XMLHttpRequest();
-  url = "https://www.hikingproject.com/data/get-trails?lat=" + lat + "&lon" + maxDistance + apiKey  // api info can be found here: https://www.hikingproject.com/data#_=_
+  let url = "https://www.hikingproject.com/data/get-trails?lat=" + lat + "&lon" + lon + maxDistance + apiKey;  // api info can be found here: https://www.hikingproject.com/data#_=_
 
-  req.open('GET', url, true)
+  req.open('GET', url, true);
 
   req.addEventListener('load', function () {
 
     if (req.status >= 200 && req.status < 400) {
       var HikeData = JSON.parse(req.responseText);
-      return HikeData // use HikeData.trails[i].<attr name> to access the attribute you need. Results returned will be 10. 
+      return HikeData; // use HikeData.trails[i].<attr name> to access the attribute you need. Results returned will be 10. 
 
     }
     else {
@@ -55,14 +55,14 @@ function getHikeData(zip){
     }
   });
 
-  req.send(null)
+  req.send(null);
 
 }
 
 // Function fills a SearchResults object's results list with 10 hike objects and returns SearchResults object
 // THIS FUNCTION TO BE REPLACED WITH FUNCTION THAT PERFORMS ACTUAL SEARCH REQUEST FROM BACKEND
-function createResults(){
-  hikeDataArray = getHikeData(zip)
+function createResults(zip){
+  let hikeDataArray = getHikeData(zip)
   var searchResults = new SearchResults();
     for (var i = 1; i <= 10; i++){
         searchResults.results.push(new Hike(i, "Title "+ i, "This is the summary for Hike " + i, i, "https://images.unsplash.com/photo-1500964757637-c85e8a162699?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1078&q=80", i, i));
