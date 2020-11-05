@@ -18,10 +18,9 @@ function translateZip(zip) { // Zip to location information api info can be foun
 
     if (req.status >= 200 && req.status < 400) {
       var data = JSON.parse(req.responseText)
-      var lat = data.results.geometry.location.lat
-      var long = data.results.geometry.location.lng
 
-      return [lat,long]; //return lat and long to caller
+
+      return data; //return lat and long to caller
 
     }
     else {
@@ -35,7 +34,7 @@ function translateZip(zip) { // Zip to location information api info can be foun
 
 function getHikeData(zip){
 
-  let obj = translateZip(zip); //translate zip and return JSON obj
+  var obj = translateZip(zip); //translate zip and return JSON obj
   let apiKey = "200964805-fbbd50c01b329d117306d1834dfd6a2d";
   let maxDistance = "&maxDistance=20";
   let lat = obj[0]; //get lat and long
