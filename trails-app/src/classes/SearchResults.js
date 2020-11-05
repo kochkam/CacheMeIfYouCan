@@ -37,11 +37,7 @@ class SearchResults{
 
     translateZip() { // Zip to location information api info can be found here: zipcodeapi.com/API#zipToLoc
 
-        var obj = this.translateZip(zip); //translate zip and return JSON obj
-        let apiKey = "200964805-fbbd50c01b329d117306d1834dfd6a2d";
-        let maxDistance = "&maxDistance=20";
-        let lat = obj[0]; //get lat and long
-        let lon = obj[1];
+        var apiURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + this.zip + ",US&key=AIzaSyAD0zxi8coI49e0OF3HfOvzX9Ny_87pynQ";
 
         let req = new XMLHttpRequest();
 
