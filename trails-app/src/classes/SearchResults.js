@@ -29,32 +29,32 @@ class SearchResults{
                 let lat = obj[0]; //get lat and long
                 let lon = obj[1];
 
-                let req = new XMLHttpRequest();
+                let Newreq = new XMLHttpRequest();
                 let url = "https://www.hikingproject.com/data/get-trails?lat=" + lat + "&lon" + lon + maxDistance + apiKey;  // api info can be found here: https://www.hikingproject.com/data#_=_
 
-                req.open('GET', url, true);
+                Newreq.open('GET', url, true);
 
-                req.addEventListener('load', function () {
+                Newreq.addEventListener('load', function () {
 
-                    if (req.status >= 200 && req.status < 400) {
-                        var HikeData = JSON.parse(req.responseText);
+                    if (Newreq.status >= 200 && Newreq.status < 400) {
+                        var HikeData = JSON.parse(Newreq.responseText);
                         return HikeData; // use HikeData.trails[i].<attr name> to access the attribute you need. Results returned will be 10. 
 
                     }
                     else {
-                        console.log("error in network request: " + req.statusText);
+                        console.log("error in network request: " + Newreq.statusText);
                     }
                 });
 
-                req.send(null);
+                Newreq.send(null);
 
             }
             else {
-                console.log("error in network request: " + req.statusText);
+                console.log("error in network request: " + Newreq.statusText);
             }
         });
 
-        req.send(null);
+        Newreq.send(null);
 
 
     }
