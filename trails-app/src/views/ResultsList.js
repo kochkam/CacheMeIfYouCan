@@ -6,7 +6,7 @@ import LinkButton from "../components/LinkButton";
 import { useParams } from 'react-router-dom';
 
 
-function getlocation(zip) { // Zip to location information api info can be found here: zipcodeapi.com/API#zipToLoc
+function getlocation() { // Zip to location information api info can be found here: zipcodeapi.com/API#zipToLoc
 
   var apiURL = "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAD0zxi8coI49e0OF3HfOvzX9Ny_87pynQ";
 
@@ -61,8 +61,8 @@ function getHikeData(){
 
 // Function fills a SearchResults object's results list with 10 hike objects and returns SearchResults object
 // THIS FUNCTION TO BE REPLACED WITH FUNCTION THAT PERFORMS ACTUAL SEARCH REQUEST FROM BACKEND
-function createResults(zip){
-  let hikeDataArray = getHikeData(zip)
+function createResults(){
+  let hikeDataArray = getHikeData()
   var searchResults = new SearchResults();
     for (var i = 1; i <= 10; i++){
         searchResults.results.push(new Hike(i, "Title "+ i, "This is the summary for Hike " + i, i, "https://images.unsplash.com/photo-1500964757637-c85e8a162699?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1078&q=80", i, i));
