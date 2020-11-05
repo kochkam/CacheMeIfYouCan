@@ -9,6 +9,8 @@ class SearchResults{
         this.zip = zip;
         this.lat = null;
         this.long = null;
+
+     
     }
 
     getHikeData() {
