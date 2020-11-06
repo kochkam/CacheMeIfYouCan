@@ -63,7 +63,7 @@ class SearchResults{
 
         req.addEventListener('load', function () {
 
-            if (req.status >= 200 && req.status < 400) {
+            if (req.status == OK) {
                 var data = JSON.parse(req.responseText)
                 this.lat = data.results[0].geometry.location.lat
                 this.long = data.results[0].geometry.location.lng
