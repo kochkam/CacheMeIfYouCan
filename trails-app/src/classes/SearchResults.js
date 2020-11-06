@@ -54,12 +54,12 @@ class SearchResults{
         let apiURL = "http://api.openweathermap.org/data/2.5/weather?lat" + 
                      lat +
                      "&lon" +
-                     lon +
+                     long +
                      "&appid" + 
                      weatherAPI;
 
         try {
-            let res = await fetch(url);
+            let res = await fetch(apiURL);
             return await res.json;
         } catch (error) {
             console.log(error);
