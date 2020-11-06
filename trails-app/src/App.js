@@ -16,7 +16,7 @@ export default function App() {
       <Navbar />
       <div className='base-container'>
         <div className="content">
-          <Route exact path="/" component={Home}/>
+          <Route exact path="/" children={<Home searchObj = {currentSearch} />}/>
           <Route path="/user-profile" component={UserProfile}/>
           <Route path="/results-list/:zip" children={<ResultsList searchObj = {currentSearch} />}/>
           <Route path="/detail-view/:hike_id" children={<DetailView searchResult = {currentSearch.results}/>}/>
