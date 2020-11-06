@@ -84,8 +84,6 @@ class SearchResults{
 
         let lat = response.results[0].geometry.location.lat;
         let long = response.results[0].geometry.location.lng;
-        console.log(lat);
-        console.log(long);
         this.getData(lat,long);
 
     }
