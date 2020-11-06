@@ -19,7 +19,7 @@ class SearchResults{
 
         let response = await this.getHikeData()
 
-        return response;
+        console.log(response);
 
 
     }
