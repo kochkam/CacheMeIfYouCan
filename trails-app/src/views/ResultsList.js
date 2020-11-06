@@ -26,7 +26,6 @@ export default function ResultsList(props) {
   //props.searchObj.lat = "32.715736";
   //props.searchObj.long ="-117.161";
   props.searchObj.translateZip();
-  props.searchObj.getData();
 
   //for (var i = 1; i <= 10; i++){
   //  props.searchObj.results.push(new Hike(i, "Title "+ i, "This is the summary for Hike " + i, i, "https://images.unsplash.com/photo-1500964757637-c85e8a162699?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1078&q=80", i, i));
