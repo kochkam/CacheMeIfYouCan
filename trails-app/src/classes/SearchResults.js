@@ -34,6 +34,10 @@ class SearchResults{
             hike.distance = response.trails[i].length;
             hike.long = response.trails[i].longitude;
             hike.lat = response.trails[i].latitude;
+        
+            // get temperature from Open Weather Map
+            hike.temp = await this.getCurrentTemp(hike.long, hike.lat);
+
             // add hike object to results
             this.results.push(hike);
             console.log(this.results);
@@ -41,6 +45,15 @@ class SearchResults{
 
 
     }
+
+    async getCurrentTemp(long, lat) {
+        let weatherAPI = "d88f7585c318ca84fe20c5e487101b1f";
+
+        // TODO: fill in API call and response
+
+    }
+
+
     async getHikeData(lat,long) {
 
         let apiKey = "&key=200964805-fbbd50c01b329d117306d1834dfd6a2d";
