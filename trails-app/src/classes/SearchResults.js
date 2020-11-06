@@ -21,7 +21,7 @@ class SearchResults{
         let req = new XMLHttpRequest();
         let url = "https://www.hikingproject.com/data/get-trails?lat=" + this.lat + "&lon" + this.long + maxDistance + apiKey;  // api info can be found here: https://www.hikingproject.com/data#_=_
 
-        req.open('GET', url, true);
+        req.open('GET', url, false);
 
         req.addEventListener('load', function () {
 
@@ -59,7 +59,7 @@ class SearchResults{
 
         let req = new XMLHttpRequest();
 
-        req.open('GET', this.url1, true);
+        req.open('GET', this.url1, false);
 
         req.addEventListener('load', function () {
 
