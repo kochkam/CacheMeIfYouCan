@@ -21,9 +21,10 @@ class SearchResults{
         let response = await this.getHikeData()
         console.log(response);
 
-        for (var i = 0; i < response.length; i++) {
+        for (var i = 0; i < 10; i++) {
             var hike = new Hike();
             hike.id = response.trails[i].id;
+            console.log(hike.id);
             hike.index = i;
             hike.title = response.trails[i].name;
             hike.summary = response.trails[i].summary;
