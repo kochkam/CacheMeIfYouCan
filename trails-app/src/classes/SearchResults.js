@@ -51,11 +51,11 @@ class SearchResults{
         let weatherAPI = "d88f7585c318ca84fe20c5e487101b1f";
 
         // TODO: fill in API call and response
-        let apiURL = "https://api.openweathermap.org/data/2.5/weather?lat" + 
+        let apiURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + 
                      lat +
-                     "&lon" +
+                     "&lon=" +
                      long +
-                     "&appid" + 
+                     "&appid=" + 
                      weatherAPI;
 
         try {
