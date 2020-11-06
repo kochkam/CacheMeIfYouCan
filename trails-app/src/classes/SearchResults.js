@@ -54,6 +54,7 @@ class SearchResults{
         });
 
         req.send(null);
+        Event.preventDefault()
 
     }
 
