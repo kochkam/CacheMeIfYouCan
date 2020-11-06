@@ -62,9 +62,9 @@ class SearchResults{
 
         let req = new XMLHttpRequest();
 
-        req.open('GET', this.url1, fale);
+        req.open('GET', this.url1, false);
 
-        req.addEventListener('load', sfunction () {
+        req.addEventListener('load', function () {
 
             if (req.status >= 200 && req.status < 400) {
                 var data = JSON.parse(req.responseText)
