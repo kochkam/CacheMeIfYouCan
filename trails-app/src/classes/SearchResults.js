@@ -20,7 +20,7 @@ class SearchResults{
         let maxDistance = "&maxDistance=20";
 
         let req = new XMLHttpRequest();
-        let url = "https://www.hikingproject.com/data/get-trails?lat=" + this.lat + "&lon" + this.long + maxDistance + apiKey;  // api info can be found here: https://www.hikingproject.com/data#_=_
+        let url = "https://www.hikingproject.com/data/get-trails?lat=" + this.lat + "&lon=" + this.long + maxDistance + apiKey;  // api info can be found here: https://www.hikingproject.com/data#_=_
 
         req.open('GET', url, false);
 
