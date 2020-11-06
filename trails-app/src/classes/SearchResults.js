@@ -54,28 +54,17 @@ class SearchResults{
 
     }
 
-    translateZip() { // Zip to location information api info can be found here: zipcodeapi.com/API#zipToLoc
+    async translateZip() { // Zip to location information api info can be found here: zipcodeapi.com/API#zipToLoc
 
 
-        fetch(this.url1)
-        .then(res => res.json())
-        .then(
-          (result) => {
-            
-            this.lat = result.results[0].geometry.location.lat;
-            this.long = result.results[0].geometry.location.lng;
-            
-          },
-          // Note: it's important to handle errors here
-          // instead of a catch() block so that we don't swallow
-          // exceptions from actual bugs in components.
-          (error) => {
-            this.setState({
-              isLoaded: true,
-              error
-            });
-          }
-        )
+        const response = await fetch(this.url1)
+
+        if(!response.ok){
+            throw new console.error("Failed to fetch zip code.");
+        }
+        const data = await response.json()
+        this.lat = data.results[0].geometry.location.lat;
+        this.long = data.results[0].geometry.location.lng;
 
         
 
