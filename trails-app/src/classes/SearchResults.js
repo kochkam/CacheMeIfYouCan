@@ -54,17 +54,27 @@ class SearchResults{
 
     }
 
-    async translateZip() { // Zip to location information api info can be found here: zipcodeapi.com/API#zipToLoc
+    translateZip() { // Zip to location information api info can be found here: zipcodeapi.com/API#zipToLoc
 
 
-        const response = await fetch(this.url1)
+        let req = new XMLHttpRequest();
 
-        if(!response.ok){
-            throw new console.error("Failed to fetch zip code.");
-        }
-        const data = await response.json()
-        this.lat = data.results[0].geometry.location.lat;
-        this.long = data.results[0].geometry.location.lng;
+        req.open('GET', this.url1, false);
+
+        req.addEventListener('load', function () {
+
+            if (req.status >= 200 && req.status < 400) {
+                var data = JSON.parse(req.responseText)
+                this.lat = data.results[0].geometry.location.lat
+                this.long = data.results[0].geometry.location.lng
+
+            }
+            else {
+                console.log("error in network request: " + req.statusText);
+            }
+        });
+
+        req.send(null);
 
         
 
