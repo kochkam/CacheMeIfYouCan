@@ -19,6 +19,7 @@ class SearchResults{
     async getData(){
 
         let response = await this.getHikeData()
+        console.log(response);
 
         for (var i = 0; i < response.length; i++) {
             var hike = new Hike();
