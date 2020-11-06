@@ -23,8 +23,11 @@ export default function ResultsList(props) {
   // 
   // TEMPORARY BUILDING OF RESULTS - This will need to happen during the search in SearchForm.js. 
   // will need to pass currentSearch object from app.js all the way down to SearchForm.js
+
   // Change the zip to be what was enterred in the form
-  props.searchObj.zip = 92037;
+  // props.searchObj.zip = 92037;
+  console.log(props.searchObj.zip);
+
   // call these two functions
   props.searchObj.translateZip(); 
   props.searchObj.getHikeData();
