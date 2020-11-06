@@ -36,7 +36,11 @@ class SearchResults{
             hike.lat = response.trails[i].latitude;
         
             // get temperature from Open Weather Map
-            hike.temp = await this.getCurrentTemp(hike.long, hike.lat);
+            weatherData = await this.getCurrentTemp(hike.long, hike.lat);
+            weatherData = JSON.parse(weatherData);
+            console.log(weatherData);
+            hike.temp = weatherData.main.temp;
+
             console.log("Hike temp: " + hike.temp);
 
             // add hike object to results
