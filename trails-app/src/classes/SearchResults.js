@@ -7,83 +7,90 @@ class SearchResults{
         this.results = [];
         this.show = true;
         this.zip = zip;
+        this.url1 = "https://maps.googleapis.com/maps/api/geocode/json?address=" + this.zip + ",US&key=AIzaSyAD0zxi8coI49e0OF3HfOvzX9Ny_87pynQ";
         this.lat = null;
         this.long = null;
 
      
     }
 
-    getHikeData() {
 
-        let apiKey = "200964805-fbbd50c01b329d117306d1834dfd6a2d";
+ 
+    async getData(lat,long){
+
+        let response = await this.getHikeData(lat,long)
+        console.log(response);
+
+        for (var i = 0; i < 10; i++) {
+            var hike = new Hike();
+            hike.id = response.trails[i].id;
+            console.log(hike.id);
+            hike.index = i;
+            hike.title = response.trails[i].name;
+            hike.summary = response.trails[i].summary;
+            hike.activityLevel = response.trails[i].difficulty;
+            hike.imgURL = response.trails[i].imgSmall;
+            hike.largeimgURL = response.trails[i].imgMedium;
+            // attribute is titled "length" from api for hike distance. javascript doesnt like this
+            hike.distance = response.trails[i].length;
+            hike.long = response.trails[i].longitude;
+            hike.lat = response.trails[i].latitude;
+            // add hike object to results
+            this.results.push(hike);
+            console.log(this.results);
+        }
+
+
+    }
+    async getHikeData(lat,long) {
+
+        let apiKey = "&key=200964805-fbbd50c01b329d117306d1834dfd6a2d";
         let maxDistance = "&maxDistance=20";
 
-        let req = new XMLHttpRequest();
-        let url = "https://www.hikingproject.com/data/get-trails?lat=" + this.lat + "&lon" + this.long + maxDistance + apiKey;  // api info can be found here: https://www.hikingproject.com/data#_=_
+        let url = "https://www.hikingproject.com/data/get-trails?lat=" + lat + "&lon=" + long + maxDistance + apiKey;  // api info can be found here: https://www.hikingproject.com/data#_=_
 
-        req.open('GET', url, true);
 
-        req.addEventListener('load', function () {
+        try {
+            let res = await fetch(url)
+            return await res.json();
+        } catch (error) {
+            console.log(error)
+        }
 
-            if (req.status >= 200 && req.status < 400) {
-                // build hikes into results
-                var response = JSON.parse(req.responseText);
-                for (var i = 0; i < response.length; i++){
-                    var hike = new Hike();
-                    hike.id = response[i].id;
-                    hike.index = i;
-                    hike.title = response[i].name;
-                    hike.summary = response[i].summary;
-                    hike.activityLevel = response[i].difficulty;
-                    hike.imgURL = response[i].imgSmall;
-                    hike.largeimgURL = response[i].imgMedium;
-                    // attribute is titled "length" from api for hike distance. javascript doesnt like this
-                    hike.distance = response[i].length;
-                    hike.long = response[i].longitude;
-                    hike.lat = response[i].latitude;
-                    // add hike object to results
-                    this.results.push(hike);
+        // build hikes into results
 
-                }
-                // use HikeData.trails[i].<attr name> to access the attribute you need. Results returned will be 10. 
-            }
-            else {
-                console.log("error in network request: " + req.statusText);
-            }
-        });
 
-        req.send(null);
 
     }
 
-    translateZip() { // Zip to location information api info can be found here: zipcodeapi.com/API#zipToLoc
+    async callZip(){
 
-        var apiURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + this.zip + ",US&key=AIzaSyAD0zxi8coI49e0OF3HfOvzX9Ny_87pynQ";
-
-        let req = new XMLHttpRequest();
-
-        req.open('GET', apiURL, true);
-
-        req.addEventListener('load', function () {
-
-            if (req.status >= 200 && req.status < 400) {
-                var data = JSON.parse(req.responseText)
-                this.lat = data.results.geometry.location.lat
-                this.long = data.results.geometry.location.lng
-
-            }
-            else {
-                console.log("error in network request: " + req.statusText);
-            }
-        });
-
-        req.send(null);
-
-        
+        try {
+            let res = await fetch(this.url1)
+            return await res.json();
+        } catch (error) {
+            console.log(error)
+        }
 
     }
 
+    async translateZip() { // Zip to location information api info can be found here: zipcodeapi.com/API#zipToLoc
 
+
+        let response = await this.callZip()
+
+        console.log(response);
+
+
+        let lat = response.results[0].geometry.location.lat;
+        let long = response.results[0].geometry.location.lng;
+        console.log(lat);
+        console.log(long);
+        this.getData(lat,long);
+
+    }
+
+    
     // function to sort results
     // will need to update hike index for sorting and filtering
     // function to filter results
