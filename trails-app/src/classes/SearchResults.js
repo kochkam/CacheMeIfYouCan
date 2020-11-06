@@ -22,15 +22,15 @@ class SearchResults{
         let url = "https://www.hikingproject.com/data/get-trails?lat=" + this.lat + "&lon=" + this.long + maxDistance + apiKey;  // api info can be found here: https://www.hikingproject.com/data#_=_
 
 
-        let obj;
+        let response;
         fetch(url)
             .then(res => res.json())
-            .then(data => obj = data)
-            .then(() => obj)
+            .then(data => response = data)
+            .then(() => response)
         // build hikes into results
         for (var i = 0; i < response.length; i++) {
             var hike = new Hike();
-            hike.id = response[i].id;
+            hike.id = obj[i].id;
             hike.index = i;
             hike.title = response[i].name;
             hike.summary = response[i].summary;
