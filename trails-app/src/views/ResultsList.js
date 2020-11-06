@@ -23,7 +23,8 @@ export default function ResultsList(props) {
   //props.searchObj.zip = 92037;
   props.searchObj.lat = "32.715736";
   props.searchObj.long = "-117.161087";
-  //props.searchObj.translateZip();
+  props.searchObj.zip = "92037";
+  props.searchObj.translateZip();
   props.searchObj.getData();
 
   //for (var i = 1; i <= 10; i++){
