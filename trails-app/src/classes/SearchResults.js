@@ -14,20 +14,11 @@ class SearchResults{
      
     }
 
-    getHikeData() {
 
-        let apiKey = "&key=200964805-fbbd50c01b329d117306d1834dfd6a2d";
-        let maxDistance = "&maxDistance=20";
+    async getData(){
 
-        let url = "https://www.hikingproject.com/data/get-trails?lat=" + this.lat + "&lon=" + this.long + maxDistance + apiKey;  // api info can be found here: https://www.hikingproject.com/data#_=_
-
-
-        let response;
-        fetch(url)
-            .then(res => res.json())
-            .then(data => response = data)
-            .then(() => response)
-        // build hikes into results
+        let response = await this.getHikeData()
+        
         for (var i = 0; i < response.length; i++) {
             var hike = new Hike();
             hike.id = response[i].id;
@@ -44,6 +35,27 @@ class SearchResults{
             // add hike object to results
             this.results.push(hike);
         }
+
+
+    }
+    async getHikeData() {
+
+        let apiKey = "&key=200964805-fbbd50c01b329d117306d1834dfd6a2d";
+        let maxDistance = "&maxDistance=20";
+
+        let url = "https://www.hikingproject.com/data/get-trails?lat=" + this.lat + "&lon=" + this.long + maxDistance + apiKey;  // api info can be found here: https://www.hikingproject.com/data#_=_
+
+
+        try {
+            let res = await fetch(url)
+            return await res.json();
+        } catch (error) {
+            console.log(error)
+        }
+        let response = fetch(url)
+
+        // build hikes into results
+
 
 
     }
