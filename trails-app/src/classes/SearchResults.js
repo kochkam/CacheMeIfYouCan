@@ -84,7 +84,7 @@ class SearchResults{
 
         let lat = response.results[0].geometry.location.lat;
         let long = response.results[0].geometry.location.lng;
-        results = this.getData(lat,long); //pass extracted data to get the Hike data
+        var results = this.getData(lat,long); //pass extracted data to get the Hike data
         return results
     }
 
