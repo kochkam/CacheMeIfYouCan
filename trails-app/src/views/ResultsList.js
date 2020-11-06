@@ -22,7 +22,7 @@ export default function ResultsList(props) {
   // TEMPORARY BUILDING OF RESULTS - This will need to happen during the search
   //props.searchObj.zip = 92037;
   props.searchObj.lat = "32.1757";
-  props.searchObj.long = "117.1611";
+  props.searchObj.long = "-117.1611";
   //props.searchObj.translateZip();
   props.searchObj.getHikeData();
 
