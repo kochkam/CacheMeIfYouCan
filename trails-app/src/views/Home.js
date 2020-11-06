@@ -6,7 +6,7 @@ class Home extends Component {
     return (
       <div className="search-container">
         <h1>Find your next trail....</h1>
-        <SearchForm searchObj = {this.searchObj}/>
+        <SearchForm searchObj = {this.props.searchObj}/>
       </div>
     );
   }

@@ -26,7 +26,7 @@ export default function ResultsList(props) {
 
   // Change the zip to be what was enterred in the form
   // props.searchObj.zip = 92037;
-  console.log(props.searchObj.zip);
+  // console.log(props.searchObj.zip);
 
   // call these two functions
   props.searchObj.translateZip(); 

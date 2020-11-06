@@ -21,14 +21,15 @@ class SearchForm extends React.Component{
         this.setState({error});
         if (error.length > 0) return;
         this.setState({zip:''});
-        this.searchObj.zip = zip
+        this.props.searchObj.zip = zip;
         this.props.history.push('/results-list/' + zip);
     }
 
 
     validate = (zip) => {
-        if (zip.trim().length===0) return 'Please enter a ZIP code';
-        if (isNaN(zip)) return 'Please enter a ZIP code';
+        const zipLength = zip.trim().length;
+        if (zipLength === 0) return 'Please enter a ZIP code';
+        if (isNaN(zipLength)) return 'Please enter a ZIP code';
         return '';
     }
 
