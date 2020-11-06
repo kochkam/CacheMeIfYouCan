@@ -15,7 +15,7 @@ class SearchResults{
 
 
  
-    async getData(lat,long){
+    async getData(lat,long){ //parses out json object and fills a hike object with hiking data and pushes that object to results
 
         let response = await this.getHikeData(lat,long)
         console.log(response);
@@ -62,7 +62,7 @@ class SearchResults{
 
     }
 
-    async callZip(zip){
+    async callZip(zip){ //builds url and fetches lat and long data
 
         url1 = "https://maps.googleapis.com/maps/api/geocode/json?address=" + zip + ",US&key=AIzaSyAD0zxi8coI49e0OF3HfOvzX9Ny_87pynQ";
         try {
@@ -74,7 +74,7 @@ class SearchResults{
 
     }
 
-    async translateZip(zip) { // Zip to location information api info can be found here: zipcodeapi.com/API#zipToLoc
+    async translateZip(zip) { // function calls callzip which gets api data
 
 
         let response = await this.callZip(zip)
@@ -84,7 +84,7 @@ class SearchResults{
 
         let lat = response.results[0].geometry.location.lat;
         let long = response.results[0].geometry.location.lng;
-        this.getData(lat,long);
+        this.getData(lat,long); //pass extracted data to get the Hike data
 
     }
 
