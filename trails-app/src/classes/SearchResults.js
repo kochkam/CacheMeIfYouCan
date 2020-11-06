@@ -16,7 +16,7 @@ class SearchResults{
 
     getHikeData() {
 
-        let apiKey = "200964805-fbbd50c01b329d117306d1834dfd6a2d";
+        let apiKey = "&key=200964805-fbbd50c01b329d117306d1834dfd6a2d";
         let maxDistance = "&maxDistance=20";
 
         let req = new XMLHttpRequest();
