@@ -18,7 +18,7 @@ class SearchResults{
     async getData(lat,long){ //parses out json object and fills a hike object with hiking data and pushes that object to results
 
         let response = await this.getHikeData(lat,long)
-        console.log(response);
+        // console.log(response);
 
         for (var i = 0; i < 10; i++) {
             var hike = new Hike();
@@ -37,11 +37,11 @@ class SearchResults{
         
             // get temperature from Open Weather Map
             hike.temp = await this.getCurrentTemp(hike.long, hike.lat);
-            console.log(hike.temp);
+            console.log("Hike temp: " + hike.temp);
 
             // add hike object to results
             this.results.push(hike);
-            console.log(this.results);
+            // console.log(this.results);
         }
 
 
