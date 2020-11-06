@@ -16,7 +16,7 @@ class SearchResults{
     async getData(lat,long){ //parses out json object and fills a hike object with hiking data and pushes that object to results
 
         let response = await this.getHikeData(lat,long)
-        console.log(response);
+        // console.log(response);
 
         for (var i = 0; i < 10; i++) {
             var hike = new Hike();
@@ -32,13 +32,41 @@ class SearchResults{
             hike.distance = response.trails[i].length;
             hike.long = response.trails[i].longitude;
             hike.lat = response.trails[i].latitude;
+        
+            // get temperature from Open Weather Map
+            let weatherData = await this.getCurrentTemp(hike.long, hike.lat);
+            hike.temp = weatherData.main.temp;
+
             // add hike object to results
             this.results.push(hike);
-            console.log(this.results);
+            // console.log(this.results);
         }
 
 
     }
+
+    async getCurrentTemp(long, lat) {
+        let weatherAPI = "d88f7585c318ca84fe20c5e487101b1f";
+
+        // TODO: fill in API call and response
+        let apiURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + 
+                     lat +
+                     "&lon=" +
+                     long +
+                     "&appid=" + 
+                     weatherAPI +
+                     "&units=imperial";
+
+        try {
+            let res = await fetch(apiURL);
+            return await res.json();
+        } catch (error) {
+            console.log(error);
+        }
+
+    }
+
+
     async getHikeData(lat,long) {
 
         let apiKey = "&key=200964805-fbbd50c01b329d117306d1834dfd6a2d";
