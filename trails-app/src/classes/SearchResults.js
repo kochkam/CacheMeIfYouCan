@@ -65,8 +65,8 @@ class SearchResults{
 
             if (req.status >= 200 && req.status < 400) {
                 var data = JSON.parse(req.responseText)
-                this.lat = data.results[0].geometry.location.lat
-                this.long = data.results[0].geometry.location.lng
+                SearchResults.this.lat = data.results[0].geometry.location.lat
+                SearchResults.this.long = data.results[0].geometry.location.lng
 
             }
             else {
