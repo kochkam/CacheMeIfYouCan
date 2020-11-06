@@ -38,6 +38,7 @@ class SearchResults{
             this.results.push(hike);
             console.log(this.results);
         }
+        return this.results
 
     }
     async getHikeData(lat,long) {
@@ -83,8 +84,8 @@ class SearchResults{
 
         let lat = response.results[0].geometry.location.lat;
         let long = response.results[0].geometry.location.lng;
-        this.getData(lat,long); //pass extracted data to get the Hike data
-        return this.results
+        results = this.getData(lat,long); //pass extracted data to get the Hike data
+        return results
     }
 
     
