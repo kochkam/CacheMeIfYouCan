@@ -36,12 +36,8 @@ class SearchResults{
             hike.lat = response.trails[i].latitude;
         
             // get temperature from Open Weather Map
-            weatherData = await this.getCurrentTemp(hike.long, hike.lat);
-            weatherDataParsed = JSON.parse(weatherData);
-            console.log(weatherDataParsed);
-            hike.temp = weatherDataParsed.main.temp;
-
-            console.log("Hike temp: " + hike.temp);
+            let weatherData = await this.getCurrentTemp(hike.long, hike.lat);
+            hike.temp = weatherData.main.temp;
 
             // add hike object to results
             this.results.push(hike);
@@ -60,11 +56,12 @@ class SearchResults{
                      "&lon=" +
                      long +
                      "&appid=" + 
-                     weatherAPI;
+                     weatherAPI +
+                     "&units=imperial";
 
         try {
             let res = await fetch(apiURL);
-            return await res.json;
+            return await res.json();
         } catch (error) {
             console.log(error);
         }
