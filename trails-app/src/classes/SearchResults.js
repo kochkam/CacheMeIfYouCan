@@ -23,17 +23,17 @@ class SearchResults{
 
         for (var i = 0; i < response.length; i++) {
             var hike = new Hike();
-            hike.id = response[i].id;
+            hike.id = response.trails[i].id;
             hike.index = i;
-            hike.title = response[i].name;
-            hike.summary = response[i].summary;
-            hike.activityLevel = response[i].difficulty;
-            hike.imgURL = response[i].imgSmall;
-            hike.largeimgURL = response[i].imgMedium;
+            hike.title = response.trails[i].name;
+            hike.summary = response.trails[i].summary;
+            hike.activityLevel = response.trails[i].difficulty;
+            hike.imgURL = response.trails[i].imgSmall;
+            hike.largeimgURL = response.trails[i].imgMedium;
             // attribute is titled "length" from api for hike distance. javascript doesnt like this
-            hike.distance = response[i].length;
-            hike.long = response[i].longitude;
-            hike.lat = response[i].latitude;
+            hike.distance = response.trails[i].length;
+            hike.long = response.trails[i].longitude;
+            hike.lat = response.trails[i].latitude;
             // add hike object to results
             this.results.push(hike);
         }
