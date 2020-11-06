@@ -64,7 +64,7 @@ class SearchResults{
 
     async callZip(zip){ //builds url and fetches lat and long data
 
-        url1 = "https://maps.googleapis.com/maps/api/geocode/json?address=" + zip + ",US&key=AIzaSyAD0zxi8coI49e0OF3HfOvzX9Ny_87pynQ";
+        let url1 = "https://maps.googleapis.com/maps/api/geocode/json?address=" + zip + ",US&key=AIzaSyAD0zxi8coI49e0OF3HfOvzX9Ny_87pynQ";
         try {
             let res = await fetch(url1)
             return await res.json();
