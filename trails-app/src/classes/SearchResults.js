@@ -57,24 +57,25 @@ class SearchResults{
     translateZip() { // Zip to location information api info can be found here: zipcodeapi.com/API#zipToLoc
 
 
-        let req = new XMLHttpRequest();
-
-        req.open('GET', this.url1, false);
-
-        req.addEventListener('load', function () {
-
-            if (req.status == OK) {
-                var data = JSON.parse(req.responseText)
-                this.lat = data.results[0].geometry.location.lat
-                this.long = data.results[0].geometry.location.lng
-
-            }
-            else {
-                console.log("error in network request: " + req.statusText);
-            }
-        });
-
-        req.send(null);
+        fetch(this.url1)
+        .then(res => res.json())
+        .then(
+          (result) => {
+            
+            this.lat = result.results[0].geometry.location.lat;
+            this.long = result.results[0].geometry.location.lng;
+            
+          },
+          // Note: it's important to handle errors here
+          // instead of a catch() block so that we don't swallow
+          // exceptions from actual bugs in components.
+          (error) => {
+            this.setState({
+              isLoaded: true,
+              error
+            });
+          }
+        )
 
         
 
