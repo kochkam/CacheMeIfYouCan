@@ -37,6 +37,7 @@ class SearchResults{
         
             // get temperature from Open Weather Map
             hike.temp = await this.getCurrentTemp(hike.long, hike.lat);
+            console.log(hike.temp);
 
             // add hike object to results
             this.results.push(hike);
@@ -50,6 +51,19 @@ class SearchResults{
         let weatherAPI = "d88f7585c318ca84fe20c5e487101b1f";
 
         // TODO: fill in API call and response
+        let apiURL = "http://api.openweathermap.org/data/2.5/weather?lat" + 
+                     lat +
+                     "&lon" +
+                     lon +
+                     "&appid" + 
+                     weatherAPI;
+
+        try {
+            let res = await fetch(url);
+            return await res.json;
+        } catch (error) {
+            console.log(error);
+        }
 
     }
 
