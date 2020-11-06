@@ -82,11 +82,11 @@ class SearchResults{
         console.log(response);
 
 
-        this.lat = response.results[0].geometry.location.lat;
-        this.long = response.results[0].geometry.location.lng;
-        console.log(this.lat);
-        console.log(this.long);
-        this.getDatalat(lat,long);
+        lat = response.results[0].geometry.location.lat;
+        long = response.results[0].geometry.location.lng;
+        console.log(lat);
+        console.log(long);
+        this.getData(lat,long);
 
     }
 
