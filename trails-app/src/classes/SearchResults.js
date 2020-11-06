@@ -16,9 +16,9 @@ class SearchResults{
 
 
  
-    async getData(){
+    async getData(lat,long){
 
-        let response = await this.getHikeData()
+        let response = await this.getHikeData(lat,long)
         console.log(response);
 
         for (var i = 0; i < 10; i++) {
@@ -42,12 +42,12 @@ class SearchResults{
 
 
     }
-    async getHikeData() {
+    async getHikeData(lat,long) {
 
         let apiKey = "&key=200964805-fbbd50c01b329d117306d1834dfd6a2d";
         let maxDistance = "&maxDistance=20";
 
-        let url = "https://www.hikingproject.com/data/get-trails?lat=" + this.lat + "&lon=" + this.long + maxDistance + apiKey;  // api info can be found here: https://www.hikingproject.com/data#_=_
+        let url = "https://www.hikingproject.com/data/get-trails?lat=" + lat + "&lon=" + long + maxDistance + apiKey;  // api info can be found here: https://www.hikingproject.com/data#_=_
 
 
         try {
@@ -82,10 +82,11 @@ class SearchResults{
         console.log(response);
 
 
-        this.lat = response.results[0].geometry.location.lat
-        this.long = response.results[0].geometry.location.lng
-        console.log(this.lat)
-        console.log(this.long)
+        this.lat = response.results[0].geometry.location.lat;
+        this.long = response.results[0].geometry.location.lng;
+        console.log(this.lat);
+        console.log(this.long);
+        this.getDatalat(lat,long);
 
     }
 
