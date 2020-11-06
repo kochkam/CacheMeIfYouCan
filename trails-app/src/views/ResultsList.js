@@ -21,8 +21,7 @@ export default function ResultsList(props) {
 
   // TEMPORARY BUILDING OF RESULTS - This will need to happen during the search
   //props.searchObj.zip = 92037;
-  props.searchObj.lat = "32.715736";
-  props.searchObj.long = "-117.161087";
+ 
   props.searchObj.zip = "92037";
   props.searchObj.translateZip();
   props.searchObj.getData();
