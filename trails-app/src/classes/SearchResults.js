@@ -18,23 +18,8 @@ class SearchResults{
     async getData(){
 
         let response = await this.getHikeData()
-        
-        for (var i = 0; i < response.length; i++) {
-            var hike = new Hike();
-            hike.id = response[i].id;
-            hike.index = i;
-            hike.title = response[i].name;
-            hike.summary = response[i].summary;
-            hike.activityLevel = response[i].difficulty;
-            hike.imgURL = response[i].imgSmall;
-            hike.largeimgURL = response[i].imgMedium;
-            // attribute is titled "length" from api for hike distance. javascript doesnt like this
-            hike.distance = response[i].length;
-            hike.long = response[i].longitude;
-            hike.lat = response[i].latitude;
-            // add hike object to results
-            this.results.push(hike);
-        }
+
+        return response;
 
 
     }
@@ -52,7 +37,6 @@ class SearchResults{
         } catch (error) {
             console.log(error)
         }
-        let response = fetch(url)
 
         // build hikes into results
 
