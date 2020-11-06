@@ -84,7 +84,8 @@ class SearchResults{
 
         this.lat = response.results[0].geometry.location.lat
         this.long = response.results[0].geometry.location.lng
-
+        console.log(this.lat)
+        console.log(this.long)
 
     }
 
