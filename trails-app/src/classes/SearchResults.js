@@ -62,29 +62,28 @@ class SearchResults{
 
     }
 
-    translateZip() { // Zip to location information api info can be found here: zipcodeapi.com/API#zipToLoc
+    async callZip(){
+
+        try {
+            let res = await fetch(this.url1)
+            return await res.json();
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+
+    async translateZip() { // Zip to location information api info can be found here: zipcodeapi.com/API#zipToLoc
 
 
-        let req = new XMLHttpRequest();
+        let response = await this.callZip()
 
-        req.open('GET', this.url1, false);
+        console.log(response);
 
-        req.addEventListener('load', function () {
 
-            if (req.status >= 200 && req.status < 400) {
-                var data = JSON.parse(req.responseText)
-                SearchResults.lat = data.results[0].geometry.location.lat
-                SearchResults.long = data.results[0].geometry.location.lng
+        this.lat = response.results[0].geometry.location.lat
+        this.long = response.results[0].geometry.location.lng
 
-            }
-            else {
-                console.log("error in network request: " + req.statusText);
-            }
-        });
-
-        req.send(null);
-
-        
 
     }
 
