@@ -7,7 +7,6 @@ class SearchResults{
         this.results = [];
         this.show = true;
         this.zip = zip;
-        this.url1 = "https://maps.googleapis.com/maps/api/geocode/json?address=" + this.zip + ",US&key=AIzaSyAD0zxi8coI49e0OF3HfOvzX9Ny_87pynQ";
         this.lat = null;
         this.long = null;
 
@@ -63,10 +62,11 @@ class SearchResults{
 
     }
 
-    async callZip(){
+    async callZip(zip){
 
+        url1 = "https://maps.googleapis.com/maps/api/geocode/json?address=" + zip + ",US&key=AIzaSyAD0zxi8coI49e0OF3HfOvzX9Ny_87pynQ";
         try {
-            let res = await fetch(this.url1)
+            let res = await fetch(url1)
             return await res.json();
         } catch (error) {
             console.log(error)
@@ -74,10 +74,10 @@ class SearchResults{
 
     }
 
-    async translateZip() { // Zip to location information api info can be found here: zipcodeapi.com/API#zipToLoc
+    async translateZip(zip) { // Zip to location information api info can be found here: zipcodeapi.com/API#zipToLoc
 
 
-        let response = await this.callZip()
+        let response = await this.callZip(zip)
 
         console.log(response);
 
