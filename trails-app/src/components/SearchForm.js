@@ -27,8 +27,8 @@ class SearchForm extends React.Component{
 
 
     validate = (zip) => {
-        // Need code verifying that the input is numbers
         if (zip.trim().length===0) return 'Please enter a ZIP code';
+        if (isNaN(zip)) return 'Please enter a ZIP code';
         return '';
     }
 
