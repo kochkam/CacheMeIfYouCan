@@ -37,6 +37,7 @@ class SearchResults{
             hike.lat = response.trails[i].latitude;
             // add hike object to results
             this.results.push(hike);
+            console.log(this.results);
         }
 
 
