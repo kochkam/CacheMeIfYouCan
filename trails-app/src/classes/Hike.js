@@ -1,4 +1,3 @@
-
 class Hike{
     constructor(id, title, summary, activityLevel, imgURL, largeimgURL, distance, temp, lat, long, index){
         this.id = id;

@@ -19,7 +19,7 @@ export default function App() {
           <Route exact path="/" children={<Home searchObj = {currentSearch} />}/>
           <Route path="/user-profile" component={UserProfile}/>
           <Route path="/results-list" children={<ResultsList searchObj = {currentSearch} />}/>
-          <Route path="/detail-view/:hike_id" children={<DetailView searchResult = {currentSearch.results}/>}/>
+          <Route path="/detail-view/:hike_id" children={<DetailView searchObj= {currentSearch}/>}/>
         </div>
         
       </div>

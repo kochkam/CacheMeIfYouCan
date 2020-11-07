@@ -35,7 +35,6 @@ class SearchResults{
                 hike.lat = response.trails[i].latitude;
                 // add hike object to results
                 this.results.push(hike);
-                console.log(this.results);
             }
         });
     }
@@ -79,11 +78,6 @@ class SearchResults{
         } catch (error) {
             console.log(error)
         }
-
-        // build hikes into results
-
-
-
     }
 
     async callZip(zip){ //builds url and fetches lat and long data
@@ -109,6 +103,8 @@ class SearchResults{
             console.log(res);
             let lat = res.results[0].geometry.location.lat;
             let long = res.results[0].geometry.location.lng;
+            this.lat = lat
+            this.long = long
             await this.getData(lat,long); //pass extracted data to get the Hike data
         });
     }
