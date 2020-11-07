@@ -14,7 +14,7 @@ class SearchForm extends React.Component{
         });
     }
 
-    onFormSubmit = (event) => {
+    onFormSubmit = async (event) => {
         event.preventDefault();
         const zip = this.state.zip;
         const error = this.validate(zip);
@@ -22,7 +22,9 @@ class SearchForm extends React.Component{
         if (error.length > 0) return;
         this.setState({zip:''});
         this.props.searchObj.zip = zip;
-        this.props.history.push('/results-list/' + zip);
+        this.props.searchObj.translateZip(zip).then(() => {
+            this.props.history.push('/results-list');
+        });
     }
 
 
