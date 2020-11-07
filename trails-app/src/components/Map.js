@@ -9,7 +9,7 @@ export default function Map(props) {
     return(
         <div className="detail-column-container">
             <img src="https://www.xda-developers.com/files/2019/06/google-maps-india.jpg" width="200" height="200" />
-            <a href={mapURL}  lat >Click for directions</a>
+            <a href={mapURL} target = "_blank" >Click for directions</a>
         </div>
     )
 }
