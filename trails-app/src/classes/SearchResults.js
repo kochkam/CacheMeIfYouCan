@@ -39,6 +39,29 @@ class SearchResults{
             }
         });
     }
+
+    async getCurrentTemp(long, lat) {
+        let weatherAPI = "d88f7585c318ca84fe20c5e487101b1f";
+
+        // TODO: fill in API call and response
+        let apiURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + 
+                     lat +
+                     "&lon=" +
+                     long +
+                     "&appid=" + 
+                     weatherAPI +
+                     "&units=imperial";
+
+        try {
+            let res = await fetch(apiURL);
+            return await res.json();
+        } catch (error) {
+            console.log(error);
+        }
+
+    }
+
+
     async getHikeData(lat,long) {
         console.log("This should be 6");
         let apiKey = "&key=200964805-fbbd50c01b329d117306d1834dfd6a2d";
