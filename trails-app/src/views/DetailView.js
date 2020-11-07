@@ -21,7 +21,7 @@ function getDetails(hike_id, searchResult) {
 
 export default function DetailView(props) {
   let {hike_id} = useParams();
-  var hike = props.searchResult[hike_id];
+  var hike = props.searchObj.results[hike_id];
   console.log("the hike:")
   console.log(hike)
   return (
