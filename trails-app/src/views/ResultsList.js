@@ -6,13 +6,6 @@ import LinkButton from "../components/LinkButton";
 import { useParams } from 'react-router-dom';
 
 
-
-// Function is triggered when hike is clicked and id of hike is passed in
-// TRIGGER RENDERING DETAIL VIEW HERE AND HIDE RESULTS LIST
-function hikeClick(hikeID){
-  console.log("clicked Hike: " + hikeID);
-}
-
 export default function ResultsList(props) {
 
   //for (var i = 1; i <= 10; i++){

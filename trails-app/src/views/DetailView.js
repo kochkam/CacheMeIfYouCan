@@ -21,6 +21,7 @@ function getDetails(hike_id, searchResult) {
 
 export default function DetailView(props) {
   let {hike_id} = useParams();
+  console.log(hike_id)
   var props = props.searchResult[hike_id];
   return (
     <div className ="detail-row-container" id= {props.id}>
