@@ -3,7 +3,7 @@ import React from 'react'
 export default function ListItem(props){
     // returns all jsx content for one list item
     return (
-        <div className ="list-item" id= {props.id} onClick={(e) => props.clickFunction(props.id, e)}>
+        <div className ="list-item" id= {props.id}>
             <img className = 'result-img' src = {props.img}/>
                  
             <div className="result-text">
