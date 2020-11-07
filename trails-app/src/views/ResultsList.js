@@ -34,7 +34,7 @@ export default function ResultsList(props) {
       // Build results list    
       // for each hike in currentSearch.results render ListItem
       <div className = 'results-list'>
-      {results[0].map(
+      {props.searchObj.results.map(
         hike => (
           <LinkButton exact to={"/detail-view/" + hike.id}>
             <ListItem id = {hike.id} title = {hike.title} summary = {hike.summary} activityLevel = {hike.activityLevel} img = {hike.imgURL} distance = {hike.distance} temp = {hike.temp} clickFunction = {hikeClick}/>
