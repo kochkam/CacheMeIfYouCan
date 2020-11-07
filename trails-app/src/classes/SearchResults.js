@@ -17,7 +17,7 @@ class SearchResults{
 
         let response = await this.getHikeData(lat,long)
         console.log(response);
-
+        this.results = [];
         for (var i = 0; i < 10; i++) {
             var hike = new Hike();
             hike.id = response.trails[i].id;
@@ -72,10 +72,10 @@ class SearchResults{
 
     }
 
-    async translateZip(zip) { // function calls callzip which gets api data
+    async translateZip() { // function calls callzip which gets api data
 
 
-        let response = await this.callZip(zip)
+        let response = await this.callZip(this.zip)
 
         console.log(response);
 
