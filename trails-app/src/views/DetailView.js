@@ -19,7 +19,7 @@ export default function DetailView(props) {
             <h3 className="detail-text">Distance: {hike.distance}</h3>
             <h3 className="detail-text">Current Temp: {hike.temp}</h3>
           </div>
-          <Map searchObj = {props.searchObj}/>
+          <Map searchObj = {props.searchObj} hikeIndex = {hike.index}/>
         </div>
     </div>
   );
