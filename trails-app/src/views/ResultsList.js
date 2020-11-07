@@ -30,7 +30,7 @@ export default function ResultsList(props) {
       {props.searchObj.results.map(
         hike => (
           <LinkButton exact to={"/detail-view/" + hike.index}>
-            <ListItem id = {hike.id} title = {hike.title} summary = {hike.summary} activityLevel = {hike.activityLevel} img = {hike.imgURL} distance = {hike.distance} temp = {hike.temp} clickFunction = {hikeClick}/>
+            <ListItem id = {hike.id} title = {hike.title} summary = {hike.summary} activityLevel = {hike.activityLevel} img = {hike.imgURL} distance = {hike.distance} temp = {hike.temp}/>
           </LinkButton>
         )
       )}
