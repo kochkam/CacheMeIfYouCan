@@ -21,18 +21,19 @@ function getDetails(hike_id, searchResult) {
 
 export default function DetailView(props) {
   let {hike_id} = useParams();
-  console.log(hike_id)
-  var props = props.searchResult[hike_id];
+  var hike = props.searchResult[hike_id];
+  console.log("the hike:")
+  console.log(hike)
   return (
-    <div className ="detail-row-container" id= {props.id}>
-        <img className="detail-img" src = {props.imgURL}/>
+    <div className ="detail-row-container" id= {hike.id}>
+        <img className="detail-img" src = {hike.imgURL}/>
         <div className="detail-column-container">
-          <h1 className="detail-text">{props.title}</h1>
-          <h2 className="detail-text">{props.summary}</h2>
+          <h1 className="detail-text">{hike.title}</h1>
+          <h2 className="detail-text">{hike.summary}</h2>
           <div className="detail-row-container">
-            <h3 className="detail-text">Difficulty: {props.activityLevel}</h3>
-            <h3 className="detail-text">Distance: {props.distance}</h3>
-            <h3 className="detail-text">Current Temp: {props.temp}</h3>
+            <h3 className="detail-text">Difficulty: {hike.activityLevel}</h3>
+            <h3 className="detail-text">Distance: {hike.distance}</h3>
+            <h3 className="detail-text">Current Temp: {hike.temp}</h3>
           </div>
           <Map />
         </div>
