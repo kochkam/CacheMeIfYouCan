@@ -2,8 +2,8 @@ import React from 'react';
 
 
 export default function Map(props) {
-    var lat = props.resultsObj.lat
-    var long = props.resultsObj.long
+    var lat = props.searchObj.lat
+    var long = props.searchObj.long
     var mapURL = "https://google.com/maps/@"
     mapURL += lat + "'" + long +"z"
     return(
