@@ -14,20 +14,24 @@ class SearchForm extends React.Component{
         });
     }
 
-    onFormSubmit = (event) => {
+    onFormSubmit = async (event) => {
         event.preventDefault();
         const zip = this.state.zip;
         const error = this.validate(zip);
         this.setState({error});
         if (error.length > 0) return;
         this.setState({zip:''});
-        this.props.history.push('/results-list/' + zip)
+        this.props.searchObj.zip = zip;
+        this.props.searchObj.translateZip(zip).then(() => {
+            this.props.history.push('/results-list');
+        });
     }
 
 
     validate = (zip) => {
-        // Need code verifying that the input is numbers
-        if (zip.trim().length===0) return 'Please enter a ZIP code';
+        const zipLength = zip.trim().length;
+        if (zipLength === 0) return 'Please enter a ZIP code';
+        if (isNaN(zipLength)) return 'Please enter a ZIP code';
         return '';
     }
 
