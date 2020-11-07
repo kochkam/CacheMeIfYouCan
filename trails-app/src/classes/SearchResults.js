@@ -17,7 +17,7 @@ class SearchResults{
 
         let response = await this.getHikeData(lat,long)
         // console.log(response);
-
+        this.results = [];
         for (var i = 0; i < 10; i++) {
             var hike = new Hike();
             hike.id = response.trails[i].id;
