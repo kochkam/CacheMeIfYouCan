@@ -26,7 +26,7 @@ export default function DetailView(props) {
   console.log(hike)
   return (
     <div className ="detail-row-container" id= {hike.id}>
-        <img className="detail-img" src = {hike.imgURL}/>
+        <img className="detail-img" src = {hike.largeimgURL}/>
         <div className="detail-column-container">
           <h1 className="detail-text">{hike.title}</h1>
           <h2 className="detail-text">{hike.summary}</h2>
