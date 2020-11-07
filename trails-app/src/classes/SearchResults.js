@@ -103,6 +103,8 @@ class SearchResults{
             console.log(res);
             let lat = res.results[0].geometry.location.lat;
             let long = res.results[0].geometry.location.lng;
+            this.lat = lat
+            this.long = long
             await this.getData(lat,long); //pass extracted data to get the Hike data
         });
     }
