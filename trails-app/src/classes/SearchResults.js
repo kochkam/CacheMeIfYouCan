@@ -19,8 +19,11 @@ class SearchResults{
             console.log("This should be 8");
             console.log(response);
             this.results = [];
-            responseNum = 10;
-            console.log(response.trails)
+            var responseNum = 10;
+            if ((response.trails).length < 10) {
+                responseNum = (response.trails).length
+            }
+            console.log((response.trails).length);
             for (var i = 0; i < responseNum; i++) {
                 var hike = new Hike();
                 hike.id = response.trails[i].id;
