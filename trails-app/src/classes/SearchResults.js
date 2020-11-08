@@ -35,7 +35,11 @@ class SearchResults{
                 hike.lat = response.trails[i].latitude;
                 // get temp using weather api
                 let weatherData = await this.getCurrentTemp(hike.long, hike.lat);
+                console.log(weatherData.main);
+                console.log(weatherData.weather);
                 hike.temp = weatherData.main.temp;
+                hike.tempFeelsLike = weatherData.main.feels_like;
+                hike.weather = weatherData.weather;
                 // add hike object to results
                 this.results.push(hike);
             }
