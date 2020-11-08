@@ -19,7 +19,9 @@ class SearchResults{
             console.log("This should be 8");
             console.log(response);
             this.results = [];
-            for (var i = 0; i < 10; i++) {
+            responseNum = 10;
+            console.log(response.trails)
+            for (var i = 0; i < responseNum; i++) {
                 var hike = new Hike();
                 hike.id = response.trails[i].id;
                 console.log(hike.id);
@@ -101,10 +103,11 @@ class SearchResults{
 
     }
 
-    async translateZip(zip) { // function calls callzip which gets api data
+    async translateZip() { // function calls callzip which gets api data
         console.log("This should be 1");
+        console.log(this.zip)
 
-        await this.callZip(zip).then(async (res) => {
+        await this.callZip(this.zip).then(async (res) => {
             console.log("This should be 4");
             console.log(res);
             let lat = res.results[0].geometry.location.lat;
