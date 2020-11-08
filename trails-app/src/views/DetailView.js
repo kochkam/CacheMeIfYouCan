@@ -16,8 +16,14 @@ export default function DetailView(props) {
           <h2 className="detail-text">{hike.summary}</h2>
           <div className="detail-row-container">
             <h3 className="detail-text">Difficulty: {hike.activityLevel}</h3>
-            <h3 className="detail-text">Distance: {hike.distance}</h3>
-            <h3 className="detail-text">Current Temp: {hike.temp}</h3>
+            <h3 className="detail-text">Distance: {hike.distance} miles</h3>
+          </div>
+          <div className="detail-row-container">
+            <h3 className="detail-text">Current Temp: {hike.temp} F</h3>
+            <h3 className="detail-text">Feels Like: {hike.tempFeelsLike} F</h3>
+          </div>
+          <div className="detail-row-container">
+            <h3 className="detail-text">Weather Description: {hike.weather[0].description}</h3>
           </div>
           <Map searchObj = {props.searchObj} hikeIndex = {hike.index}/>
         </div>
