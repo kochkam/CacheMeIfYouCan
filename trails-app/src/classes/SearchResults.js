@@ -9,6 +9,9 @@ class SearchResults{
         this.zip = zip;
         this.lat = null;
         this.long = null;
+        this.difficultyFilter = 1;
+        this.distanceFilter = 20;
+        this.ratingFilter = null
     }
 
 
@@ -24,6 +27,37 @@ class SearchResults{
                 responseNum = (response.trails).length
             }
             console.log((response.trails).length);
+            var sorted_results = this.getFilteredResults(response, responseNum)
+            console.log("Filter just happened and results below")
+            console.log(sorted_results)
+            var number_filtered_results = sorted_results.length
+            for (var i = 0; i < number_filtered_results; i++) {
+                var hike = new Hike();
+                hike.id = sorted_results[i].id;
+                console.log(hike.id);
+                hike.index = i;
+                hike.title = sorted_results[i].name;
+                hike.summary = sorted_results[i].summary;
+                hike.activityLevel = sorted_results[i].difficulty;
+                hike.imgURL = sorted_results[i].imgSmall;
+                hike.largeimgURL = sorted_results[i].imgMedium;
+                // attribute is titled "length" from api for hike distance. javascript doesnt like this
+                hike.distance = sorted_results[i].length;
+                hike.long = sorted_results[i].longitude;
+                hike.lat = sorted_results[i].latitude;
+                // get temp using weather api
+                let weatherData = await this.getCurrentTemp(hike.long, hike.lat);
+                console.log(weatherData.main);
+                console.log(weatherData.weather);
+                hike.temp = weatherData.main.temp;
+                hike.tempFeelsLike = weatherData.main.feels_like;
+                hike.weather = weatherData.weather;
+                // add hike object to results
+                this.results.push(hike);
+            }
+
+            /*
+            Old for loop
             for (var i = 0; i < responseNum; i++) {
                 var hike = new Hike();
                 hike.id = response.trails[i].id;
@@ -48,6 +82,7 @@ class SearchResults{
                 // add hike object to results
                 this.results.push(hike);
             }
+        */
         });
     }
 
@@ -75,7 +110,11 @@ class SearchResults{
     async getHikeData(lat,long) {
         console.log("This should be 6");
         let apiKey = "&key=200964805-fbbd50c01b329d117306d1834dfd6a2d";
-        let maxDistance = "&maxDistance=20";
+        var maxDistance = "&maxDistance=20"
+        if (this.distanceFilter != null) {
+            maxDistance = "&maxDistance=" + String(this.distanceFilter);
+        } 
+        
 
         let url = "https://www.hikingproject.com/data/get-trails?lat=" + lat + "&lon=" + long + maxDistance + apiKey;  // api info can be found here: https://www.hikingproject.com/data#_=_
 
@@ -121,10 +160,42 @@ class SearchResults{
         });
     }
 
-    
-    // function to sort results
+
     // will need to update hike index for sorting and filtering
     // function to filter results
+    getFilteredResults(responseData, number_of_hikes) {
+        var filtered_hikes = []
+        for (var i = 0; i < number_of_hikes; i++) {
+            var hikeDifficulty = 0
+            if (this.difficultyFilter != null) {
+                console.log(responseData.trails[i].difficulty)
+                if (responseData.trails[i].difficulty === "green" || responseData.trails[i].difficulty === "greenBlue"){
+                    hikeDifficulty = 1
+                } else if (responseData.trails[i].difficulty === "blue" || responseData.trails[i].difficulty === "blueBlack"){
+                    hikeDifficulty = 2
+                } else {hikeDifficulty = 3}
+
+                if (hikeDifficulty > this.difficultyFilter){
+                    console.log(responseData.trails[i].name)
+                    console.log("this one above should not be added...")
+                    continue
+                }
+            }
+            if (this.ratingFilter != null){
+                if (responseData.trails[i].stars < this.ratingFilter){
+                    continue
+                }  
+            }
+            filtered_hikes.push(responseData.trails[i]);
+            }
+        return filtered_hikes
+    }
+
 }
+
+
+
+
+
 
 export default SearchResults
