@@ -5,9 +5,12 @@ class Hiker{
         self.age = age
         self.estimatedActivity = estimatedActivity
 
+    }
+
+    calculateFitness(){
+        
+
 
 
     }
-
-
 }
