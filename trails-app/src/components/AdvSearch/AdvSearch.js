@@ -5,8 +5,18 @@ import './AdvSearch.css';
 
 class AdvSearch extends React.Component{
 
-    state = {
-        error: '',
+    constructor () {
+        super();
+        this.state = {
+            isVisible: false
+        };
+        this.ToggleDisplay = this.ToggleDisplay.bind(this)
+    }
+
+
+    
+    ToggleDisplay (e) {
+        this.setState({isVisible: !this.state.isVisible});
     }
 
     onFormSubmit = async (event) => {
@@ -28,20 +38,25 @@ class AdvSearch extends React.Component{
 
     render() {
         return (
-            <form className="FilterField" onSubmit={this.onFormSubmit}>
-                <div>
-                    <input type="radio" id="hard" name="Difficulty" value="hard"/>
-                    <label for="hard">Hard</label>
-                    <input type="radio" id="medium" name="Difficulty" value="medium"/>
-                    <label for="medium">Medium</label>
-                    <input type="radio" id="easy" name="Difficulty" value="easy"/>
-                    <label for="easy">Easy</label>
-                    <button className='FilterBtn' type='submit'>Apply
-                        <i className='FilterBtn'></i>
-                    </button>
-                </div>
-            <p className='filter.error'>{ this.state.error }</p>
-            </form>
+            <div>
+                <button onClick={this.ToggleDisplay} className="FilterToggle">Advanced Search</button>
+                {this.state.isVisible &&
+                    <form className="FilterField" onSubmit={this.onFormSubmit}>
+                    <div>
+                        <input type="radio" id="hard" name="Difficulty" value="hard"/>
+                        <label for="hard">Hard</label>
+                        <input type="radio" id="medium" name="Difficulty" value="medium"/>
+                        <label for="medium">Medium</label>
+                        <input type="radio" id="easy" name="Difficulty" value="easy"/>
+                        <label for="easy">Easy</label>
+                        <button className='FilterBtn' type='submit'>Apply
+                            <i className='FilterBtn'></i>
+                        </button>
+                    </div>
+                    </form>
+                }
+            </div>
+            
         );
       }
 }
