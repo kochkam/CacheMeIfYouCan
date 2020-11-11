@@ -1,10 +1,11 @@
 class Hiker{
-    constructor(firstName,lastName,age,estimatedActivity){
+    constructor(firstName,age,hikingXP,exerciseFrequency){
         self.firstName = firstName
-        self.lastName = lastName
         self.age = age
-        self.estimatedActivity = estimatedActivity
-
+        self.hikingXP = hikingXP
+        self.exerciseFrequency = exerciseFrequency
+        // TODO:
+        // self.fitnessLevel = calculateFitnessLevel()
 
 
     }
