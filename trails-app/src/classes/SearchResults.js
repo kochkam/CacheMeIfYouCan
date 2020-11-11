@@ -9,9 +9,10 @@ class SearchResults{
         this.zip = zip;
         this.lat = null;
         this.long = null;
-        this.difficultyFilter = 1;
+        this.difficultyFilter = 5;
         this.distanceFilter = 20;
-        this.ratingFilter = null
+        this.ratingFilter = 0;
+        this.resultNumChoice = 10;
     }
 
 
@@ -22,7 +23,7 @@ class SearchResults{
             console.log("This should be 8");
             console.log(response);
             this.results = [];
-            var responseNum = 10;
+            var responseNum = this.resultNumChoice;
             if ((response.trails).length < 10) {
                 responseNum = (response.trails).length
             }
@@ -110,13 +111,14 @@ class SearchResults{
     async getHikeData(lat,long) {
         console.log("This should be 6");
         let apiKey = "&key=200964805-fbbd50c01b329d117306d1834dfd6a2d";
+        var numResults = "&maxResults=" + String(this.resultNumChoice)
         var maxDistance = "&maxDistance=20"
         if (this.distanceFilter != null) {
             maxDistance = "&maxDistance=" + String(this.distanceFilter);
         } 
         
 
-        let url = "https://www.hikingproject.com/data/get-trails?lat=" + lat + "&lon=" + long + maxDistance + apiKey;  // api info can be found here: https://www.hikingproject.com/data#_=_
+        let url = "https://www.hikingproject.com/data/get-trails?lat=" + lat + "&lon=" + long + maxDistance + numResults + apiKey;  // api info can be found here: https://www.hikingproject.com/data#_=_
 
 
         try {
@@ -161,10 +163,11 @@ class SearchResults{
     }
 
 
-    applyFilters(difficultyChoice, ratingChoice, distanceChoice){
+    applyFilters(difficultyChoice, ratingChoice, distanceChoice, resultsChoice){
         this.difficultyFilter = difficultyChoice;
         this.ratingFilter = ratingChoice;
         this.distanceFilter = distanceChoice;
+        this.resultNumChoice = resultsChoice;
         console.log(this.difficultyFilter)
         console.log(this.ratingFilter)
         console.log(this.distanceFilter)

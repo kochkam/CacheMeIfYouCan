@@ -10,9 +10,10 @@ class AdvSearch extends React.Component{
         this.state = {
             isVisible: false,
             error: '',
-            distanceChoice: '',
+            distanceChoice: 20,
             difficultyChoice: '',
             ratingChoice: 0,
+            numberOfResults: 10,
         };
         this.ToggleDisplay = this.ToggleDisplay.bind(this)
     }
@@ -27,6 +28,12 @@ class AdvSearch extends React.Component{
     onDifficultyChange = (event) => {
         this.setState({
             difficultyChoice: event.target.value,
+        });
+    }
+
+    onResultsChange = (event) => {
+        this.setState({
+            numberOfResults: event.target.value,
         });
     }
 
@@ -50,7 +57,8 @@ class AdvSearch extends React.Component{
         this.setState({distanceChoice:''});
         const ratingChoice = this.state.ratingChoice;
         const difficultyChoice = this.state.difficultyChoice;
-        this.props.searchObj.applyFilters(difficultyChoice, ratingChoice, distanceChoice);
+        const numberOfResults = this.state.numberOfResults;
+        this.props.searchObj.applyFilters(difficultyChoice, ratingChoice, distanceChoice, numberOfResults);
         /*
         event.preventDefault();
         const zip = this.state.zip;
@@ -66,6 +74,7 @@ class AdvSearch extends React.Component{
        console.log("Adv Filter Applied")
     }
 
+
     validate = (distance) => {
         const distanceLength = distance.trim().length;
         if (distanceLength === 0) return 'Please enter a valid number';
@@ -80,24 +89,37 @@ class AdvSearch extends React.Component{
                 {this.state.isVisible &&
                     <form className="FilterField" onSubmit={this.onFormSubmit}>
                         <div className="RatingFilters">
-                        <select onChange={this.onRatingChange} id="rating" name="rating">
-                            <option value="1">One Star</option>
-                            <option value="2">Two Stars</option>
-                            <option value="3">Three stars</option>
-                            <option value="4">Four stars</option>
-                            <option value="5">Five stars</option>
-                        </select>
+                            <select onChange={this.onRatingChange} id="rating" name="rating">
+                                <option value="1">One Star</option>
+                                <option value="2">Two Stars</option>
+                                <option value="3">Three stars</option>
+                                <option value="4">Four stars</option>
+                                <option value="5">Five stars</option>
+                            </select>
                         </div>
                         <div className="DistanceFilters">
-                            <input
-                                className= { this.state.error ? 'error' : ''} 
-                                type='text' 
-                                value={this.state.distanceChoice}
-                                onChange={this.onDistanceChange}
-                                name="distanceChosen"
-                                placeholder="Please enter a distance in miles - maximum of 200"
+                            <input name="distanceChosen" 
+                                onChange={this.onDistanceChange} 
+                                type="range" 
+                                min="1" 
+                                max="200" 
+                                value={this.state.distanceChoice} 
+                                class="slider" 
+                                id="distance"
                             />
                         </div>
+                        <div className="resultNumber">
+                            <input
+                                id='results'
+                                className={ this.state.error ? 'error' : '' }
+                                name='results'
+                                type='text'
+                                value={this.state.numberOfResults}
+                                placeholder = 'Enter Number of Results to see'
+                                onChange={this.onResultsChange}
+                            />
+                        </div>
+
                         <p className='error'>{ this.state.error }</p>
                         <div className="DifficultyFilters">
                             <input onChange={this.onDifficultyChange} type="radio" id="hard" name="Difficulty" value="3"/>
