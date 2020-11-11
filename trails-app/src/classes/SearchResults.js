@@ -161,6 +161,16 @@ class SearchResults{
     }
 
 
+    applyFilters(difficultyChoice, ratingChoice, distanceChoice){
+        this.difficultyFilter = difficultyChoice;
+        this.ratingFilter = ratingChoice;
+        this.distanceFilter = distanceChoice;
+        console.log(this.difficultyFilter)
+        console.log(this.ratingFilter)
+        console.log(this.distanceFilter)
+    }
+
+
     // will need to update hike index for sorting and filtering
     // function to filter results
     getFilteredResults(responseData, number_of_hikes) {
