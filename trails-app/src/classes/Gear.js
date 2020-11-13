@@ -6,7 +6,7 @@ class Gear{
         this.head = this.headClothing();
         this.top = this.topClothing();
         this.bottom = this.bottomClothing();
-        this.other = this.otherClothing;
+        this.other = this.otherClothing();
         this.rain = this.isRaining();
         this.sun = this.isSunny();
     }

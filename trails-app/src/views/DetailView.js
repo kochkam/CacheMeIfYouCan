@@ -46,7 +46,7 @@ export default function DetailView(props) {
             <li>Other: 
               <ul>
                 {gear.other.map(item => {
-                return <li>{item}</li>
+                <li>{item}</li>
                 })}
               </ul>
             </li> 
