@@ -133,7 +133,9 @@ class Gear{
         if(result == [])
         {
             result.push("Nothing else");
+            console.log("no items added")
         }
+        console.log(result);
         return result
     }
 }
