@@ -36,14 +36,13 @@ export default function DetailView(props) {
       <div className = "detail-row-container">
         <h2>Clothing and Gear Recommendations</h2>
       </div>
-      <div className = "detail-row-container">
         <div className = "detail-column-container">
           <h3 className="detail-text">Clothing</h3>
         </div>
         <div className = "detail-column-container">
           <h3 className="detail-text">Gear</h3>
         </div>
-      </div>
+
     </div>
   );
 }
