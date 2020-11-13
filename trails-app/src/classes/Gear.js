@@ -71,13 +71,13 @@ class Gear{
             resultString = resultString + "Single layer";
         }
         else if(this.temp < 60 && this.temp >= 55) {
-            resultString = resultString + "Light layer";
+            resultString = resultString + "Light layering";
         }
         else if(this.temp < 55 && this.temp >= 40) {
-            resultString = resultString + "Medium layer";
+            resultString = resultString + "Medium layering";
         }
         else if(this.temp < 40) {
-            resultString = resultString + "Heavy layer";
+            resultString = resultString + "Heavy layering";
         }
         else {
             return "Nothing";
@@ -103,13 +103,13 @@ class Gear{
             resultString = resultString + "Single layer";
         }
         else if(this.temp < 60 && this.temp >= 55) {
-            resultString = resultString + "Light layer";
+            resultString = resultString + "Light layering";
         }
         else if(this.temp < 55 && this.temp >= 40) {
-            resultString = resultString + "Medium layer";
+            resultString = resultString + "Medium layering";
         }
         else if(this.temp < 40) {
-            resultString = resultString + "Heavy layer";
+            resultString = resultString + "Heavy layering";
         }
         else {
             return "Nothing";
