@@ -1,14 +1,19 @@
 import React, { Component } from "react";
 import { useParams } from 'react-router-dom';
 import Map from '../components/Map'
+import Gear from "../classes/Gear.js";
 
 
 export default function DetailView(props) {
   let {hike_id} = useParams();
   var hike = props.searchObj.results[hike_id];
-  console.log("the hike:")
-  console.log(hike)
+  var gear = new Gear(hike);
+  console.log("the hike:");
+  console.log(hike);
+  console.log(gear.sun);
+  console.log(gear.rain);
   return (
+    <div>
     <div className ="detail-row-container" id= {hike.id}>
         <img className="detail-img" src = {hike.largeimgURL}/>
         <div className="detail-column-container">
@@ -27,6 +32,16 @@ export default function DetailView(props) {
           </div>
           <Map searchObj = {props.searchObj} hikeIndex = {hike.index}/>
         </div>
+    </div>
+    <div className = "detail-row-container">
+      <h2>Clothing and Gear Recommendations</h2>
+      <div className = "detail-column-container">
+        <h3>Clothing</h3>
+      </div>
+      <div className = "detail-column-container">
+        <h3>Gear</h3>
+      </div>
+    </div>
     </div>
   );
 }
