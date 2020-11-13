@@ -3,12 +3,13 @@ class Gear{
         this.hike = hike;
         this.weather = hike.weather[0].description;
         this.temp = hike.temp;
+        this.rain = this.isRaining();
+        this.sun = this.isSunny();
         this.head = this.headClothing();
         this.top = this.topClothing();
         this.bottom = this.bottomClothing();
         this.other = this.otherClothing();
-        this.rain = this.isRaining();
-        this.sun = this.isSunny();
+
     }
 
     //Instantiation Method - determines if weather is rainy
