@@ -38,7 +38,7 @@ export default function DetailView(props) {
       <div className = "detail-row-container">
 
         <div className = "detail-column-container">
-          <h3 className="detail-text">Clothing</h3>
+          <h3 className="detail-text">Clothing and Gear</h3>
           <ul>
             <li>Head: {gear.head}</li>
             <li>Top: {gear.top}</li>
@@ -54,7 +54,7 @@ export default function DetailView(props) {
         </div>
 
         <div className = "detail-column-container">
-          <h3 className="detail-text">Gear</h3>
+          <h3 className="detail-text">Food and Water</h3>
         </div>
 
       </div>
