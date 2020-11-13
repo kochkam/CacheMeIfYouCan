@@ -33,16 +33,33 @@ export default function DetailView(props) {
             <Map searchObj = {props.searchObj} hikeIndex = {hike.index}/>
           </div>
       </div>
+      
       <div className = "detail-row-container">
         <h2>Clothing and Gear Recommendations</h2>
       </div>
+
       <div className = "detail-row-container">
+
         <div className = "detail-column-container">
           <h3 className="detail-text">Clothing</h3>
+          <ul>
+            <li>Head: {gear.head}</li>
+            <li>Top: {gear.top}</li>
+            <li>Bottom: {gear.bottom}</li>
+            <li>Other: 
+              <ul>
+                {gear.other.map(item => {
+                return <li>{item}</li>
+                })}
+              </ul>
+            </li> 
+          </ul>
         </div>
+
         <div className = "detail-column-container">
           <h3 className="detail-text">Gear</h3>
         </div>
+
       </div>
     </div>
   );
