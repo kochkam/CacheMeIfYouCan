@@ -8,7 +8,7 @@ export default function DetailView(props) {
   let {hike_id} = useParams();
   var hike = props.searchObj.results[hike_id];
   var gear = new Gear(hike);
-  console.log(gear.other);
+
   return (
     <div>
       <div className ="detail-row-container" id= {hike.id}>
@@ -43,11 +43,14 @@ export default function DetailView(props) {
             <li>Head: {gear.head}</li>
             <li>Top: {gear.top}</li>
             <li>Bottom: {gear.bottom}</li>
-            <li>Other: </li> 
+            <li>Other: 
+              <ul>
+                {gear.other.map((item) => {
+                <li>{item}</li>
+                })}
+              </ul>
+            </li> 
           </ul>
-          {gear.other.map(item => {
-            <p>{item}</p>
-          })}
         </div>
 
         <div className = "detail-column-container">
