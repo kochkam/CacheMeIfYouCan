@@ -43,14 +43,11 @@ export default function DetailView(props) {
             <li>Head: {gear.head}</li>
             <li>Top: {gear.top}</li>
             <li>Bottom: {gear.bottom}</li>
-            <li>Other: 
-              <ul>
-                {gear.other.map(item => {
-                <li>{item}</li>
-                })}
-              </ul>
-            </li> 
+            <li>Other: </li> 
           </ul>
+          {gear.other.map(item => {
+            <p>{item}</p>
+          })}
         </div>
 
         <div className = "detail-column-container">

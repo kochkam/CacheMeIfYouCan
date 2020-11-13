@@ -70,10 +70,10 @@ class Gear{
         else if(this.temp < 70 && this.temp >= 60) {
             resultString = resultString + "Single layer";
         }
-        else if(this.temp < 60 && this.temp >= 50) {
+        else if(this.temp < 60 && this.temp >= 55) {
             resultString = resultString + "Light layer";
         }
-        else if(this.temp < 50 && this.temp >= 40) {
+        else if(this.temp < 55 && this.temp >= 40) {
             resultString = resultString + "Medium layer";
         }
         else if(this.temp < 40) {
@@ -102,10 +102,10 @@ class Gear{
         else if(this.temp < 70 && this.temp >= 60) {
             resultString = resultString + "Single layer";
         }
-        else if(this.temp < 60 && this.temp >= 50) {
+        else if(this.temp < 60 && this.temp >= 55) {
             resultString = resultString + "Light layer";
         }
-        else if(this.temp < 50 && this.temp >= 40) {
+        else if(this.temp < 55 && this.temp >= 40) {
             resultString = resultString + "Medium layer";
         }
         else if(this.temp < 40) {
@@ -133,9 +133,7 @@ class Gear{
         if(result.length == 0)
         {
             result.push("Nothing else");
-            console.log("no items added");
         }
-        console.log(result);
         return result
     }
 }
