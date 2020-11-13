@@ -8,7 +8,7 @@ export default function DetailView(props) {
   let {hike_id} = useParams();
   var hike = props.searchObj.results[hike_id];
   var gear = new Gear(hike);
-
+  console.log(gear.other);
   return (
     <div>
       <div className ="detail-row-container" id= {hike.id}>
