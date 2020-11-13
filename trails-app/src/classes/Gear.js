@@ -83,7 +83,7 @@ class Gear{
         else {
             return "Nothing";
         }
-        // if raining - add waterproof to recommended headware
+        // if raining - add waterproof to recommended top
         if(this.rain == true){
             resultString = resultString + " - Waterproof";
         }
@@ -115,7 +115,7 @@ class Gear{
         else {
             return "Nothing";
         }
-        // if raining - add waterproof to recommended headware
+        // if raining - add waterproof to recommended bottom
         if(this.rain == true){
             resultString = resultString + " - Waterproof";
         }
