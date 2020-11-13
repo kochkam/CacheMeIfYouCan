@@ -130,10 +130,10 @@ class Gear{
         if(this.sun == true){
             result.push("Sunscreen");
         }
-        if(result == [])
+        if(result.length() == 0)
         {
             result.push("Nothing else");
-            console.log("no items added")
+            console.log("no items added");
         }
         console.log(result);
         return result
