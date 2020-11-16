@@ -18,18 +18,36 @@ class FitnessForm extends React.Component{
         });
     }
 
+    onNameChange = (event) => {
+        this.setState({
+            name: event.target.value,
+        });
+    }
+    onAgeChange = (event) => {
+        this.setState({
+            age: event.target.value,
+        });
+    }
+    onXPChange = (event) => {
+        this.setState({
+            hikingXP: event.target.value,
+        });
+    }
+    onFrequencyChange = (event) => {
+        this.setState({
+            exerciseFrequency: event.target.value,
+        });
+    }
+
+
+
+
     onFormSubmit = async (event) => {
         event.preventDefault();
         const name = this.state.name;
         const age = this.state.age;
         const hikingXP = this.state.hikingXP;
         const exerciseFrequency = this.state.exerciseFrequency;
-        this.setState({
-            name: '',
-            age: '',
-            hikingXP: '',
-            exerciseFrequency: '',
-        });
         console.log("Line 33 of Fitness form");
         console.log(this.props.fitnessObj)
         this.props.fitnessObj.name = name;
@@ -41,9 +59,10 @@ class FitnessForm extends React.Component{
 
     render() {
         return (
-            <form className="fitnessLevel">
+            <form className="fitnessLevel" onSubmit={this.onFormSubmit}>
             <label>First Name:
                 <input
+                    onChange={this.onNameChange}
                     id='name'
                     name='name'
                     type='text'
@@ -53,6 +72,7 @@ class FitnessForm extends React.Component{
             <br></br>
             <label>Age: 
                 <input
+                    onChange={this.onAgeChange}
                     id='age'
                     name='age'
                     type='number'
@@ -62,6 +82,7 @@ class FitnessForm extends React.Component{
             <br></br>
             <label>Hiking Experience:
                 <input
+                    onChange={this.onXPChange}
                     id='hikingXP'
                     name='hikingXP'
                     type='number'
@@ -71,6 +92,7 @@ class FitnessForm extends React.Component{
             <br></br>
             <label>Exercise Frequency: 
                 <input
+                    onChange={this.onFrequencyChange}
                     id='exerciseFrequency'
                     name='exerciseFrequency'
                     type='number'

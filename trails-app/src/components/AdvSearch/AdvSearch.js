@@ -1,5 +1,5 @@
 import React from 'react';
-import AdvSearchOptions from './AdvSearhOptions';
+import AdvSearchOptions from './AdvSearchOptions';
 import AdvSearchControls from './AdvSearchControls';
 import './AdvSearch.css';
 
