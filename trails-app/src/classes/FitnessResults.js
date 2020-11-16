@@ -64,7 +64,7 @@ class FitnessResults{
 
     calculateFitness(){
 
-        var fitnessScore = 15
+        let fitnessScore = 15
 
         fitnessScore = this.Agecalc(fitnessScore)
 
