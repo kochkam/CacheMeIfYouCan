@@ -8,7 +8,7 @@ class FitnessResults{
         this.age = null;
         this.hikingXP = null;
         this.exerciseFrequency = null;
-        this.fitnessLevel = -1
+        this.fitnessLevel = null
         this.description = ''
     }
 
