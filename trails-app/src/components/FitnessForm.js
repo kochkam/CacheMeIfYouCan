@@ -5,8 +5,8 @@ class FitnessForm extends React.Component{
     state = {
         name: '',
         age: '',
-        hikingXP: '',
-        exerciseFrequency: '',
+        hikingXP: 'Beginner',
+        exerciseFrequency: 'Beginner',
     }
 
     onInputChange = (event) => {
@@ -90,25 +90,19 @@ class FitnessForm extends React.Component{
                 />
             </label>
             <br></br>
-            <label>Hiking Experience:
-                <input
-                    onChange={this.onXPChange}
-                    id='hikingXP'
-                    name='hikingXP'
-                    type='number'
-                    placeholder = 'Hiking Experience'
-                />
-            </label>
+            <label>Hiking Experience:</label>
+            <select value={this.state.onXPChange}>
+                    <option value = "Beginner">Beginner</option>
+                    <option value = "Intermediate">Intermediate</option>
+                    <option value="Advanced">Advanced</option>
+            </select> 
             <br></br>
-            <label>Exercise Frequency: 
-                <input
-                    onChange={this.onFrequencyChange}
-                    id='exerciseFrequency'
-                    name='exerciseFrequency'
-                    type='number'
-                    placeholder = 'Exercise Frequency'
-                />
-            </label>
+            <label>Exercise Frequency:</label> 
+                <select value={this.state.onFrequencyChange}>
+                    <option value = "Beginner">Beginner</option>
+                    <option value = "Intermediate">Intermediate</option>
+                    <option value="Advanced">Advanced</option>
+                </select>                
             <br></br>
             <button className='SearchBtn' type='submit'>Calculate
                 <i className='SearchBtn'></i>
