@@ -4,8 +4,8 @@ class Hiker{
         this.age = age
         this.hikingXP = hikingXP
         this.exerciseFrequency = exerciseFrequency
-        this.fitnessLevel = NONE
-        this.description = NONE
+        this.fitnessLevel = -1
+        this.description = ''
     }
 
     Agecalc(fitnessScore){
@@ -60,7 +60,7 @@ class Hiker{
 
     calculateFitness(){
 
-        fitnessScore = 15
+        var fitnessScore = 15
 
         fitnessScore = this.Agecalc(fitnessScore)
 
