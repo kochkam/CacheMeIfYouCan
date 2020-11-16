@@ -3,36 +3,38 @@ import { withRouter } from 'react-router-dom';
 
 class FitnessForm extends React.Component{
     state = {
-        zip: '',
-        error: '',
+        name: '',
+        age: '',
+        hikingXP: '',
+        exerciseFrequency: '',
     }
 
     onInputChange = (event) => {
         this.setState({
-            zip: event.target.value,
-            error: '',
+            name: event.target.value,
+            age: event.target.value,
+            hikingXP: event.target.value,
+            exerciseFrequency: event.target.value,
         });
     }
 
     onFormSubmit = async (event) => {
         event.preventDefault();
-        const zip = this.state.zip;
-        const error = this.validate(zip);
-        this.setState({error});
-        if (error.length > 0) return;
-        this.setState({zip:''});
-        this.props.searchObj.zip = zip;
-        this.props.searchObj.translateZip().then(() => {
-            this.props.history.push('/results-list');
+        const name = this.state.name;
+        const age = this.state.age;
+        const hikingXP = this.state.hikingXP;
+        const exerciseFrequency = this.state.exerciseFrequency;
+        this.setState({
+            name: '',
+            age: '',
+            hikingXP: '',
+            exerciseFrequency: '',
         });
-    }
-
-
-    validate = (zip) => {
-        const zipLength = zip.trim().length;
-        if (zipLength === 0) return 'Please enter a ZIP code';
-        if (isNaN(zipLength)) return 'Please enter a ZIP code';
-        return '';
+        this.props.fitnessObj.name = name;
+        this.props.fitnessObj.age = age;
+        this.props.fitnessObj.hikingXP = hikingXP;
+        this.props.fitnessObj.exerciseFrequency = exerciseFrequency;
+        this.props.history.push('/fitness-results');
     }
 
     render() {
