@@ -92,9 +92,9 @@ class FitnessForm extends React.Component{
             <br></br>
             <label>Exercise Frequency:</label> 
                 <select value={this.state.onFrequencyChange}>
-                    <option value = "Beginner">Beginner</option>
-                    <option value = "Intermediate">Intermediate</option>
-                    <option value="Advanced">Advanced</option>
+                    <option value = "Low">Low</option>
+                    <option value = "Medium">Medium</option>
+                    <option value="High">High</option>
                 </select>                
             <br></br>
             <button className='SearchBtn' type='submit'>Calculate
