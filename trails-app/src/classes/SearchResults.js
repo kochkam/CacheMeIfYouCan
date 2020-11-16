@@ -206,9 +206,4 @@ class SearchResults{
 
 }
 
-
-
-
-
-
 export default SearchResults
