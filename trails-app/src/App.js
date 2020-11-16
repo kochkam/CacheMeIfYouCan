@@ -23,7 +23,7 @@ export default function App() {
           <Route path="/" children={<Home searchObj = {currentSearch} />}/>
           <Route path="/fitness-results" children={<FitnessResultsPage fitnessObj = {currentUser} />}/>
           <Route path="/user-profile" children={<UserProfile fitnessObj = {currentUser} />}/>
-          <Route path="/results-list" children={<FitnessResults fitnessObj = {currentUser} ResultsList searchObj = {currentSearch} />}/>
+          <Route path="/results-list" children={<ResultsList fitnessObj = {currentUser} ResultsList searchObj = {currentSearch} />}/>
           <Route path="/detail-view/:hike_id" children={<DetailView searchObj= {currentSearch}/>}/>
         </div>
         
