@@ -30,6 +30,8 @@ class FitnessForm extends React.Component{
             hikingXP: '',
             exerciseFrequency: '',
         });
+        console.log("Line 33 of Fitness form");
+        console.log(this.props.fitnessObj)
         this.props.fitnessObj.name = name;
         this.props.fitnessObj.age = age;
         this.props.fitnessObj.hikingXP = hikingXP;
@@ -53,7 +55,7 @@ class FitnessForm extends React.Component{
                 <input
                     id='age'
                     name='age'
-                    type='text'
+                    type='number'
                     placeholder = 'Age'
                 />
             </label>
@@ -62,7 +64,7 @@ class FitnessForm extends React.Component{
                 <input
                     id='hikingXP'
                     name='hikingXP'
-                    type='text'
+                    type='number'
                     placeholder = 'Hiking Experience'
                 />
             </label>
@@ -71,17 +73,17 @@ class FitnessForm extends React.Component{
                 <input
                     id='exerciseFrequency'
                     name='exerciseFrequency'
-                    type='text'
+                    type='number'
                     placeholder = 'Exercise Frequency'
                 />
             </label>
             <br></br>
-            <button className='CalculateBtn' type='submit'>Calculate
-                <i className='CalculateBtn'></i>
+            <button className='SearchBtn' type='submit'>Calculate
+                <i className='SearchBtn'></i>
             </button>
             </form>
         );
       }
 }
 
-export default withRouter(SearchForm);
+export default withRouter(FitnessForm);
