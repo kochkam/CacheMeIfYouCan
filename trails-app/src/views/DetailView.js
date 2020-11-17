@@ -29,7 +29,7 @@ export default function DetailView(props) {
               </div>
             </div>
             <Map searchObj = {props.searchObj} hikeIndex = {hike.index}/>
-            <h2>Gear Recommendations</h2>
+            <h2 className="detail-text">Gear Recommendations</h2>
             {/* Top attribute equation: -5px + (-8px * number of lines after first line) */}
             <div className = "detail-row-container">
               <div className = "detail-column-container">
