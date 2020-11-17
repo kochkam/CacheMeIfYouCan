@@ -5,10 +5,15 @@ import Home from "./views/Home";
 import ResultsList from "./views/ResultsList";
 import UserProfile from "./views/UserProfile";
 import DetailView from "./views/DetailView";
+import FitnessResultsPage from "./views/FitnessResultsPage";
 import SearchResults from "./classes/SearchResults.js";
+import FitnessResults from './classes/FitnessResults.js';
+
+
 
 
 var currentSearch = new SearchResults();
+var currentUser = new FitnessResults();
 
 export default function App() {
   return (
@@ -16,9 +21,10 @@ export default function App() {
       <Navbar />
       <div className='base-container'>
         <div className="content">
-          <Route exact path="/" children={<Home searchObj = {currentSearch} />}/>
-          <Route path="/user-profile" component={UserProfile}/>
-          <Route path="/results-list" children={<ResultsList searchObj = {currentSearch} />}/>
+          <Route path="/" children={<Home searchObj = {currentSearch} />}/>
+          <Route path="/user-profile" children={<UserProfile fitnessObj = {currentUser} searchObj = {currentSearch}/>}/>
+          <Route path="/fitness-results" children={<FitnessResultsPage fitnessObj = {currentUser} searchObj = {currentSearch}/>}/>
+          <Route path="/results-list" children={<ResultsList fitnessObj = {currentUser} ResultsList searchObj = {currentSearch} />}/>
           <Route path="/detail-view/:hike_id" children={<DetailView searchObj= {currentSearch}/>}/>
         </div>
         
