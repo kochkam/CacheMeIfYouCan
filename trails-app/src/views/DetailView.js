@@ -19,6 +19,7 @@ export default function DetailView(props) {
             <div className="detail-row-container">
               <h3 className="detail-text">Difficulty: {hike.activityLevel}</h3>
               <h3 className="detail-text">Distance: {hike.distance} miles</h3>
+              <h3 className="detail-text">Vertical Ascent: {hike.ascent}</h3>
             </div>
             <div className="detail-row-container">
               <h3 className="detail-text">Current Temp: {hike.temp} F</h3>

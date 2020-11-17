@@ -36,6 +36,7 @@ class SearchResults{
                 hike.largeimgURL = response.trails[i].imgMedium;
                 // attribute is titled "length" from api for hike distance. javascript doesnt like this
                 hike.distance = response.trails[i].length;
+                hike.ascent = response.trails[i].ascent;
                 hike.long = response.trails[i].longitude;
                 hike.lat = response.trails[i].latitude;
                 // get temp using weather api
