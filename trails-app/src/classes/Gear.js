@@ -125,16 +125,23 @@ class Gear{
 
     // Instantiation Method - determines other clothing or items
     otherClothing(){
-        var result = [];
+        var list = [];
         if(this.temp < 50){
-            result.push("Gloves");
+            list.push("Gloves");
         }
         if(this.sun == true){
-            result.push("Sunscreen");
+            list.push("Sunscreen");
         }
-        if(result.length == 0)
+        if(list.length == 0)
         {
-            result.push("Nothing else");
+            list.push("Nothing else");
+        }
+        var result = "";
+        for(var i = 0; i < list.length; i++){
+            result = result + list[i];
+            if(i+1 != list.length){
+                result = result + ", ";
+            }
         }
         return result
     }
