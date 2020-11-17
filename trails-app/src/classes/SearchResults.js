@@ -59,7 +59,7 @@ class SearchResults{
             }
 
             /*
-            Old for loop
+            CODE SMELL: DEAD CODE
             for (var i = 0; i < responseNum; i++) {
                 var hike = new Hike();
                 hike.id = response.trails[i].id;
