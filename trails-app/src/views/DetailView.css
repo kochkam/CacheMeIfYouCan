@@ -1,15 +1,13 @@
 .detail-row-container{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: space-evenly;
   }
   
   .detail-column-container{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: left;
+    justify-content: space-evenly;
   }
   
   .detail-img{
@@ -18,6 +16,7 @@
   
   .detail-text{
     text-align: center;
+    margin: 10px;
   }
 
   i{
