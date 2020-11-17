@@ -10,7 +10,6 @@ export default function DetailView(props) {
   var gear = new Gear(hike);
 
   return (
-    <div>
       <div className ="detail-row-container" id= {hike.id}>
           <img className="detail-img" src = {hike.largeimgURL}/>
           <div className="detail-column-container">
@@ -29,36 +28,38 @@ export default function DetailView(props) {
               <h3 className="detail-text">Weather Description: {hike.weather[0].description}</h3>
             </div>
             <Map searchObj = {props.searchObj} hikeIndex = {hike.index}/>
+            <h2>Gear Recommendations</h2>
+            <div className = "detail-row-container">
+              <div className = "detail-column-container">
+                <div className = "detail-row-container">
+                  <i class="fas fa-hat-cowboy-side" />
+                  <h3>Head: {gear.head}</h3>
+                </div>
+                <div className = "detail-row-container">
+                  <i class="fas fa-tshirt"></i>
+                  <h3>Top: {gear.top}</h3>
+                </div>
+                <div className = "detail-row-container">
+                  <i class="fas fa-socks"></i>
+                  <h3>Bottom: {gear.bottom}</h3>
+                </div>
+                <div className = "detail-row-container">
+                  <i class="fas fa-mitten"></i>
+                  <h3>Other: {gear.other.map((item) => <h3>{item}</h3>)}</h3>
+                </div>
+              </div>
+              <div className = "detail-column-container">
+                <div className = "detail-row-container">
+                  <i class="fas fa-utensils"></i>
+                  <h3>Food: {gear.head}</h3>
+                </div>
+                <div className = "detail-row-container">
+                  <i class="fas fa-tint"></i>
+                  <h3>Water: {gear.head}</h3>
+                </div>
+              </div>
+            </div>
           </div>
       </div>
-      
-      <div className = "detail-row-container">
-        <h2>Clothing and Gear Recommendations</h2>
-      </div>
-
-      <div className = "detail-row-container">
-
-        <div className = "detail-column-container">
-          <h3 className="detail-text">Clothing and Gear</h3>
-          <ul>
-            <li>Head: {gear.head}</li>
-            <li>Top: {gear.top}</li>
-            <li>Bottom: {gear.bottom}</li>
-            <li>Other: 
-              <ul>
-                {gear.other.map((item) => 
-                <li>{item}</li>
-                )}
-              </ul>
-            </li> 
-          </ul>
-        </div>
-
-        <div className = "detail-column-container">
-          <h3 className="detail-text">Food and Water</h3>
-        </div>
-
-      </div>
-    </div>
   );
 }
