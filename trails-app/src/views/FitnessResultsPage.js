@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import FitnessForm from '../components/FitnessForm';
 import FitnessResults from '../classes/FitnessResults';
+import LinkButton from "../components/LinkButton";
 
 class FitnessResultsPage extends Component {
+
+
   render() {
     return (
       <div className="fitness-level-container">
@@ -15,10 +18,12 @@ class FitnessResultsPage extends Component {
         <p>{this.props.fitnessObj.description}</p>
         <br></br>
         <p>Feel free to change your results below</p>
-        <FitnessForm fitnessObj = {this.props.fitnessObj}/>
+        <button>
+        <LinkButton exact to={"/user-profile"}><p>Modify Results</p>
+          </LinkButton>
+        </button>
       </div>
     );
   }
 }
- 
 export default FitnessResultsPage;
