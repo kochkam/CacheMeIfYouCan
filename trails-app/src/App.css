@@ -31,11 +31,13 @@ body{
 }
 
 .content {
+  border-radius: 25px;
   background-color: lightgreen;
   padding: 20px;
   margin: 20px;
 }
 
+/*CODE SMELL: DEAD CODE
 
 .content li {
   margin-bottom: 10px;
@@ -67,6 +69,8 @@ body{
   float: left;
   border:none;
 }
+
+*/
 
 .search-container{
   height: 20vh;
@@ -145,27 +149,4 @@ body{
 .result-act-dist{
   border-right-style:solid;
   border-width: .1em;
-}
-
-/* Styles for detail view */
-.detail-row-container{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.detail-column-container{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.detail-img{
-  margin: 10px;
-}
-
-.detail-text{
-  margin: 10px;
 }

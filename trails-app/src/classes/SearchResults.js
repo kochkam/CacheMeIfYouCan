@@ -44,6 +44,7 @@ class SearchResults{
                 hike.largeimgURL = sorted_results[i].imgMedium;
                 // attribute is titled "length" from api for hike distance. javascript doesnt like this
                 hike.distance = sorted_results[i].length;
+                hike.ascent = response.trails[i].ascent;
                 hike.long = sorted_results[i].longitude;
                 hike.lat = sorted_results[i].latitude;
                 // get temp using weather api
@@ -58,7 +59,7 @@ class SearchResults{
             }
 
             /*
-            Old for loop
+            CODE SMELL: DEAD CODE
             for (var i = 0; i < responseNum; i++) {
                 var hike = new Hike();
                 hike.id = response.trails[i].id;

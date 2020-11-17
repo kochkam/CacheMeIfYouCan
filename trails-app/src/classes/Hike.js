@@ -1,5 +1,5 @@
 class Hike{
-    constructor(id, title, summary, activityLevel, imgURL, largeimgURL, distance, temp, tempFeelsLike, weather, lat, long, index){
+    constructor(id, title, summary, activityLevel, imgURL, largeimgURL, distance, ascent, temp, tempFeelsLike, weather, lat, long, index){
         this.id = id;
         this.title = title;
         this.summary = summary;
@@ -7,6 +7,7 @@ class Hike{
         this.imgURL = imgURL;
         this.largeimgURL = largeimgURL;
         this.distance = distance;
+        this.ascent = ascent;
         this.temp = temp;
         this.tempFeelsLike = tempFeelsLike;
         this.weather = weather;
