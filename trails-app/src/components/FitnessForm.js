@@ -1,12 +1,13 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import FitnessResults from '../classes/FitnessResults';
 
 class FitnessForm extends React.Component{
     state = {
         name: '',
         age: '',
         hikingXP: 'Beginner',
-        exerciseFrequency: 'Beginner',
+        exerciseFrequency: 'Low',
     }
 
     onInputChange = (event) => {
@@ -54,9 +55,9 @@ class FitnessForm extends React.Component{
         this.props.fitnessObj.age = age;
         this.props.fitnessObj.hikingXP = hikingXP;
         this.props.fitnessObj.exerciseFrequency = exerciseFrequency;
-        this.props.fitnessObj.calculateFitness().then(() =>{
-            this.props.history.push('/fitness-results');
-    })
+        this.props.fitnessObj.calculateFitness()
+        this.props.history.push('/fitness-results');
+
         
     }
 
@@ -84,14 +85,14 @@ class FitnessForm extends React.Component{
             </label>
             <br></br>
             <label>Hiking Experience:</label>
-            <select value={this.state.onXPChange}>
+            <select onChange={this.onXPChange}>
                     <option value = "Beginner">Beginner</option>
                     <option value = "Intermediate">Intermediate</option>
                     <option value="Advanced">Advanced</option>
             </select> 
             <br></br>
             <label>Exercise Frequency:</label> 
-                <select value={this.state.onFrequencyChange}>
+                <select onChange={this.onFrequencyChange}>
                     <option value = "Low">Low</option>
                     <option value = "Medium">Medium</option>
                     <option value="High">High</option>
