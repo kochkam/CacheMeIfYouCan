@@ -38,8 +38,9 @@ export default function DetailView(props) {
                 <i class="fas fa-mitten"> Other: {gear.other}</i>
               </div>
               <div className = "detail-column-container">
-                <i class="fas fa-utensils"> Food: {gear.head}</i>
-                <i class="fas fa-tint"> Water: {gear.head}</i>
+                {/* Based on 105 calories per banana */}
+                <i class="fas fa-utensils"> Food: {gear.calories} calories</i>
+                <i class="fas fa-tint"> Water: {gear.water} oz</i>
               </div>
             </div>
           </div>

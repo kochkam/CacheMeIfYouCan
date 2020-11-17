@@ -9,7 +9,8 @@ class Gear{
         this.top = this.topClothing();
         this.bottom = this.bottomClothing();
         this.other = this.otherClothing();
-
+        this.calories = this.calcCalories();
+        this.water = this.calcWater();
     }
 
     //Instantiation Method - determines if weather is rainy
@@ -136,6 +137,22 @@ class Gear{
             result.push("Nothing else");
         }
         return result
+    }
+
+    // Based on 430 calories burned per hour of hiking for 160lb person and 2mph average hike speed
+    // Source: https://backpackerspantry.com/blogs/news/how-many-calories-does-hiking-burn
+    calcCalories(){
+        var avgHours = this.hike.distance / 2.0;
+        var avgCalories = Math.round(avgHours * 430.0);
+        return avgCalories;
+    }
+
+    // Based on 6-12oz of water per 15 minutes of hiking and 2mph average hike speed
+    // Source: https://northcountrytrail.org/3-keys-for-planning-and-carrying-water-on-the-trail/
+    calcWater(){
+        var avgMinutes = (this.hike.distance / 2.0) * 60.0;
+        var avgWater = Math.ceil((avgMinutes / 15.0) * 9.0);
+        return avgWater;
     }
 }
 
