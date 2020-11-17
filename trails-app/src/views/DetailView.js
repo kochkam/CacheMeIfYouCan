@@ -30,17 +30,55 @@ export default function DetailView(props) {
             </div>
             <Map searchObj = {props.searchObj} hikeIndex = {hike.index}/>
             <h2>Gear Recommendations</h2>
+            {/* Top attribute equation: -5px + (-8px * number of lines after first line) */}
             <div className = "detail-row-container">
               <div className = "detail-column-container">
-                <i class="fas fa-hat-cowboy-side"> Head: {gear.head}</i>
-                <i class="fas fa-tshirt"> Top: {gear.top}</i>
-                <i class="fas fa-socks"> Bottom: {gear.bottom}</i>
-                <i class="fas fa-mitten"> Other: {gear.other}</i>
+                <i class="fas fa-hat-cowboy-side tooltip"> Head: {gear.head}
+                  <span class="tooltiptext" style={{top:"-13px"}}>
+                    FILL IN<br/>
+                    TWO LINES
+                  </span>
+                </i>
+                <i class="fas fa-tshirt tooltip"> Top: {gear.top}
+                  <span class="tooltiptext" style={{top:"-13px"}}>
+                    FILL IN<br/>
+                    TWO LINES
+                  </span>
+                </i>
+                <i class="fas fa-socks tooltip"> Bottom: {gear.bottom}
+                  <span class="tooltiptext" style={{top:"-13px"}}>
+                    FILL IN<br/>
+                    TWO LINES
+                  </span>
+                </i>
+                <i class="fas fa-mitten tooltip"> Other: {gear.other}
+                  <span class="tooltiptext" style={{top:"-13px"}}>
+                    FILL IN<br/>
+                    TWO LINES
+                  </span>
+                </i>
               </div>
               <div className = "detail-column-container">
-                {/* Based on 105 calories per banana */}
-                <i class="fas fa-utensils"> Food: {gear.calories} calories</i>
-                <i class="fas fa-tint"> Water: {gear.water} oz</i>
+                <i class="fas fa-utensils tooltip"> Food: {gear.calories} calories
+                  <span class="tooltiptext" style={{top:"-61px"}}>
+                    The average number of calories<br/>
+                    you will lose during this hike<br/>
+                    (based on a 160lb person<br/>
+                    walking around 2mph).<br/>
+                    This is equal to about:<br/>
+                    {Math.ceil(gear.calories/105)} banana(s)!<br/>
+                    If you are trying to lose weight,<br/>
+                    you can eat slightly less.
+                  </span>
+                </i>
+                <i class="fas fa-tint tooltip"> Water: {gear.water} oz
+                  <span class="tooltiptext" style={{top:"-29px"}}>
+                    The average amount of water you<br/>
+                    should drink during this hike.<br/>
+                    (based on 6-12oz needed per<br/>
+                    15 minutes of hiking)
+                  </span>
+                </i>
               </div>
             </div>
           </div>
