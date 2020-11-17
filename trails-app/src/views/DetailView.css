@@ -1,0 +1,25 @@
+.detail-row-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .detail-column-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: left;
+  }
+  
+  .detail-img{
+    margin: 10px;
+  }
+  
+  .detail-text{
+    margin: 10px;
+  }
+
+  i{
+      margin: 2px;
+  }
