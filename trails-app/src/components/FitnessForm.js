@@ -1,12 +1,13 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import FitnessResults from '../classes/FitnessResults';
 
 class FitnessForm extends React.Component{
     state = {
         name: '',
         age: '',
-        hikingXP: '',
-        exerciseFrequency: '',
+        hikingXP: 'Beginner',
+        exerciseFrequency: 'Low',
     }
 
     onInputChange = (event) => {
@@ -54,16 +55,9 @@ class FitnessForm extends React.Component{
         this.props.fitnessObj.age = age;
         this.props.fitnessObj.hikingXP = hikingXP;
         this.props.fitnessObj.exerciseFrequency = exerciseFrequency;
-        this.props.fitnessObj.calculateFitness();
-        console.log(this.props.fitnessObj)
-        if(this.props.fitnessObj.fitnessScore <= 5){
-            this.props.searchObj.difficultyFilter = 1
-        } else if(this.props.fitnessObj.fitnessScore >= 5 && this.props.fitnessObj.fitnessScore<=10){
-            this.props.searchObj.difficultyFilter = 2
-        } else if(this.props.fitnessObj.fitnessScore > 10 ){
-            this.props.searchObj.difficultyFilter = 3
-        }
+        this.props.fitnessObj.calculateFitness()
         this.props.history.push('/fitness-results');
+
         
     }
 
@@ -90,25 +84,19 @@ class FitnessForm extends React.Component{
                 />
             </label>
             <br></br>
-            <label>Hiking Experience:
-                <input
-                    onChange={this.onXPChange}
-                    id='hikingXP'
-                    name='hikingXP'
-                    type='number'
-                    placeholder = 'Hiking Experience'
-                />
-            </label>
+            <label>Hiking Experience:</label>
+            <select onChange={this.onXPChange}>
+                    <option value = "Beginner">Beginner</option>
+                    <option value = "Intermediate">Intermediate</option>
+                    <option value="Advanced">Advanced</option>
+            </select> 
             <br></br>
-            <label>Exercise Frequency: 
-                <input
-                    onChange={this.onFrequencyChange}
-                    id='exerciseFrequency'
-                    name='exerciseFrequency'
-                    type='number'
-                    placeholder = 'Exercise Frequency'
-                />
-            </label>
+            <label>Exercise Frequency:</label> 
+                <select onChange={this.onFrequencyChange}>
+                    <option value = "Low">Low</option>
+                    <option value = "Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>                
             <br></br>
             <button className='SearchBtn' type='submit'>Calculate
                 <i className='SearchBtn'></i>
