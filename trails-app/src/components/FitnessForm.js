@@ -58,11 +58,11 @@ class FitnessForm extends React.Component{
         this.props.fitnessObj.calculateFitness()
         this.props.history.push('/fitness-results');
         /*
-        if(this.props.fitnessObj.fitnessScore <= 5){
+        if(this.props.fitnessObj.fitnessLevel == "Beginner"){
             this.props.searchObj.difficultyFilter = 1
-        } else if(this.props.fitnessObj.fitnessScore >= 5 && this.props.fitnessObj.fitnessScore<=10){
+        } else if(this.props.fitnessObj.fitnessLevel == "Intermediate"){
             this.props.searchObj.difficultyFilter = 2
-        } else if(this.props.fitnessObj.fitnessScore > 10 ){
+        } else if(this.props.fitnessObj.fitnessLevel == "Advanced" ){
             this.props.searchObj.difficultyFilter = 3
         }
         */
