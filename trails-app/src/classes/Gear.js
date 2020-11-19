@@ -59,6 +59,7 @@ class Gear{
         return resultString
     }
 
+    //JP CODE SMELL: DUPLICATE CODE and OO - Abuser "switch statements/if statements"
     //Instantiation Method - determines recommended top clothing
     topClothing(){
         var resultString = "";
