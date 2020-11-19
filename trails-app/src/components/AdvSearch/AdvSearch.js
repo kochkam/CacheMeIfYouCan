@@ -24,9 +24,9 @@ class AdvSearch extends React.Component{
         this.setState({distanceChoice: event.target.value});
     }
 
-    onDifficultyChange = (event) => {
+    onDifficultyChange = (value) => {
         this.setState({
-            difficultyChoice: event.target.value,
+            difficultyChoice: value
         });
     }
 
@@ -98,7 +98,7 @@ class AdvSearch extends React.Component{
                             </select>
                         </div>
                         <div className="DistanceFilters">
-                            <p>I want to be within the following distance: </p>
+                            <p>I want hikes within the following total length: </p>
                             <Slider name="distanceChosen" 
                                 onChange={this.onDistanceChange.bind(this)} 
                                 min="10" 
