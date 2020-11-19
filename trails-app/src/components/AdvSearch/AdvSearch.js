@@ -21,12 +21,12 @@ class AdvSearch extends React.Component{
     }
 
     onDistanceChange = (event) => {
-        this.setState({distanceChoice: event.target.value});
+        this.setState({distanceChoice: event});
     }
 
-    onDifficultyChange = (value) => {
+    onDifficultyChange = (event) => {
         this.setState({
-            difficultyChoice: value
+            difficultyChoice: event.target.value,
         });
     }
 
@@ -100,27 +100,28 @@ class AdvSearch extends React.Component{
                         <div className="DistanceFilters">
                             <p>I want hikes within the following total length: </p>
                             <Slider name="distanceChosen" 
-                                onChange={this.onDistanceChange.bind(this)} 
-                                min="10" 
+                                min="1" 
                                 max="200" 
+                                step="1"
+
                                 value={this.state.distanceChoice} 
+                                onChange={this.onDistanceChange} 
                                 id="distance"
                             />
                         </div>
                         <div className="resultNumber">
-                        <p>I waant to see the following number of results: </p>
+                        <p>I don't want to see more than this many results: </p>
                             <input
                                 id='results'
                                 className={ this.state.error ? 'error' : '' }
                                 name='results'
                                 type='text'
-                                value={this.state.numberOfResults}
                                 placeholder = 'Enter Number of Results to see'
                                 onChange={this.onResultsChange}
                             />
                         </div>
                         <p className='error'>{ this.state.error }</p>
-                        <p>I'm looking for hikes that are...': </p>
+                        <p>I'm looking for hikes that are... </p>
                         <div className="DifficultyFilters">
                             <input onChange={this.onDifficultyChange} type="radio" id="hard" name="Difficulty" value="3"/>
                             <label for="hard">Hard</label>
