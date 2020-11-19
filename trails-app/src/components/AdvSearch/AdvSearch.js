@@ -2,6 +2,8 @@ import React from 'react';
 import AdvSearchOptions from './AdvSearchOptions';
 import AdvSearchControls from './AdvSearchControls';
 import './AdvSearch.css';
+import Slider from 'react-rangeslider'
+import 'react-rangeslider/lib/index.css'
 
 class AdvSearch extends React.Component{
 
@@ -19,10 +21,7 @@ class AdvSearch extends React.Component{
     }
 
     onDistanceChange = (event) => {
-        this.setState({
-            distanceChoice: event.target.value,
-            error: '',
-        });
+        this.setState({distanceChoice: event.target.value});
     }
 
     onDifficultyChange = (event) => {
@@ -89,6 +88,7 @@ class AdvSearch extends React.Component{
                 {this.state.isVisible &&
                     <form className="FilterField" onSubmit={this.onFormSubmit}>
                         <div className="RatingFilters">
+                        <p>I want the rating of the hike to be at least: </p>
                             <select onChange={this.onRatingChange} id="rating" name="rating">
                                 <option value="1">One Star</option>
                                 <option value="2">Two Stars</option>
@@ -98,17 +98,17 @@ class AdvSearch extends React.Component{
                             </select>
                         </div>
                         <div className="DistanceFilters">
-                            <input name="distanceChosen" 
-                                onChange={this.onDistanceChange} 
-                                type="range" 
-                                min="1" 
+                            <p>I want to be within the following distance: </p>
+                            <Slider name="distanceChosen" 
+                                onChange={this.onDistanceChange.bind(this)} 
+                                min="10" 
                                 max="200" 
                                 value={this.state.distanceChoice} 
-                                class="slider" 
                                 id="distance"
                             />
                         </div>
                         <div className="resultNumber">
+                        <p>I waant to see the following number of results: </p>
                             <input
                                 id='results'
                                 className={ this.state.error ? 'error' : '' }
@@ -119,8 +119,8 @@ class AdvSearch extends React.Component{
                                 onChange={this.onResultsChange}
                             />
                         </div>
-
                         <p className='error'>{ this.state.error }</p>
+                        <p>I'm looking for hikes that are...': </p>
                         <div className="DifficultyFilters">
                             <input onChange={this.onDifficultyChange} type="radio" id="hard" name="Difficulty" value="3"/>
                             <label for="hard">Hard</label>
