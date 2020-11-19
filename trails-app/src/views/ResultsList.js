@@ -5,7 +5,7 @@ import Hike from '../classes/Hike';
 import LinkButton from "../components/LinkButton";
 import { useParams } from 'react-router-dom';
 
-
+// JP CODE SMELL: DEAD CODE - unused imports above
 export default function ResultsList(props) {
 
   console.log("I'm in the resultslist.js");
@@ -26,7 +26,7 @@ export default function ResultsList(props) {
       {props.searchObj.results.map(
         hike => (
           <LinkButton exact to={"/detail-view/" + hike.index}>
-            <ListItem id = {hike.id} title = {hike.title} summary = {hike.summary} activityLevel = {hike.activityLevel} img = {hike.imgURL} distance = {hike.distance} temp = {hike.temp}/>
+            <ListItem id = {hike.id} title = {hike.title} summary = {hike.summary} activityLevel = {hike.activityLevel} img = {hike.largeimgURL} distance = {hike.distance} temp = {hike.temp}/>
           </LinkButton>
         )
       )}

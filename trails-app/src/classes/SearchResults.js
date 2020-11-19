@@ -41,6 +41,7 @@ class SearchResults{
                 hike.title = sorted_results[i].name;
                 hike.summary = sorted_results[i].summary;
                 hike.activityLevel = sorted_results[i].difficulty;
+                // JP CODE SMELL: DEAD CODE - imgURL is no longer used anywhere - don't need to populate
                 hike.imgURL = sorted_results[i].imgSmall;
                 hike.largeimgURL = sorted_results[i].imgMedium;
                 // attribute is titled "length" from api for hike distance. javascript doesnt like this
