@@ -88,7 +88,7 @@ class AdvSearch extends React.Component{
                 {this.state.isVisible &&
                     <form className="FilterField" onSubmit={this.onFormSubmit}>
                         <div className="RatingFilters">
-                        <p>I want the rating of the hike to be at least: </p>
+                        <p>I want the rating of the hike to be at least this: </p>
                             <select onChange={this.onRatingChange} id="rating" name="rating">
                                 <option value="1">One Star</option>
                                 <option value="2">Two Stars</option>
