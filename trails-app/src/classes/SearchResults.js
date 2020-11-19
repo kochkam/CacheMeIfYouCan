@@ -178,6 +178,8 @@ class SearchResults{
     // will need to update hike index for sorting and filtering
     // function to filter results
     getFilteredResults(responseData, number_of_hikes) {
+        console.log("Applying filters")
+        console.log(this.difficultyFilter)
         var filtered_hikes = []
         for (var i = 0; i < number_of_hikes; i++) {
             var hikeDifficulty = 0

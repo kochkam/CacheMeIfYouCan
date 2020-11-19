@@ -57,7 +57,6 @@ class FitnessForm extends React.Component{
         this.props.fitnessObj.exerciseFrequency = exerciseFrequency;
         this.props.fitnessObj.calculateFitness()
         this.props.history.push('/fitness-results');
-        /*
         if(this.props.fitnessObj.fitnessLevel == "Beginner"){
             this.props.searchObj.difficultyFilter = 1
         } else if(this.props.fitnessObj.fitnessLevel == "Intermediate"){
@@ -65,7 +64,6 @@ class FitnessForm extends React.Component{
         } else if(this.props.fitnessObj.fitnessLevel == "Advanced" ){
             this.props.searchObj.difficultyFilter = 3
         }
-        */
     }
 
     render() {

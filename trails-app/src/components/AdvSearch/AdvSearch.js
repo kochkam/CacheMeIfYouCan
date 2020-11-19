@@ -51,9 +51,9 @@ class AdvSearch extends React.Component{
     onFormSubmit = async (event) => {
         event.preventDefault();
         const distanceChoice = this.state.distanceChoice
-        const error = this.validate(distanceChoice)
-        this.setState({error});
-        if (error.length > 0) return;
+        // const error = this.validate(distanceChoice)
+        // this.setState({error});
+        // if (error.length > 0) return;
         this.setState({distanceChoice:''});
         const ratingChoice = this.state.ratingChoice;
         const difficultyChoice = this.state.difficultyChoice;
@@ -74,14 +74,14 @@ class AdvSearch extends React.Component{
        console.log("Adv Filter Applied")
     }
 
-
+    /*
     validate = (distance) => {
         const distanceLength = distance.trim().length;
         if (distanceLength === 0) return 'Please enter a valid number';
         if (isNaN(distanceLength)) return 'Please enter a valid number';
         return '';
     }
-
+    */
     render() {
         return (
             <div>
