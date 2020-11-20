@@ -6,8 +6,8 @@ class Gear{
         this.rain = this.isRaining();
         this.sun = this.isSunny();
         this.head = this.headClothing();
-        this.top = this.topClothing();
-        this.bottom = this.bottomClothing();
+        this.top = this.mainClothing("top");
+        this.bottom = this.mainClothing("bottom");
         this.other = this.otherClothing();
         this.calories = this.calcCalories();
         this.water = this.calcWater();
@@ -59,16 +59,20 @@ class Gear{
         return resultString
     }
 
-    //JP CODE SMELL: DUPLICATE CODE and OO - Abuser "switch statements/if statements"
-    //Instantiation Method - determines recommended top clothing
-    topClothing(){
+    //Instantiation Method - determines recommended top and bottom clothing
+    mainClothing(item){
         var resultString = "";
         // if temperature is warm but raining, recommend waterproof covering
         if(this.rain == true && this.temp >=70){
             return "light waterproof covering";
         }
         else if(this.rain == false && this.temp >= 70){
-            return "Single layer - short sleeve"
+            if(item == "bottom"){
+                return "Single layer - shorts"
+            }
+            else {
+                return "Single layer - short sleeve"
+            }
         }
         else if(this.temp < 70 && this.temp >= 60) {
             resultString = resultString + "Single layer";
@@ -85,39 +89,7 @@ class Gear{
         else {
             return "Nothing";
         }
-        // if raining - add waterproof to recommended top
-        if(this.rain == true){
-            resultString = resultString + " - Waterproof";
-        }
-        return resultString
-    }
-
-    //Instantiation Method - determines recommended bottom clothing
-    bottomClothing(){
-        var resultString = "";
-        // if temperature is warm but raining, recommend waterproof covering
-        if(this.rain == true && this.temp >=70){
-            return "light waterproof covering";
-        }
-        else if(this.rain == false && this.temp >= 70){
-            return "Single layer - shorts"
-        }
-        else if(this.temp < 70 && this.temp >= 60) {
-            resultString = resultString + "Single layer";
-        }
-        else if(this.temp < 60 && this.temp >= 55) {
-            resultString = resultString + "Light layering";
-        }
-        else if(this.temp < 55 && this.temp >= 40) {
-            resultString = resultString + "Medium layering";
-        }
-        else if(this.temp < 40) {
-            resultString = resultString + "Heavy layering";
-        }
-        else {
-            return "Nothing";
-        }
-        // if raining - add waterproof to recommended bottom
+        // if raining - add waterproof to recommended main clothing
         if(this.rain == true){
             resultString = resultString + " - Waterproof";
         }
