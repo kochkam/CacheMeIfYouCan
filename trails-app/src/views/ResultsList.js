@@ -1,16 +1,9 @@
 import React, { Component } from "react";
-import SearchResults from '../classes/SearchResults'
 import ListItem from '../components/ListItem'
-import Hike from '../classes/Hike';
 import LinkButton from "../components/LinkButton";
-import { useParams } from 'react-router-dom';
 
-// JP CODE SMELL: DEAD CODE - unused imports above
+
 export default function ResultsList(props) {
-
-  console.log("I'm in the resultslist.js");
-  console.log(props.searchObj.results);
-  console.log(props.searchObj.results.length);
   if (props.searchObj.results.length == 0){
     return (
       <div className = 'results-list'>
