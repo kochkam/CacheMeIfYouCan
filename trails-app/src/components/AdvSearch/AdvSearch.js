@@ -25,7 +25,9 @@ class AdvSearch extends React.Component{
         this.ToggleDisplay = this.ToggleDisplay.bind(this);
         this.minDifficulty = this.minDifficulty.bind(this);
         this.maxDifficulty = this.maxDifficulty.bind(this);
-        this.onRatingChange = this.onRatingChange.bind(this);
+        this.ratingChange = this.ratingChange.bind(this);
+        this.resultsChange = this.resultsChange.bind(this);
+        this.difficultyChange = this.difficultyChange.bind(this);
     }
 
     
@@ -37,17 +39,17 @@ class AdvSearch extends React.Component{
         this.setState({maxDifficultyChoice:!this.state.maxDifficultyChoice})
     }
 
-    ratingChange() {
-        this.setState({maxDifficultyChoice:!this.state.maxDifficultyChoice})
+    ratingChange(val) {
+        this.setState({ratingChoice: val});
     }
-    resultsChange() {
-        this.setState({maxDifficultyChoice:!this.state.maxDifficultyChoice})
+    resultsChange(val) {
+        this.setState({numberOfResults: val});
     }
-    difficultyChange() {
-        this.setState({maxDifficultyChoice:!this.state.maxDifficultyChoice})
+    difficultyChange(val) {
+        this.setState({difficultyChoice: val});
     }
-    distanceChange() {
-        this.setState({distanceChoice:!this.state.maxDifficultyChoice})
+    onDistanceChange = (event) => {
+        this.setState({distanceChoice: event});
     }
 
     /*
@@ -57,9 +59,7 @@ class AdvSearch extends React.Component{
         });
     }
 
-    onDistanceChange = (event) => {
-        this.setState({distanceChoice: event});
-    }
+    
 
     onDifficultyChange = (event) => {
         this.setState({
@@ -91,6 +91,7 @@ class AdvSearch extends React.Component{
             maxDifficulty = 1;
         }
         const ratingChoice = this.state.ratingChoice;
+        console.log(ratingChoice)
         const difficultyChoice = this.state.difficultyChoice;
         const numberOfResults = this.state.numberOfResults;
         
@@ -113,7 +114,7 @@ class AdvSearch extends React.Component{
                 <button onClick={this.ToggleDisplay} className="FilterToggle">Advanced Search</button>
                 {this.state.isVisible &&
                     <form className="FilterField" onSubmit={this.onFormSubmit}>
-                        <DropDownComponent/>
+                        <DropDownComponent ratingChange= {this.ratingChange}/>
                         <div className="DistanceFilters">
                             <p>I want hikes within the following total length: </p>
                             <Slider name="distanceChosen" 
@@ -126,27 +127,8 @@ class AdvSearch extends React.Component{
                                 id="distance"
                             />
                         </div>
-                        <div className="resultNumber">
-                        <p>I don't want to see more than this many results: </p>
-                            <input
-                                id='results'
-                                className={ this.state.error ? 'error' : '' }
-                                name='results'
-                                type='text'
-                                placeholder = 'Enter Number of Results to see'
-                                onChange={this.onResultsChange}
-                            />
-                        </div>
-                        <p className='error'>{ this.state.error }</p>
-                        <p>I'm looking for hikes that are... </p>
-                        <div className="DifficultyFilters">
-                            <input onChange={this.onDifficultyChange} type="radio" id="hard" name="Difficulty" value="3"/>
-                            <label for="hard">Hard</label>
-                            <input onChange={this.onDifficultyChange} type="radio" id="medium" name="Difficulty" value="2"/>
-                            <label for="medium">Medium</label>
-                            <input onChange={this.onDifficultyChange} type="radio" id="easy" name="Difficulty" value="1"/>
-                            <label for="easy">Easy</label>
-                        </div>
+                        <TextBoxComponent resultsChange={this.resultsChange}/>
+                        <RadioComponent difficultyChange={this.difficultyChange}/>
                         <p>Do you also want to see hikes that are easier/harder than your choice above?</p>
                         <p>Leave these boxes unchecked if you only want to see the Hard/Medium/Easy option you selected above.</p>
                         <div className="MinMaxDifficulty">

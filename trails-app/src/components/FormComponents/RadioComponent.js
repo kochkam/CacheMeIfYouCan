@@ -3,22 +3,27 @@ import React from "react";
 class RadioComponent extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-                      };
+        this.state = {difficulty:5};
       }
       
+      changeValue = (event) => {
+        this.setState({
+            difficulty: event.target.value,
+        });
+        this.props.difficultyChange(event.target.value);
+    }
+    
       render() {
         return (
-            <div className="RatingFilters">
-                            <p>I want the rating of the hike to be at least this: </p>
-                                <select onChange={this.ponRatingChange} id="rating" name="rating">
-                                    <option value="1">One Star</option>
-                                    <option value="2">Two Stars</option>
-                                    <option value="3">Three stars</option>
-                                    <option value="4">Four stars</option>
-                                    <option value="5">Five stars</option>
-                                </select>
-                            </div>
+            <div className="DifficultyFilters">
+                <p>I'm looking for hikes that are... </p>
+                <input onChange={this.changeValue} type="radio" id="easy" name="Difficulty" value="1"/>
+                <label for="easy">Easy</label>
+                <input onChange={this.changeValue} type="radio" id="medium" name="Difficulty" value="2"/>
+                <label for="medium">Medium</label>
+                <input onChange={this.changeValue} type="radio" id="hard" name="Difficulty" value="3"/>
+                <label for="hard">Hard</label>
+            </div>
             
         );
       }

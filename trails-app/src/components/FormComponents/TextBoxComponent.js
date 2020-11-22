@@ -4,21 +4,33 @@ class TextBoxComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-                      };
+            resultNumber:10,
+            error:''
+        };
       }
       
+      changeValue = (event) => {
+        this.setState({
+            ratingChoice: event.target.value,
+        });
+        this.props.resultsChange(event.target.value);
+    }
+    
       render() {
         return (
-            <div className="RatingFilters">
-                            <p>I want the rating of the hike to be at least this: </p>
-                                <select onChange={this.ponRatingChange} id="rating" name="rating">
-                                    <option value="1">One Star</option>
-                                    <option value="2">Two Stars</option>
-                                    <option value="3">Three stars</option>
-                                    <option value="4">Four stars</option>
-                                    <option value="5">Five stars</option>
-                                </select>
-                            </div>
+            <div className="resultNumber">
+                <p>I don't want to see more than this many results: </p>
+                    <input
+                        id='results'
+                        className={ this.state.error ? 'error' : '' }
+                        name='results'
+                        type='text'
+                        placeholder = {'Enter Number of Results to see'}
+                        onChange={this.changeValue}
+                    />
+                <p className='error'>{ this.state.error }</p>
+            </div>
+                        
             
         );
       }
