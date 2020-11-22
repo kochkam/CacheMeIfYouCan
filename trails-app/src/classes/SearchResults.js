@@ -1,5 +1,5 @@
 import Hike from "./Hike";
-
+import Weather from "./Weather";
 
 class SearchResults{
     // class represents a collection of hike search results in the form of the results data member
@@ -14,20 +14,52 @@ class SearchResults{
         this.distanceFilter = 20;
         this.ratingFilter = 0;
         this.resultNumChoice = 10;
+        this.weather = new Weather();
     }
 
     async update(zip){
+        this.results = [];
         this.zip = zip;
 
         var coords = (await this._getCoords()).results[0].geometry.location;
         this.lat = coords.lat;
         this.long = coords.lng;
 
+        var resHikeAPI = await this._callHikeAPI();
+        await this.weather.update(this.lat, this.long);
+        var numHikes = Math.min(this.resultNumChoice, resHikeAPI.length);
+
         await this.getData(this.lat, this.long);
     }
 
     async _getCoords(){
-        let url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + this.zip + ",US&key=AIzaSyAD0zxi8coI49e0OF3HfOvzX9Ny_87pynQ";
+        let url = "https://maps.googleapis.com/maps/api/geocode/json?address="
+                    + this.zip
+                    + ",US&key=AIzaSyAD0zxi8coI49e0OF3HfOvzX9Ny_87pynQ";
+
+        try {
+            return fetch(url).then((res) => {
+                return res.json();
+            });
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    async _callHikeAPI(){
+        let apiKey = "&key=200964805-fbbd50c01b329d117306d1834dfd6a2d";
+        var numResults = "&maxResults=" + String(this.resultNumChoice)
+        var maxDistance = "&maxDistance=20"
+        if (this.distanceFilter != null) {
+            maxDistance = "&maxDistance=" + String(this.distanceFilter);
+        } 
+        
+        let url = "https://www.hikingproject.com/data/get-trails"
+                    + "?lat=" + this.lat
+                    + "&lon=" + this.long
+                    + maxDistance
+                    + numResults
+                    + apiKey; // api info can be found here: https://www.hikingproject.com/data#_=_
 
         try {
             return fetch(url).then((res) => {
@@ -68,38 +100,14 @@ class SearchResults{
                 hike.long = sorted_results[i].longitude;
                 hike.lat = sorted_results[i].latitude;
                 // get temp using weather api
-                let weatherData = await this.getCurrentTemp(hike.long, hike.lat);
-                console.log(weatherData.main);
-                console.log(weatherData.weather);
-                hike.temp = weatherData.main.temp;
-                hike.tempFeelsLike = weatherData.main.feels_like;
-                hike.weather = weatherData.weather;
+                hike.temp = this.weather.temp;
+                hike.tempFeelsLike = this.weather.tempFeelsLike;
+                hike.weather = this.weather.description;
                 // add hike object to results
                 this.results.push(hike);
             }
         });
     }
-
-    async getCurrentTemp(long, lat) {
-        let weatherAPI = "d88f7585c318ca84fe20c5e487101b1f";
-
-        let apiURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + 
-                     lat +
-                     "&lon=" +
-                     long +
-                     "&appid=" + 
-                     weatherAPI +
-                     "&units=imperial";
-
-        try {
-            let res = await fetch(apiURL);
-            return await res.json();
-        } catch (error) {
-            console.log(error);
-        }
-
-    }
-
 
     async getHikeData(lat,long) {
         console.log("This should be 6");
