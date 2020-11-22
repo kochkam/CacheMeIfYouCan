@@ -49,8 +49,6 @@ class FitnessForm extends React.Component{
         const age = this.state.age;
         const hikingXP = this.state.hikingXP;
         const exerciseFrequency = this.state.exerciseFrequency;
-        console.log("Line 33 of Fitness form");
-        console.log(this.props.fitnessObj)
         this.props.fitnessObj.name = name;
         this.props.fitnessObj.age = age;
         this.props.fitnessObj.hikingXP = hikingXP;
