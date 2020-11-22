@@ -19,8 +19,8 @@ class AdvSearch extends React.Component{
             difficultyChoice: '',
             ratingChoice: 0,
             numberOfResults: 10,
-            maxDifficultyChoice: false,
-            minDifficultyChoice: false,
+            maxDifficultyChoice: true,
+            minDifficultyChoice: true,
         };
         this.ToggleDisplay = this.ToggleDisplay.bind(this);
         this.minDifficulty = this.minDifficulty.bind(this);

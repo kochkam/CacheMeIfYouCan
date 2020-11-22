@@ -24,8 +24,10 @@ class SearchResults{
         this.long = coords.lng;
         await this.weather.update(this.lat, this.long);
         var resHikeAPI = await this._callHikeAPI();
-        var numHikes = Math.min(this.filter.resultNumChoice, resHikeAPI.trails.length);
+        console.log(resHikeAPI)
+        var numHikes = resHikeAPI.trails.length;
         var filtered_results = this.filter.getFilteredResults(resHikeAPI, numHikes);
+        console.log(filtered_results)
         for(var i=0; i<filtered_results.length; i++){
             var hike = new Hike();
             hike.id = filtered_results[i].id;
