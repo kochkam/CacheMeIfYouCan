@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import Map from '../components/Map'
 import Gear from '../classes/Gear.js';
