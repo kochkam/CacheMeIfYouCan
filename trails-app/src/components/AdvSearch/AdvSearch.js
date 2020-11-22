@@ -14,6 +14,8 @@ class AdvSearch extends React.Component{
             difficultyChoice: '',
             ratingChoice: 0,
             numberOfResults: 10,
+            maxDifficultyChoice: 0,
+            minDifficultyChoice: 0,
         };
         this.ToggleDisplay = this.ToggleDisplay.bind(this)
     }
@@ -25,6 +27,18 @@ class AdvSearch extends React.Component{
     onDifficultyChange = (event) => {
         this.setState({
             difficultyChoice: event.target.value,
+        });
+    }
+
+    minDifficultyChange = (event) => {
+        this.setState({
+            minDifficultyChoice: event.target.value,
+        });
+    }
+
+    maxDifficultyChange = (event) => {
+        this.setState({
+            maxDifficultyChoice: event.target.value,
         });
     }
 
@@ -52,8 +66,10 @@ class AdvSearch extends React.Component{
         const ratingChoice = this.state.ratingChoice;
         const difficultyChoice = this.state.difficultyChoice;
         const numberOfResults = this.state.numberOfResults;
-        this.props.searchObj.applyFilters(difficultyChoice, ratingChoice, distanceChoice, numberOfResults);
-       console.log("Adv Filter Applied")
+        const minDifficulty = this.state.minDifficultyChoice;
+        const maxDifficulty = this.state.maxDifficultyChoice;
+        this.props.searchObj.applyFilters(difficultyChoice, ratingChoice, distanceChoice, numberOfResults, minDifficulty, maxDifficulty);
+        console.log("Adv Filter Applied")
     }
 
     /*
@@ -112,6 +128,14 @@ class AdvSearch extends React.Component{
                             <label for="medium">Medium</label>
                             <input onChange={this.onDifficultyChange} type="radio" id="easy" name="Difficulty" value="1"/>
                             <label for="easy">Easy</label>
+                        </div>
+                        <p>Do you also want to see hikes that are easier/harder than your choice above?</p>
+                        <p>Leave these boxes unchecked if you only want to see the Hard/Medium/Easy option you selected above.</p>
+                        <div className="MinMaxDifficulty">
+                            <input onChange={this.minDifficultyChange} type="checkbox" id="MinDiff" name="MinDiff" value="1"/>
+                            <label for="MinDiff">Include Easier Hikes</label>
+                            <input onChange={this.maxDifficultyChange} type="checkbox" id="MaxDiff" name="MaxDiff" value="1"/>
+                            <label for="MaxDiff">Include Harder Hikes</label>
                         </div>
                         <button className='FilterBtn' type='submit'>Apply
                                 <i className='FilterBtn'></i>

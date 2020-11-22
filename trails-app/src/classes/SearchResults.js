@@ -1,4 +1,5 @@
 import Hike from "./Hike";
+import Filter from "./Filter";
 
 
 class SearchResults{
@@ -10,13 +11,14 @@ class SearchResults{
         this.zip = zip;
         this.lat = null;
         this.long = null;
-        this.difficultyFilter = 5;
-        this.distanceFilter = 20;
-        this.ratingFilter = 0;
-        this.resultNumChoice = 10;
+        this.filter = new Filter();
+        //this.difficultyFilter = 5;
+        //this.distanceFilter = 20;
+        //this.ratingFilter = 0;
+        //this.resultNumChoice = 10;
     }
 
-
+    
  
     async getData(lat,long){ //parses out json object and fills a hike object with hiking data and pushes that object to results
         console.log("This should be 5");
@@ -24,16 +26,13 @@ class SearchResults{
             console.log("This should be 8");
             console.log(response);
             this.results = [];
-            var responseNum = this.resultNumChoice;
-            if ((response.trails).length < 10) {
-                responseNum = (response.trails).length
-            }
+            var responseNum = (response.trails).length
             console.log((response.trails).length);
-            var sorted_results = this.getFilteredResults(response, responseNum)
+            var displayNum = this.filter.resultNumChoice;
+            var sorted_results = this.filter.getFilteredResults(response, responseNum)
             console.log("Filter just happened and results below")
             console.log(sorted_results)
-            var number_filtered_results = sorted_results.length
-            for (var i = 0; i < number_filtered_results; i++) {
+            for (var i = 0; i < displayNum; i++) {
                 var hike = new Hike();
                 hike.id = sorted_results[i].id;
                 console.log(hike.id);
@@ -112,10 +111,10 @@ class SearchResults{
     async getHikeData(lat,long) {
         console.log("This should be 6");
         let apiKey = "&key=200964805-fbbd50c01b329d117306d1834dfd6a2d";
-        var numResults = "&maxResults=" + String(this.resultNumChoice)
+        var numResults = "&maxResults=200";
         var maxDistance = "&maxDistance=20"
-        if (this.distanceFilter != null) {
-            maxDistance = "&maxDistance=" + String(this.distanceFilter);
+        if (this.filter.distanceFilter != null) {
+            maxDistance = "&maxDistance=" + String(this.filter.distanceFilter);
         } 
         
 
@@ -163,17 +162,22 @@ class SearchResults{
         });
     }
 
-
-    applyFilters(difficultyChoice, ratingChoice, distanceChoice, resultsChoice){
-        this.difficultyFilter = difficultyChoice;
-        this.ratingFilter = ratingChoice;
-        this.distanceFilter = distanceChoice;
-        this.resultNumChoice = resultsChoice;
-        console.log(this.difficultyFilter)
-        console.log(this.ratingFilter)
-        console.log(this.distanceFilter)
+    
+    applyFilters(difficultyChoice, ratingChoice, distanceChoice, resultsChoice,  minDifficulty, maxDifficulty){
+        this.filter.difficultyFilter = difficultyChoice;
+        this.filter.ratingFilter = ratingChoice;
+        this.filter.distanceFilter = distanceChoice;
+        this.filter.resultNumChoice = resultsChoice;
+        this.filter.minDifficulty = minDifficulty;
+        this.filter.maxDifficulty = maxDifficulty;
+        console.log("difficulty is : " + String(this.filter.difficultyFilter));
+        console.log("minimum trail rating: " + String(this.filter.ratingFilter));
+        console.log("maximum trail distance: " + String(this.filter.distanceFilter));
+        console.log("number of responses: " + String(this.filter.resultNumChoice));
+        console.log("Minimum difficulty boolean is : " + String(this.filter.minDifficulty));
+        console.log("maximum difficulty boolean is :  " + String(this.filter.maxDifficulty));
     }
-
+    /*
 
     // will need to update hike index for sorting and filtering
     // function to filter results
@@ -206,6 +210,7 @@ class SearchResults{
             }
         return filtered_hikes
     }
+    */
 
 }
 
