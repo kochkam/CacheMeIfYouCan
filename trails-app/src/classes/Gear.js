@@ -3,34 +3,14 @@ class Gear{
         this.hike = hike;
         this.weather = hike.weather[0].description;
         this.temp = hike.temp;
-        this.rain = this.isRaining();
-        this.sun = this.isSunny();
+        this.rain = this.weather.includes("rain");
+        this.sun = this.weather.includes("clear");
         this.head = this.headClothing();
         this.top = this.mainClothing("top");
         this.bottom = this.mainClothing("bottom");
         this.other = this.otherClothing();
         this.calories = this.calcCalories();
         this.water = this.calcWater();
-    }
-
-    //Instantiation Method - determines if weather is rainy
-    isRaining(){
-        if(this.weather.includes("rain")){
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
-    //Instantiation Method - determines if weather is sunny
-    isSunny(){
-        if(this.weather.includes("clear")){
-            return true;
-        }
-        else {
-            return false;
-        }
     }
 
     //Instantiation Method - determines recommended head clothing
