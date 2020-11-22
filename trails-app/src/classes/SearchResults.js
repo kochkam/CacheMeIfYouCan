@@ -57,34 +57,6 @@ class SearchResults{
                 // add hike object to results
                 this.results.push(hike);
             }
-
-            /*
-            CODE SMELL: DEAD CODE
-            for (var i = 0; i < responseNum; i++) {
-                var hike = new Hike();
-                hike.id = response.trails[i].id;
-                console.log(hike.id);
-                hike.index = i;
-                hike.title = response.trails[i].name;
-                hike.summary = response.trails[i].summary;
-                hike.activityLevel = response.trails[i].difficulty;
-                hike.imgURL = response.trails[i].imgSmall;
-                hike.largeimgURL = response.trails[i].imgMedium;
-                // attribute is titled "length" from api for hike distance. javascript doesnt like this
-                hike.distance = response.trails[i].length;
-                hike.long = response.trails[i].longitude;
-                hike.lat = response.trails[i].latitude;
-                // get temp using weather api
-                let weatherData = await this.getCurrentTemp(hike.long, hike.lat);
-                console.log(weatherData.main);
-                console.log(weatherData.weather);
-                hike.temp = weatherData.main.temp;
-                hike.tempFeelsLike = weatherData.main.feels_like;
-                hike.weather = weatherData.weather;
-                // add hike object to results
-                this.results.push(hike);
-            }
-        */
         });
     }
 
