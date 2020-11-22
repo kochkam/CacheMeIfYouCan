@@ -24,12 +24,31 @@ class SearchResults{
         var coords = (await this._getCoords()).results[0].geometry.location;
         this.lat = coords.lat;
         this.long = coords.lng;
+        await this.weather.update(this.lat, this.long);
 
         var resHikeAPI = await this._callHikeAPI();
-        await this.weather.update(this.lat, this.long);
-        var numHikes = Math.min(this.resultNumChoice, resHikeAPI.length);
-
-        await this.getData(this.lat, this.long);
+        var numHikes = Math.min(this.resultNumChoice, resHikeAPI.trails.length);
+        var sorted_results = this.getFilteredResults(resHikeAPI, numHikes);
+        for(var i=0; i<sorted_results.length; i++){
+            var hike = new Hike();
+            hike.id = sorted_results[i].id;
+            hike.index = i;
+            hike.title = sorted_results[i].name;
+            hike.summary = sorted_results[i].summary;
+            hike.activityLevel = sorted_results[i].difficulty;
+            hike.largeimgURL = sorted_results[i].imgMedium;
+            // attribute is titled "length" from api for hike distance. javascript doesnt like this
+            hike.distance = sorted_results[i].length;
+            hike.ascent = sorted_results[i].ascent;
+            hike.long = sorted_results[i].longitude;
+            hike.lat = sorted_results[i].latitude;
+            // get temp using weather api
+            hike.temp = this.weather.temp;
+            hike.tempFeelsLike = this.weather.tempFeelsLike;
+            hike.weather = this.weather.description;
+            // add hike object to results
+            this.results.push(hike);
+        }
     }
 
     async _getCoords(){
@@ -70,69 +89,6 @@ class SearchResults{
         }
     }
 
-    async getData(lat,long){ //parses out json object and fills a hike object with hiking data and pushes that object to results
-        console.log("This should be 5");
-        await this.getHikeData(lat,long).then(async (response) => {
-            console.log("This should be 8");
-            console.log(response);
-            this.results = [];
-            var responseNum = this.resultNumChoice;
-            if ((response.trails).length < 10) {
-                responseNum = (response.trails).length
-            }
-            console.log((response.trails).length);
-            var sorted_results = this.getFilteredResults(response, responseNum)
-            console.log("Filter just happened and results below")
-            console.log(sorted_results)
-            var number_filtered_results = sorted_results.length
-            for (var i = 0; i < number_filtered_results; i++) {
-                var hike = new Hike();
-                hike.id = sorted_results[i].id;
-                console.log(hike.id);
-                hike.index = i;
-                hike.title = sorted_results[i].name;
-                hike.summary = sorted_results[i].summary;
-                hike.activityLevel = sorted_results[i].difficulty;
-                hike.largeimgURL = sorted_results[i].imgMedium;
-                // attribute is titled "length" from api for hike distance. javascript doesnt like this
-                hike.distance = sorted_results[i].length;
-                hike.ascent = response.trails[i].ascent;
-                hike.long = sorted_results[i].longitude;
-                hike.lat = sorted_results[i].latitude;
-                // get temp using weather api
-                hike.temp = this.weather.temp;
-                hike.tempFeelsLike = this.weather.tempFeelsLike;
-                hike.weather = this.weather.description;
-                // add hike object to results
-                this.results.push(hike);
-            }
-        });
-    }
-
-    async getHikeData(lat,long) {
-        console.log("This should be 6");
-        let apiKey = "&key=200964805-fbbd50c01b329d117306d1834dfd6a2d";
-        var numResults = "&maxResults=" + String(this.resultNumChoice)
-        var maxDistance = "&maxDistance=20"
-        if (this.distanceFilter != null) {
-            maxDistance = "&maxDistance=" + String(this.distanceFilter);
-        } 
-        
-
-        let url = "https://www.hikingproject.com/data/get-trails?lat=" + lat + "&lon=" + long + maxDistance + numResults + apiKey;  // api info can be found here: https://www.hikingproject.com/data#_=_
-
-
-        try {
-            return fetch(url).then((res) => {
-                console.log("This should be 7");
-                console.log(res);
-                return res.json();
-            });
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
     applyFilters(difficultyChoice, ratingChoice, distanceChoice, resultsChoice){
         this.difficultyFilter = difficultyChoice;
         this.ratingFilter = ratingChoice;
@@ -142,7 +98,6 @@ class SearchResults{
         console.log(this.ratingFilter)
         console.log(this.distanceFilter)
     }
-
 
     // will need to update hike index for sorting and filtering
     // function to filter results
