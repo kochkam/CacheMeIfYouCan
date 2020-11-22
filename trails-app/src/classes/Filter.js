@@ -10,6 +10,15 @@ class Filter{
         this.maxDifficulty = 0;
     }
 
+    setDefaults() {
+        this.state.difficultyFilter = null;
+        this.state.distanceFilter = null;
+        this.state.ratingFilter = null;
+        this.state.resultNumChoice = 10;
+        this.state.minDifficulty = 0;
+        this.state.maxDifficulty = 0;
+    }
+
     getFilteredResults(responseData, number_of_hikes) {
         console.log("Applying filters")
         console.log((responseData.trails).length)

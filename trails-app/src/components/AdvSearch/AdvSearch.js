@@ -2,7 +2,10 @@ import React from 'react';
 import './AdvSearch.css';
 import Slider from 'react-rangeslider'
 import 'react-rangeslider/lib/index.css'
-import CheckBoxComponent from "../CheckBoxComponent"
+import CheckBoxComponent from "../FormComponents/CheckBoxComponent"
+import RadioComponent from "../FormComponents/RadioComponent.js"
+import DropDownComponent from "../FormComponents/DropDownComponent.js"
+import TextBoxComponent from "../FormComponents/TextBoxComponent"
 
 
 class AdvSearch extends React.Component{
@@ -22,6 +25,36 @@ class AdvSearch extends React.Component{
         this.ToggleDisplay = this.ToggleDisplay.bind(this);
         this.minDifficulty = this.minDifficulty.bind(this);
         this.maxDifficulty = this.maxDifficulty.bind(this);
+        this.onRatingChange = this.onRatingChange.bind(this);
+    }
+
+    
+    minDifficulty() {
+        this.setState({minDifficultyChoice:!this.state.minDifficultyChoice})
+    }
+
+    maxDifficulty() {
+        this.setState({maxDifficultyChoice:!this.state.maxDifficultyChoice})
+    }
+
+    ratingChange() {
+        this.setState({maxDifficultyChoice:!this.state.maxDifficultyChoice})
+    }
+    resultsChange() {
+        this.setState({maxDifficultyChoice:!this.state.maxDifficultyChoice})
+    }
+    difficultyChange() {
+        this.setState({maxDifficultyChoice:!this.state.maxDifficultyChoice})
+    }
+    distanceChange() {
+        this.setState({distanceChoice:!this.state.maxDifficultyChoice})
+    }
+
+    /*
+    onResultsChange = (event) => {
+        this.setState({
+            numberOfResults: event.target.value,
+        });
     }
 
     onDistanceChange = (event) => {
@@ -34,28 +67,13 @@ class AdvSearch extends React.Component{
         });
     }
 
-    minDifficulty() {
-        this.setState({minDifficultyChoice:!this.state.minDifficultyChoice})
-    }
-
-    maxDifficulty() {
-        this.setState({maxDifficultyChoice:!this.state.maxDifficultyChoice})
-    }
-
-
-    onResultsChange = (event) => {
-        this.setState({
-            numberOfResults: event.target.value,
-        });
-    }
-
     onRatingChange = (event) => {
         this.setState({
             ratingChoice: event.target.value,
         });
     }
 
-
+    */
     ToggleDisplay (e) {
         this.setState({isVisible: !this.state.isVisible});
     }
@@ -95,16 +113,7 @@ class AdvSearch extends React.Component{
                 <button onClick={this.ToggleDisplay} className="FilterToggle">Advanced Search</button>
                 {this.state.isVisible &&
                     <form className="FilterField" onSubmit={this.onFormSubmit}>
-                        <div className="RatingFilters">
-                        <p>I want the rating of the hike to be at least this: </p>
-                            <select onChange={this.onRatingChange} id="rating" name="rating">
-                                <option value="1">One Star</option>
-                                <option value="2">Two Stars</option>
-                                <option value="3">Three stars</option>
-                                <option value="4">Four stars</option>
-                                <option value="5">Five stars</option>
-                            </select>
-                        </div>
+                        <DropDownComponent/>
                         <div className="DistanceFilters">
                             <p>I want hikes within the following total length: </p>
                             <Slider name="distanceChosen" 
