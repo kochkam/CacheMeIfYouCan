@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import Map from '../components/Map'
 import Gear from '../classes/Gear.js';
@@ -8,6 +8,7 @@ import './DetailView.css';
 export default function DetailView(props) {
   let {hike_id} = useParams();
   var hike = props.searchObj.results[hike_id];
+  // build gear object from hike selected for detail view
   var gear = new Gear(hike);
 
   return (
@@ -17,22 +18,22 @@ export default function DetailView(props) {
         <h1 className="detail-text">{hike.title}</h1>
         <h2 className="detail-text">{hike.summary}</h2>
         <div className="detail-row-container">
-          <div className="detail-column-container" style={{textAlign:"right"}}>
+          <div className="detail-column-container-right">
             <h3>Difficulty:</h3>
             <h3>Distance:</h3>
             <h3>Vertical Ascent:</h3>
           </div>
-          <div className="detail-column-container" style={{textAlign:"left"}}>
+          <div className="detail-column-container-left">
             <p>{hike.activityLevel}</p>
             <p>{hike.distance} miles</p>
             <p>{hike.ascent}</p>
           </div>
-          <div className="detail-column-container" style={{textAlign:"right"}}>
+          <div className="detail-column-container-right">
             <h3>Current Temp:</h3>
             <h3>Feels Like:</h3>
             <h3>Weather:</h3>
           </div>
-          <div className="detail-column-container" style={{textAlign:"left"}}>
+          <div className="detail-column-container-left">
             <p>{hike.temp} F</p>
             <p>{hike.tempFeelsLike} F</p>
             <p>{hike.weather[0].description}</p>
@@ -42,33 +43,33 @@ export default function DetailView(props) {
         <h2 className="detail-text">Gear Recommendations</h2>
         {/* Top attribute equation: -5px + (-8px * number of lines after first line) */}
         <div className = "detail-row-container">
-          <div className = "detail-column-container" style={{textAlign:"left"}}>
+          <div className = "detail-column-container-left">
             <i class="fas fa-hat-cowboy-side tooltip"> Head: {gear.head}
-              <span class="tooltiptext" style={{top:"-13px"}}>
+              <span class="tooltiptext">
                 FILL IN<br/>
                 TWO LINES
               </span>
             </i>
             <i class="fas fa-tshirt tooltip"> Top: {gear.top}
-              <span class="tooltiptext" style={{top:"-13px"}}>
+              <span class="tooltiptext">
                 FILL IN<br/>
                 TWO LINES
               </span>
             </i>
             <i class="fas fa-socks tooltip"> Bottom: {gear.bottom}
-              <span class="tooltiptext" style={{top:"-13px"}}>
+              <span class="tooltiptext">
                 FILL IN<br/>
                 TWO LINES
               </span>
             </i>
             <i class="fas fa-mitten tooltip"> Other: {gear.other}
-              <span class="tooltiptext" style={{top:"-13px"}}>
+              <span class="tooltiptext">
                 FILL IN<br/>
                 TWO LINES
               </span>
             </i>
           </div>
-          <div className = "detail-column-container" style={{textAlign:"left"}}>
+          <div className = "detail-column-container-left">
             <i class="fas fa-utensils tooltip"> Food: {gear.calories} calories
               <span class="tooltiptext" style={{top:"-61px"}}>
                 The average number of calories<br/>

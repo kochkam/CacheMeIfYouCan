@@ -49,21 +49,22 @@ class FitnessForm extends React.Component{
         const age = this.state.age;
         const hikingXP = this.state.hikingXP;
         const exerciseFrequency = this.state.exerciseFrequency;
-        console.log("Line 33 of Fitness form");
-        console.log(this.props.fitnessObj)
         this.props.fitnessObj.name = name;
         this.props.fitnessObj.age = age;
         this.props.fitnessObj.hikingXP = hikingXP;
         this.props.fitnessObj.exerciseFrequency = exerciseFrequency;
         this.props.fitnessObj.calculateFitness()
-        this.props.history.push('/fitness-results');
         if(this.props.fitnessObj.fitnessLevel == "Beginner"){
-            this.props.searchObj.difficultyFilter = 1
+            this.props.searchObj.userProfileDifficulty = 1
+            console.log(this.props.searchObj.userProfileDifficulty)
         } else if(this.props.fitnessObj.fitnessLevel == "Intermediate"){
-            this.props.searchObj.difficultyFilter = 2
+            this.props.searchObj.userProfileDifficulty = 2
+            console.log(this.props.searchObj.userProfileDifficulty)
         } else if(this.props.fitnessObj.fitnessLevel == "Advanced" ){
-            this.props.searchObj.difficultyFilter = 3
+            this.props.searchObj.userProfileDifficulty = 3
+            console.log(this.props.searchObj.userProfileDifficulty)
         }
+        this.props.history.push('/fitness-results');
     }
 
     render() {

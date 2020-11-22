@@ -1,4 +1,5 @@
 import Hike from "./Hike";
+import Filter from "./Filter";
 import Weather from "./Weather";
 
 class SearchResults{
@@ -10,11 +11,9 @@ class SearchResults{
         this.zip = null;
         this.lat = null;
         this.long = null;
-        this.difficultyFilter = 5;
-        this.distanceFilter = 20;
-        this.ratingFilter = 0;
-        this.resultNumChoice = 10;
+        this.userProfileDifficulty = null;
         this.weather = new Weather();
+        this.filter = new Filter();
     }
 
     async update(zip){
@@ -25,23 +24,30 @@ class SearchResults{
         this.lat = coords.lat;
         this.long = coords.lng;
         await this.weather.update(this.lat, this.long);
-
         var resHikeAPI = await this._callHikeAPI();
-        var numHikes = Math.min(this.resultNumChoice, resHikeAPI.trails.length);
-        var sorted_results = this.getFilteredResults(resHikeAPI, numHikes);
-        for(var i=0; i<sorted_results.length; i++){
+        console.log(resHikeAPI)
+        var numHikes = resHikeAPI.trails.length;
+        if(this.userProfileDifficulty != null){
+            var oldMinDifficulty = this.filter.minDifficulty;
+            var oldMaxDifficulty = this.filter.maxDifficulty;
+            this.filter.minDifficulty = 0;
+            this.filter.maxDifficulty = 0;
+            this.filter.difficultyFilter = this.userProfileDifficulty;
+        }
+        var filtered_results = this.filter.getFilteredResults(resHikeAPI, numHikes);
+        console.log(filtered_results)
+        for(var i=0; i<filtered_results.length; i++){
             var hike = new Hike();
-            hike.id = sorted_results[i].id;
+            hike.id = filtered_results[i].id;
             hike.index = i;
-            hike.title = sorted_results[i].name;
-            hike.summary = sorted_results[i].summary;
-            hike.activityLevel = sorted_results[i].difficulty;
-            hike.largeimgURL = sorted_results[i].imgMedium;
-            // attribute is titled "length" from api for hike distance. javascript doesnt like this
-            hike.distance = sorted_results[i].length;
-            hike.ascent = sorted_results[i].ascent;
-            hike.long = sorted_results[i].longitude;
-            hike.lat = sorted_results[i].latitude;
+            hike.title = filtered_results[i].name;
+            hike.summary = filtered_results[i].summary;
+            hike.activityLevel = filtered_results[i].difficulty;
+            hike.largeimgURL = filtered_results[i].imgMedium;
+            hike.distance = filtered_results[i].length;
+            hike.ascent = filtered_results[i].ascent;
+            hike.long = filtered_results[i].longitude;
+            hike.lat = filtered_results[i].latitude;
             // get temp using weather api
             hike.temp = this.weather.temp;
             hike.tempFeelsLike = this.weather.tempFeelsLike;
@@ -49,6 +55,8 @@ class SearchResults{
             // add hike object to results
             this.results.push(hike);
         }
+        this.filter.minDifficulty = oldMinDifficulty;
+        this.filter.maxDifficulty = oldMaxDifficulty;
     }
 
     async _getCoords(){
@@ -67,7 +75,7 @@ class SearchResults{
 
     async _callHikeAPI(){
         let apiKey = "&key=200964805-fbbd50c01b329d117306d1834dfd6a2d";
-        var numResults = "&maxResults=" + String(this.resultNumChoice)
+        var numResults = "&maxResults=200"
         var maxDistance = "&maxDistance=20"
         if (this.distanceFilter != null) {
             maxDistance = "&maxDistance=" + String(this.distanceFilter);
@@ -89,18 +97,25 @@ class SearchResults{
         }
     }
 
-    applyFilters(difficultyChoice, ratingChoice, distanceChoice, resultsChoice){
-        this.difficultyFilter = difficultyChoice;
-        this.ratingFilter = ratingChoice;
-        this.distanceFilter = distanceChoice;
-        this.resultNumChoice = resultsChoice;
-        console.log(this.difficultyFilter)
-        console.log(this.ratingFilter)
-        console.log(this.distanceFilter)
-    }
 
+    applyFilters(difficultyChoice, ratingChoice, distanceChoice, resultsChoice,  minDifficulty, maxDifficulty){
+        this.filter.difficultyFilter = difficultyChoice;
+        this.filter.ratingFilter = ratingChoice;
+        this.filter.distanceFilter = distanceChoice;
+        this.filter.resultNumChoice = resultsChoice;
+        this.filter.minDifficulty = minDifficulty;
+        this.filter.maxDifficulty = maxDifficulty;
+        console.log("difficulty is : " + String(this.filter.difficultyFilter));
+        console.log("minimum trail rating: " + String(this.filter.ratingFilter));
+        console.log("maximum trail distance: " + String(this.filter.distanceFilter));
+        console.log("number of responses: " + String(this.filter.resultNumChoice));
+        console.log("Minimum difficulty boolean is : " + String(this.filter.minDifficulty));
+        console.log("maximum difficulty boolean is :  " + String(this.filter.maxDifficulty));
+    }
+    
     // will need to update hike index for sorting and filtering
     // function to filter results
+    /*
     getFilteredResults(responseData, number_of_hikes) {
         console.log("Applying filters")
         console.log(this.difficultyFilter)
@@ -130,7 +145,7 @@ class SearchResults{
             }
         return filtered_hikes
     }
+    */
 
 }
-
 export default SearchResults

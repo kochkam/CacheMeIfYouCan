@@ -3,8 +3,8 @@ class Gear{
         this.hike = hike;
         this.weather = hike.weather[0].description;
         this.temp = hike.temp;
-        this.rain = this.isRaining();
-        this.sun = this.isSunny();
+        this.rain = this.weather.includes("rain");
+        this.sun = this.weather.includes("clear");
         this.head = this.headClothing();
         this.top = this.mainClothing("top");
         this.bottom = this.mainClothing("bottom");
@@ -13,87 +13,41 @@ class Gear{
         this.water = this.calcWater();
     }
 
-    //Instantiation Method - determines if weather is rainy
-    isRaining(){
-        if(this.weather.includes("rain")){
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
-    //Instantiation Method - determines if weather is sunny
-    isSunny(){
-        if(this.weather.includes("clear")){
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
-    //Instantiation Method - determines recommended head clothing
     headClothing(){
-        var resultString = "";
-        // if temperature is warm but raining, recommend waterproof covering
-        if(this.rain == true && this.temp >=50){
-            return "Waterproof covering";
+        if (this.temp >= 60) {
+            if (this.rain) {
+                return "Waterproof covering"
+            } else {
+                return "Nothing"
+            }
+        } else {
+            var headClothingRec = this.clothingByTemp() + " Covering"
+            if (this.rain) {
+                headClothingRec = headClothingRec + " - Waterproof"
+            }
+            return headClothingRec;
         }
-        else if(this.temp < 50 && this.temp >= 40) {
-            resultString = resultString + "Light headwear";
-        }
-        else if(this.temp < 40 && this.temp >= 30) {
-            resultString = resultString + "Medium headwear";
-        }
-        else if(this.temp < 30) {
-            resultString = resultString + "Heavy headwear";
-        }
-        else {
-            return "Nothing";
-        }
-        // if raining - add waterproof to recommended headware
-        if(this.rain == true){
-            resultString = resultString + " - Waterproof";
-        }
-        return resultString
     }
 
     //Instantiation Method - determines recommended top and bottom clothing
     mainClothing(item){
-        var resultString = "";
-        // if temperature is warm but raining, recommend waterproof covering
-        if(this.rain == true && this.temp >=70){
-            return "light waterproof covering";
-        }
-        else if(this.rain == false && this.temp >= 70){
-            if(item == "bottom"){
-                return "Single layer - shorts"
+        if (this.temp >= 70) {
+            if (this.rain) {
+                return "Light waterproof covering";
+            } else {
+                if (item == "bottom") {
+                    return "Single layer - shorts"
+                } else {
+                    return "Single layer - short sleeve"
+                }
             }
-            else {
-                return "Single layer - short sleeve"
+        } else {
+            var mainClothingRec = this.clothingByTemp() + " Layer(s)"
+            if (this.rain) {
+                mainClothingRec = mainClothingRec + " - Waterproof";
             }
+            return mainClothingRec
         }
-        else if(this.temp < 70 && this.temp >= 60) {
-            resultString = resultString + "Single layer";
-        }
-        else if(this.temp < 60 && this.temp >= 55) {
-            resultString = resultString + "Light layering";
-        }
-        else if(this.temp < 55 && this.temp >= 40) {
-            resultString = resultString + "Medium layering";
-        }
-        else if(this.temp < 40) {
-            resultString = resultString + "Heavy layering";
-        }
-        else {
-            return "Nothing";
-        }
-        // if raining - add waterproof to recommended main clothing
-        if(this.rain == true){
-            resultString = resultString + " - Waterproof";
-        }
-        return resultString
     }
 
     // Instantiation Method - determines other clothing or items
@@ -117,6 +71,21 @@ class Gear{
             }
         }
         return result
+    }
+
+    clothingByTemp() {
+        if (this.temp >= 60) {
+            return "Single";
+        }
+        else if (this.temp >= 55) {
+            return "Light";
+        }
+        else if (this.temp >= 40) {
+            return "Medium";
+        }
+        else {
+            return "Heavy";
+        }
     }
 
     // Based on 430 calories burned per hour of hiking for 160lb person and 2mph average hike speed
