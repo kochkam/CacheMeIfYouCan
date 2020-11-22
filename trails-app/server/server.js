@@ -1,10 +1,10 @@
 var path = require("path");
 var express = require('express');
-var cors = require('cors');
+//var cors = require('cors');
 const { response } = require("express");
 const app = express();
 
-app.use(cors());
+//app.use(cors());
 const publicPath = path.join(__dirname, '..', 'build');
 
 app.use(express.static(publicPath))
