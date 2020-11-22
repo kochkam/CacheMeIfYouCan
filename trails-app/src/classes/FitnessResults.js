@@ -64,7 +64,7 @@ class FitnessResults{
     }
 
 
-    setFitnessScore(){
+    setFitnessLevel(){
         if (this.fitnessScore <= 5)
             this.fitnessLevel = "Beginner"
         else if (this.fitnessScore > 5 && this.fitnessScore <= 10)
