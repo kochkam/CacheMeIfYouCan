@@ -59,6 +59,16 @@ class FitnessResults{
             this.description = "Your fitness level is at the advanced level. Try sticking to blueblack hikes and and start introducing black when you are comfortable."
     }
 
+
+    setFitnessLevel(){
+        if (this.fitnessScore <= 5)
+            this.fitnessLevel = "Beginner"
+        else if (this.fitnessScore > 5 && this.fitnessScore <= 10)
+            this.fitnessLevel = "Intermediate"
+        else if (this.fitnessScore > 10 && this.fitnessScore <= 15)
+            this.fitnessLevel = "Advanced"
+    }
+
     calculateFitness(){
 
         this.fitnessScore = this.Agecalc()
@@ -67,12 +77,7 @@ class FitnessResults{
 
         this.fitnessScore = this.exerciseCalc()
 
-        if (this.fitnessScore <= 5)
-            this.fitnessLevel = "Beginner"
-        else if (this.fitnessScore > 5 && this.fitnessScore <= 10)
-            this.fitnessLevel = "Intermediate"
-        else if (this.fitnessScore > 10 && this.fitnessScore <= 15)
-            this.fitnessLevel = "Advanced"
+        this.setFitnessLevel()
 
         this.setDescription()
 
