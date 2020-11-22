@@ -4,10 +4,10 @@ import Hike from "./Hike";
 class SearchResults{
     // class represents a collection of hike search results in the form of the results data member
     // which will contain Hike objects. Functions in this class manipulate the results array
-    constructor(zip) {
+    constructor() {
         this.results = [];
         this.show = true;
-        this.zip = zip;
+        this.zip = null;
         this.lat = null;
         this.long = null;
         this.difficultyFilter = 5;
@@ -16,8 +16,28 @@ class SearchResults{
         this.resultNumChoice = 10;
     }
 
+    async update(zip){
+        this.zip = zip;
 
- 
+        var coords = (await this._getCoords()).results[0].geometry.location;
+        this.lat = coords.lat;
+        this.long = coords.lng;
+
+        await this.getData(this.lat, this.long);
+    }
+
+    async _getCoords(){
+        let url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + this.zip + ",US&key=AIzaSyAD0zxi8coI49e0OF3HfOvzX9Ny_87pynQ";
+
+        try {
+            return fetch(url).then((res) => {
+                return res.json();
+            });
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     async getData(lat,long){ //parses out json object and fills a hike object with hiking data and pushes that object to results
         console.log("This should be 5");
         await this.getHikeData(lat,long).then(async (response) => {
@@ -104,37 +124,6 @@ class SearchResults{
             console.log(error)
         }
     }
-
-    async callZip(zip){ //builds url and fetches lat and long data
-        console.log("This should be 2");
-        let url1 = "https://maps.googleapis.com/maps/api/geocode/json?address=" + zip + ",US&key=AIzaSyAD0zxi8coI49e0OF3HfOvzX9Ny_87pynQ";
-        try {
-            return fetch(url1).then((res) => {
-                console.log("This should be 3");
-                console.log(res);
-                return res.json();
-            });
-        } catch (error) {
-            console.log(error)
-        }
-
-    }
-
-    async translateZip() { // function calls callzip which gets api data
-        console.log("This should be 1");
-        console.log(this.zip)
-
-        await this.callZip(this.zip).then(async (res) => {
-            console.log("This should be 4");
-            console.log(res);
-            let lat = res.results[0].geometry.location.lat;
-            let long = res.results[0].geometry.location.lng;
-            this.lat = lat
-            this.long = long
-            await this.getData(lat,long); //pass extracted data to get the Hike data
-        });
-    }
-
 
     applyFilters(difficultyChoice, ratingChoice, distanceChoice, resultsChoice){
         this.difficultyFilter = difficultyChoice;

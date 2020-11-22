@@ -21,9 +21,8 @@ class SearchForm extends React.Component{
         this.setState({error});
         if (error.length > 0) return;
         this.setState({zip:''});
-        this.props.searchObj.zip = zip;
         this.props.history.push('/')
-        this.props.searchObj.translateZip().then(() => {
+        this.props.searchObj.update(zip).then(() => {
             this.props.history.push('/results-list');
         });
     }
