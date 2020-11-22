@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import SearchForm from '../components/SearchForm';
-import AdvSearch from '../components/AdvSearch/AdvSearch';
+import SearchFormBasic from '../components/SearchFormBasic';
+import SearchFormAdv from '../components/SearchFormAdv';
  
 class Home extends Component {
 
@@ -21,7 +21,7 @@ class Home extends Component {
         <div className="search-container">
           <h1>Find your next trail....</h1>
           <button onClick={this.ToggleDisplay} className="FilterToggle">Advanced Search</button>
-          <AdvSearch searchObj = {this.props.searchObj}/>
+          <SearchFormAdv searchObj = {this.props.searchObj}/>
         </div>
       );
     } else {
@@ -29,7 +29,7 @@ class Home extends Component {
         <div className="search-container">
           <h1>Find your next trail....</h1>
           <button onClick={this.ToggleDisplay} className="FilterToggle">Advanced Search</button>
-          <SearchForm searchObj = {this.props.searchObj}/>
+          <SearchFormBasic searchObj = {this.props.searchObj}/>
         </div>
       );
     }
