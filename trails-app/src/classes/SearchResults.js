@@ -11,6 +11,7 @@ class SearchResults{
         this.zip = null;
         this.lat = null;
         this.long = null;
+        this.userProfileDifficulty = null;
         this.weather = new Weather();
         this.filter = new Filter();
     }
@@ -26,6 +27,13 @@ class SearchResults{
         var resHikeAPI = await this._callHikeAPI();
         console.log(resHikeAPI)
         var numHikes = resHikeAPI.trails.length;
+        if(this.userProfileDifficulty != null){
+            var oldMinDifficulty = this.filter.minDifficulty;
+            var oldMaxDifficulty = this.filter.maxDifficulty;
+            this.filter.minDifficulty = 0;
+            this.filter.maxDifficulty = 0;
+            this.filter.difficultyFilter = this.userProfileDifficulty;
+        }
         var filtered_results = this.filter.getFilteredResults(resHikeAPI, numHikes);
         console.log(filtered_results)
         for(var i=0; i<filtered_results.length; i++){
@@ -48,6 +56,8 @@ class SearchResults{
             // add hike object to results
             this.results.push(hike);
         }
+        this.filter.minDifficulty = oldMinDifficulty;
+        this.filter.maxDifficulty = oldMaxDifficulty;
     }
 
     async _getCoords(){

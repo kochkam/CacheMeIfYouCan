@@ -20,10 +20,11 @@ class Filter{
     }
 
     getFilteredResults(responseData, number_of_hikes) {
-        console.log("Applying filters")
-        console.log((responseData.trails).length)
-        console.log(this.difficultyFilter)
-        console.log(this.resultNumChoice)
+        //console.log("Applying filters")
+        //console.log("Difficulty filter is set to: " + String(this.difficultyFilter))
+        //console.log((responseData.trails).length)
+        //console.log(this.difficultyFilter)
+        //console.log(this.resultNumChoice)
         var filtered_hikes = []
         // console.log("the number_of_hikes is " + String(number_of_hikes))
         var n = 0;
@@ -35,13 +36,13 @@ class Filter{
                 } else if (responseData.trails[i].difficulty === "blue" || responseData.trails[i].difficulty === "blueBlack"){
                     hikeDifficulty = 2
                 } else {hikeDifficulty = 3}
-                // console.log("This hike is " + String(responseData.trails[i].difficulty) + " which means its value is " + String(hikeDifficulty))
+                //console.log("This hike is " + String(responseData.trails[i].difficulty) + " which means its value is " + String(hikeDifficulty))
                 if ((hikeDifficulty > Number(this.difficultyFilter) && this.maxDifficulty===0)){
-                    // console.log("If displayed, the above hike should not be added to filtered results because the filter is set to " + String(this.difficultyFilter) + "and the boolean for showing harder hikes is: " + String(this.maxDifficulty))
+                    //console.log("If displayed, the above hike should not be added to filtered results because the filter is set to " + String(this.difficultyFilter) + "and the boolean for showing harder hikes is: " + String(this.maxDifficulty))
                     continue
                 }
                 if ((hikeDifficulty < Number(this.difficultyFilter) && this.minDifficulty===0)){
-                    // console.log("If displayed, the above hike should not be added to filtered results because the filter is set to " + String(this.difficultyFilter) + "and the boolean for showing easier hikes is: " + String(this.minDifficulty))
+                    //console.log("If displayed, the above hike should not be added to filtered results because the filter is set to " + String(this.difficultyFilter) + "and the boolean for showing easier hikes is: " + String(this.minDifficulty))
                     continue
                 }
 
