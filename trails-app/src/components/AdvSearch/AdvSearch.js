@@ -2,6 +2,8 @@ import React from 'react';
 import './AdvSearch.css';
 import Slider from 'react-rangeslider'
 import 'react-rangeslider/lib/index.css'
+import CheckBoxComponent from "../CheckBoxComponent"
+
 
 class AdvSearch extends React.Component{
 
@@ -14,10 +16,12 @@ class AdvSearch extends React.Component{
             difficultyChoice: '',
             ratingChoice: 0,
             numberOfResults: 10,
-            maxDifficultyChoice: 0,
-            minDifficultyChoice: 0,
+            maxDifficultyChoice: false,
+            minDifficultyChoice: false,
         };
-        this.ToggleDisplay = this.ToggleDisplay.bind(this)
+        this.ToggleDisplay = this.ToggleDisplay.bind(this);
+        this.minDifficulty = this.minDifficulty.bind(this);
+        this.maxDifficulty = this.maxDifficulty.bind(this);
     }
 
     onDistanceChange = (event) => {
@@ -30,17 +34,14 @@ class AdvSearch extends React.Component{
         });
     }
 
-    minDifficultyChange = (event) => {
-        this.setState({
-            minDifficultyChoice: event.target.value,
-        });
+    minDifficulty() {
+        this.setState({minDifficultyChoice:!this.state.minDifficultyChoice})
     }
 
-    maxDifficultyChange = (event) => {
-        this.setState({
-            maxDifficultyChoice: event.target.value,
-        });
+    maxDifficulty() {
+        this.setState({maxDifficultyChoice:!this.state.maxDifficultyChoice})
     }
+
 
     onResultsChange = (event) => {
         this.setState({
@@ -63,11 +64,19 @@ class AdvSearch extends React.Component{
         event.preventDefault();
         const distanceChoice = this.state.distanceChoice
         this.setState({distanceChoice:''});
+        var minDifficulty = 0;
+        var maxDifficulty = 0; 
+        if(this.state.minDifficultyChoice){
+            minDifficulty = 1
+        }
+        if(this.state.maxDifficultyChoice){
+            maxDifficulty = 1;
+        }
         const ratingChoice = this.state.ratingChoice;
         const difficultyChoice = this.state.difficultyChoice;
         const numberOfResults = this.state.numberOfResults;
-        const minDifficulty = this.state.minDifficultyChoice;
-        const maxDifficulty = this.state.maxDifficultyChoice;
+        
+        
         this.props.searchObj.applyFilters(difficultyChoice, ratingChoice, distanceChoice, numberOfResults, minDifficulty, maxDifficulty);
         console.log("Adv Filter Applied")
     }
@@ -132,10 +141,8 @@ class AdvSearch extends React.Component{
                         <p>Do you also want to see hikes that are easier/harder than your choice above?</p>
                         <p>Leave these boxes unchecked if you only want to see the Hard/Medium/Easy option you selected above.</p>
                         <div className="MinMaxDifficulty">
-                            <input onChange={this.minDifficultyChange} type="checkbox" id="MinDiff" name="MinDiff" value="1"/>
-                            <label for="MinDiff">Include Easier Hikes</label>
-                            <input onChange={this.maxDifficultyChange} type="checkbox" id="MaxDiff" name="MaxDiff" value="1"/>
-                            <label for="MaxDiff">Include Harder Hikes</label>
+                            <CheckBoxComponent handler= {this.minDifficulty} id="Easier"/>
+                            <CheckBoxComponent handler= {this.maxDifficulty} id="Harder"/>
                         </div>
                         <button className='FilterBtn' type='submit'>Apply
                                 <i className='FilterBtn'></i>
