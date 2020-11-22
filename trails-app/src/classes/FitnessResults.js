@@ -81,7 +81,7 @@ class FitnessResults{
 
         this.fitnessScore = this.exerciseCalc()
 
-        this.setFitnessScore()
+        this.setFitnessLevel()
 
         this.setDescription()
 
