@@ -1,7 +1,3 @@
-import React, { Component } from "react";
-import { useParams } from 'react-router-dom';
-import Hiker from './Hiker';
-
 class FitnessResults{
     constructor() {
         this.name = null;

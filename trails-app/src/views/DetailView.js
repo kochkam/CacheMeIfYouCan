@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import Map from '../components/Map'
 import Gear from '../classes/Gear.js';
@@ -8,6 +8,7 @@ import './DetailView.css';
 export default function DetailView(props) {
   let {hike_id} = useParams();
   var hike = props.searchObj.results[hike_id];
+  // build gear object from hike selected for detail view
   var gear = new Gear(hike);
 
   return (
