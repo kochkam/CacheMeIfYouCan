@@ -1,6 +1,4 @@
 import React from 'react';
-import AdvSearchOptions from './AdvSearchOptions';
-import AdvSearchControls from './AdvSearchControls';
 import './AdvSearch.css';
 import Slider from 'react-rangeslider'
 import 'react-rangeslider/lib/index.css'
@@ -50,26 +48,11 @@ class AdvSearch extends React.Component{
     onFormSubmit = async (event) => {
         event.preventDefault();
         const distanceChoice = this.state.distanceChoice
-        // const error = this.validate(distanceChoice)
-        // this.setState({error});
-        // if (error.length > 0) return;
         this.setState({distanceChoice:''});
         const ratingChoice = this.state.ratingChoice;
         const difficultyChoice = this.state.difficultyChoice;
         const numberOfResults = this.state.numberOfResults;
         this.props.searchObj.applyFilters(difficultyChoice, ratingChoice, distanceChoice, numberOfResults);
-        /*
-        event.preventDefault();
-        const zip = this.state.zip;
-        const error = this.validate(zip);
-        this.setState({error});
-        if (error.length > 0) return;
-        this.setState({zip:''});
-        this.props.searchObj.zip = zip;
-        this.props.searchObj.translateZip().then(() => {
-            this.props.history.push('/results-list');
-        });
-        */
        console.log("Adv Filter Applied")
     }
 

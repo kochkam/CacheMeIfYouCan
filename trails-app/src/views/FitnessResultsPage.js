@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import FitnessForm from '../components/FitnessForm';
-import FitnessResults from '../classes/FitnessResults';
 import LinkButton from "../components/LinkButton";
 
 class FitnessResultsPage extends Component {
