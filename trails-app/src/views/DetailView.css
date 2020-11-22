@@ -4,10 +4,25 @@
     justify-content: space-evenly;
   }
   
-  .detail-column-container{
+  .detail-column-container-center{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    text-align: center;
+  }
+
+  .detail-column-container-left{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: left;
+  }
+
+  .detail-column-container-right{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: right;
   }
   
   .detail-img{
@@ -39,6 +54,7 @@
     position: absolute;
     z-index: 1;
     right: 105%;
+    top:"-13px";
   }
 
   .tooltip .tooltiptext::after {
