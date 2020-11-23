@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-class SearchForm extends React.Component{
+class SearchFormBasic extends React.Component{
     state = {
         zip: '',
         error: '',
@@ -58,4 +58,4 @@ class SearchForm extends React.Component{
       }
 }
 
-export default withRouter(SearchForm);
+export default withRouter(SearchFormBasic);
