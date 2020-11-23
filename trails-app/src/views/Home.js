@@ -20,7 +20,7 @@ class Home extends Component {
       return (
         <div className="search-container">
           <h1>Find your next trail....</h1>
-          <button onClick={this.ToggleDisplay} className="FilterToggle">Advanced Search</button>
+          <button onClick={this.ToggleDisplay} className="FilterToggle">Go To Basic Search</button>
           <SearchFormAdv searchObj = {this.props.searchObj}/>
         </div>
       );
@@ -28,7 +28,7 @@ class Home extends Component {
       return (
         <div className="search-container">
           <h1>Find your next trail....</h1>
-          <button onClick={this.ToggleDisplay} className="FilterToggle">Advanced Search</button>
+          <button onClick={this.ToggleDisplay} className="FilterToggle">Go To Advanced Search</button>
           <SearchFormBasic searchObj = {this.props.searchObj}/>
         </div>
       );
