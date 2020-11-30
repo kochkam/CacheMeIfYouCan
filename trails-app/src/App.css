@@ -37,41 +37,6 @@ body{
   margin: 20px;
 }
 
-/*CODE SMELL: DEAD CODE
-
-.content li {
-  margin-bottom: 10px;
-}
-
-.header{
-  display: inline-block;
-  position: relative;
-  background-color: orange;
-  height: 5vh;
-  width: 100%;
-  align-items: center;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.ProfBtn{
-  margin-right: 2.5vh;
-  float: right;
-  margin-top: 1.5vh;
-  cursor:pointer;
-  border:none;
-}
-
-.HomeBtn{
-  cursor:pointer;
-  margin-left: 4vh;
-  margin-top: 1.5vh;
-  float: left;
-  border:none;
-}
-
-*/
-
 .search-container{
   height: 50vh;
   width: 100%;
@@ -80,6 +45,7 @@ body{
   align-items: center;
   object-fit: contain;
   background-color: rgb(56, 202, 75);
+  border-bottom: 5px solid black;
 }
 
 .homeIcon{
