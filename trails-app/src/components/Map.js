@@ -11,6 +11,7 @@ export default function Map(props) {
             <img className="google-image" src="https://www.xda-developers.com/files/2019/06/google-maps-india.jpg"/>
             <br></br>
             <a href={mapURL} target = "_blank" >Click here for directions</a>
+            <div className = "google-link">
             <ReactTinyLink
             cardSize="large"
             showGraphic={true}
@@ -19,6 +20,7 @@ export default function Map(props) {
             minLine={1}
             url={mapURL}
             />
+            </div>
         </div>
     )
 }
