@@ -45,7 +45,7 @@ body{
   align-items: center;
   object-fit: contain;
   background-color: rgb(56, 202, 75);
-  border-bottom: 5px solid black;
+  border: 2px solid black;
 }
 
 .homeIcon{
