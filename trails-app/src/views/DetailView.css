@@ -93,8 +93,6 @@
     flex-direction: column;
   }
   .detail-img{
-    margin-top: 10px;
-    margin-left: 10px;
     height: auto;
     width:100%;
   }
