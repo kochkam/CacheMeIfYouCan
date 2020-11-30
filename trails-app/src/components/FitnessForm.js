@@ -73,6 +73,7 @@ class FitnessForm extends React.Component{
             <form className="fitnessLevel" onSubmit={this.onFormSubmit}>
             <label>First Name:<div class="tooltip">&#10067;<span class="tooltiptext"><div>This info will help customize your experince.</div></span></div>
                 <input
+                    className="input2"
                     onChange={this.onNameChange}
                     id='name'
                     name='name'
@@ -84,6 +85,7 @@ class FitnessForm extends React.Component{
             <br></br>
             <label>Age:<div class="tooltip">&#10067;<span class="tooltiptext"><div>Your age will help us in calculating hikes customized for your abilities.</div></span></div>
                 <input
+                    className="input2"
                     onChange={this.onAgeChange}
                     id='age'
                     name='age'
