@@ -1,6 +1,17 @@
 
 
 
+  .form{
+
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+  }
+  .SearchBtn{
+      background-color: #4CAF50;
+      border: whitesmoke;
+      box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+      border-radius: 12px;
+      padding: 10x 24px
+  }
   .tooltip {
     position: relative;
     display: inline-block;
