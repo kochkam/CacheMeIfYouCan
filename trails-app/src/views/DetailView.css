@@ -3,6 +3,11 @@
     flex-direction: row;
     justify-content: space-evenly;
   }
+.detail-row-main-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
   
   .detail-column-container-center{
     display: flex;
@@ -26,7 +31,10 @@
   }
   
   .detail-img{
-    margin: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    height: 50%;
+    width:50%;
   }
   
   .detail-text{
@@ -77,3 +85,17 @@
     margin-left: auto;
     margin-right: auto;
   }
+
+  /* Detail View configuration for window size less than 800px */
+@media only screen and (max-width: 800px) {
+  .detail-row-main-container{
+    display: flex;
+    flex-direction: column;
+  }
+  .detail-img{
+    margin-top: 10px;
+    margin-left: 10px;
+    height: auto;
+    width:100%;
+  }
+}
