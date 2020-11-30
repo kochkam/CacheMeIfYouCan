@@ -71,7 +71,7 @@ class FitnessForm extends React.Component{
     render() {
         return (
             <form className="fitnessLevel" onSubmit={this.onFormSubmit}>
-            <label>First Name:<div class="tooltip">More Info<span class="tooltiptext"><div>Your exercise frequency will be used to determine what hikes will fit your activity level best.</div></span></div>
+            <label>First Name:<div class="tooltip">&#x2753<span class="tooltiptext"><div>Your exercise frequency will be used to determine what hikes will fit your activity level best.</div></span></div>
                 <input
                     onChange={this.onNameChange}
                     id='name'
@@ -81,7 +81,7 @@ class FitnessForm extends React.Component{
                 />
             </label>
             <br></br>
-            <label>Age:<div class="tooltip">More Info<span class="tooltiptext"><div>Your exercise frequency will be used to determine what hikes will fit your activity level best.</div></span></div>
+            <label>Age:<div class="tooltip">&#x2753<span class="tooltiptext"><div>Your exercise frequency will be used to determine what hikes will fit your activity level best.</div></span></div>
                 <input
                     onChange={this.onAgeChange}
                     id='age'
@@ -91,14 +91,14 @@ class FitnessForm extends React.Component{
                 />
             </label>
             <br></br>
-            <label>Hiking Experience:<div class="tooltip">More Info<span class="tooltiptext"><div>Your exercise frequency will be used to determine what hikes will fit your activity level best.</div></span></div></label>
+            <label>Hiking Experience:<div class="tooltip">&#x2753<span class="tooltiptext"><div>Your exercise frequency will be used to determine what hikes will fit your activity level best.</div></span></div></label>
             <select onChange={this.onXPChange}>
                     <option value = "Beginner">Beginner</option>
                     <option value = "Intermediate">Intermediate</option>
                     <option value="Advanced">Advanced</option>
             </select> 
             <br></br>
-            <label>Exercise Frequency:<div class="tooltip">More Info<span class="tooltiptext"><div>Your exercise frequency will be used to determine what hikes will fit your activity level best.</div></span></div></label> 
+            <label>Exercise Frequency:<div class="tooltip">&#x2753<span class="tooltiptext"><div>Your exercise frequency will be used to determine what hikes will fit your activity level best.</div></span></div></label> 
                 <select onChange={this.onFrequencyChange}>
                     <option value = "Low">Low</option>
                     <option value = "Medium">Medium</option>
