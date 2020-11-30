@@ -17,6 +17,10 @@ export default function ListItem(props){
                 </div>
             </div>
             <p className = 'result-temp'>Current Temp: {props.temp}</p>
+            
+            <div className = 'result-temp-small'>
+                <p>Current Temp: {props.temp}</p>
+            </div>
         </div>
     )
 }
