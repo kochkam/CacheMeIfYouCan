@@ -46,6 +46,7 @@ body{
   object-fit: contain;
   background-color: rgb(56, 202, 75);
   border: 2px solid black;
+  border-style: groove;
 }
 
 .homeIcon{
