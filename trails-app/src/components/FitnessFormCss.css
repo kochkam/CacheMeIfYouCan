@@ -15,6 +15,7 @@
 
     font-size: 16px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+    font-weight: bold;
   }
   select{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
@@ -27,7 +28,7 @@
   }
 
   .Btn{
-      background-color: rgb(0, 247, 255);
+      background-color:white;
       font-size: 16px;
       border: 2px solid black;
       border-radius: 8px;
@@ -36,7 +37,7 @@
   }
 
   .Btn:hover{
-    background-color: #4CAF50;
+    background-color: rgb(0, 247, 255);
     color: white;
 
   }
