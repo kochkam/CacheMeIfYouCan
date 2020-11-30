@@ -45,7 +45,7 @@ body{
   flex-direction: column;
   align-items: center;
   object-fit: contain;
-  background: url('./images/two.jpg') center center/cover;
+  background: url('./images/one.jpg') center center/cover;
 
 }
 
