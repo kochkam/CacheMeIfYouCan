@@ -11,6 +11,10 @@
     box-sizing: border-box;
   }
 
+  label{
+
+    font-size: 16px;
+  }
   select{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
     border: 2px solid black;
@@ -24,7 +28,7 @@
   .Btn{
       background-color: white;
       font-size: 16px;
-      border: 2px solid #4CAF50;
+      border: 2px solid rgb(0, 247, 255);
       border-radius: 8px;
       padding: 16px 32px;
       transition-duration: 0.4s;
