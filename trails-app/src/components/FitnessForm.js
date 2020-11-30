@@ -110,7 +110,6 @@ class FitnessForm extends React.Component{
             <br></br>
             <br></br>
             <button className='Btn' type='submit'>Calculate
-                <i className='Btn'></i>
             </button>
             </form>
         );
