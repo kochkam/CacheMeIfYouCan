@@ -8,18 +8,15 @@ export default function Map(props) {
     mapURL += props.searchObj.zip + "&destination=" + lat + "," + long
     return(
         <div className="detail-column-container-center">
-            <img className="google-image" src="https://www.xda-developers.com/files/2019/06/google-maps-india.jpg"/>
-            <br></br>
-            <a href={mapURL} target = "_blank" >Click here for directions</a>
             <div className = "google-link">
-            <ReactTinyLink
-            cardSize="large"
-            showGraphic={true}
-            description ="Click here for directions to your hike."
-            maxLine={2}
-            minLine={1}
-            url={mapURL}
-            />
+                <ReactTinyLink
+                    cardSize="large"
+                    showGraphic={true}
+                    description ="Click here for directions to your hike."
+                    maxLine={2}
+                    minLine={1}
+                    url={mapURL}
+                />
             </div>
         </div>
     )
