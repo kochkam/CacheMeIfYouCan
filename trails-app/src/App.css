@@ -155,21 +155,36 @@ body{
   border-width: .1em;
 }
 
+/* ListItem configuration for window size less than 1026px */
 @media only screen and (max-width: 1026px) {
   .result-summary {
       display: none;
   }
-
   .result-temp{
     display: none;
   }
-
   .result-temp-small {
     display: block;
   }
-
   .result-detail-text .result-act-dist {
     border-style: none;
+  }
+}
+/* ListItem configuration for window size less than 700px */
+@media only screen and (max-width: 700px) {
+  .result-img {
+    height: 5em;
+    object-fit: cover;
+    width: 5em;
+    border-top-left-radius: 1em;
+    border-bottom-left-radius: 1em;
+  }
+  .result-title-text{
+    font-size: 10px;
+  
+  }
+  .result-detail-text {
+    font-size: 7px;
   }
 }
 
