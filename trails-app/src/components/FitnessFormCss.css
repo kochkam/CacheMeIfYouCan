@@ -5,12 +5,20 @@
 
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
   }
-  .SearchBtn{
+
+  .Btn{
       background-color: #4CAF50;
+      font-size: 16px;
       border: whitesmoke;
       box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-      border-radius: 12px;
-      padding: 10x 24px
+      border-radius: 8px;
+      padding: 12x 28px
+  }
+
+  .Btn:hover{
+    background-color: #4CAF50;
+    color: white;
+
   }
   .tooltip {
     position: relative;
