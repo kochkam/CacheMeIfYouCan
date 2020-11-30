@@ -71,7 +71,7 @@ class FitnessForm extends React.Component{
     render() {
         return (
             <form className="fitnessLevel" onSubmit={this.onFormSubmit}>
-            <label>First Name:<span class="tooltiptext"><br>Enter your name to customize your experince</br></span>
+            <label>First Name:<span class="tooltiptext"><div>Enter your name to customize your experince</div></span>
                 <input
                     onChange={this.onNameChange}
                     id='name'
@@ -81,7 +81,7 @@ class FitnessForm extends React.Component{
                 />
             </label>
             <br></br>
-            <label>Age:<span class="tooltiptext"><br>Your age will be used for our fitness caluclator to recommend hikes appropriate for your age</br></span> 
+            <label>Age:<span class="tooltiptext"><div>Your age will be used for our fitness caluclator to recommend hikes appropriate for your age</div></span> 
                 <input
                     onChange={this.onAgeChange}
                     id='age'
@@ -91,14 +91,14 @@ class FitnessForm extends React.Component{
                 />
             </label>
             <br></br>
-            <label>Hiking Experience:<span class="tooltiptext"><br>Your hiking experience will be used for our fitness caluclator to recommend hikes appropriate for your experince level </br></span> </label>
+            <label>Hiking Experience:<span class="tooltiptext"><div>Your hiking experience will be used for our fitness caluclator to recommend hikes appropriate for your experince level </div></span> </label>
             <select onChange={this.onXPChange}>
                     <option value = "Beginner">Beginner</option>
                     <option value = "Intermediate">Intermediate</option>
                     <option value="Advanced">Advanced</option>
             </select> 
             <br></br>
-            <label>Exercise Frequency:<span class="tooltiptext"><br>Your exercise frequency will be used to determine what hikes will fit your activity level best.</br></span></label> 
+            <label>Exercise Frequency:<span class="tooltiptext"><div>Your exercise frequency will be used to determine what hikes will fit your activity level best.</div></span></label> 
                 <select onChange={this.onFrequencyChange}>
                     <option value = "Low">Low</option>
                     <option value = "Medium">Medium</option>
