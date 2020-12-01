@@ -21,6 +21,7 @@ class TextBoxComponent extends React.Component {
             <div className="resultNumber">
                 <p>I don't want to see more than this many results: </p>
                     <input
+                        defaultValue={this.props.searchObj.filter.resultNumChoice}
                         id='results'
                         className={ this.state.error ? 'error' : '' }
                         name='results'
