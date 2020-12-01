@@ -3,13 +3,22 @@ import { withRouter } from 'react-router-dom';
 import FitnessResults from '../classes/FitnessResults';
 
 class FitnessForm extends React.Component{
-    state = {
-        name: '',
-        age: '',
-        hikingXP: 'Beginner',
-        exerciseFrequency: 'Low',
+    constructor () {
+        super();
+        this.state = {
+            name: '',
+            age: '',
+            hikingXP: 'Beginner',
+            exerciseFrequency: 'Low',
+        };
+        //this.onInputChange = this.onInputChange.bind(this);
+        //this.onNameChange = this.onNameChange.bind(this);
+        //this.onAgeChange = this.onAgeChange.bind(this);
+        //this.onXPChange = this.onXPChange.bind(this);
+        //this.onFrequencyChange = this.onFrequencyChange.bind(this);
     }
 
+    /*
     onInputChange = (event) => {
         this.setState({
             name: event.target.value,
@@ -18,6 +27,7 @@ class FitnessForm extends React.Component{
             exerciseFrequency: event.target.value,
         });
     }
+    */
 
     onNameChange = (event) => {
         this.setState({
@@ -73,7 +83,11 @@ class FitnessForm extends React.Component{
             <label>First Name:<div class="tooltip">&#10067;<span class="tooltiptext"><div>This info will help customize your experince.</div></span></div>
                 <input
                     className="input2"
-                    onChange={this.onNameChange}
+                    value = {this.state.name}
+                    onChange={e => {
+                        this.setState({name:e.target.value})
+                        this.value = this.state.name
+                    }}
                     id='name'
                     name='name'
                     type='text'
@@ -86,7 +100,8 @@ class FitnessForm extends React.Component{
                 <input
                     className="input2"
                     onChange={this.onAgeChange}
-                    id='age'
+                    value={this.state.age}
+                    id='age's
                     name='age'
                     type='number'
                     placeholder = 'Age'
@@ -95,7 +110,7 @@ class FitnessForm extends React.Component{
             <br></br>
             <br></br>
             <label>Hiking Experience:<div class="tooltip">&#10067;<span class="tooltiptext"><div>Select a hiking experince level that mirrors your familiarity with hiking to help us match you with the best hike possible.</div></span></div></label>
-            <select onChange={this.onXPChange}>
+            <select selected={this.state.hikingXP} onChange={this.onXPChange}>
                     <option value = "Beginner">Beginner</option>
                     <option value = "Intermediate">Intermediate</option>
                     <option value="Advanced">Advanced</option>
@@ -103,7 +118,7 @@ class FitnessForm extends React.Component{
             <br></br>
             <br></br>
             <label>Exercise Frequency:<div class="tooltip">&#10067;<span class="tooltiptext"><div>Select exercise frequency that best matches your current fitness level to help match you with hikes based on your fitness level.</div></span></div></label> 
-                <select onChange={this.onFrequencyChange}>
+                <select selected={this.state.exerciseFrequency} onChange={this.onFrequencyChange}>
                     <option value = "Low">Low</option>
                     <option value = "Medium">Medium</option>
                     <option value="High">High</option>
