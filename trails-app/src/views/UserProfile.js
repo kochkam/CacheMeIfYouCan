@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import FitnessForm from '../components/FitnessForm';
+import './UserProfile.css'
 
 class UserProfile extends Component {
   render() {
