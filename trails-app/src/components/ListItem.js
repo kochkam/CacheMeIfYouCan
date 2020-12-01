@@ -12,11 +12,14 @@ export default function ListItem(props){
                     <span className= "result-act-dist">
                     <p className = 'result-activity'>Activity Level: {props.activityLevel}</p>
                     <p className = 'result-distance'>Distance: {props.distance}</p>
+                    <p className = 'result-temp-small'>Current Temp: {props.temp}</p>
                     </span>
                     <span className = 'result-summary'>Summary: {props.summary}</span>  
                 </div>
             </div>
             <p className = 'result-temp'>Current Temp: {props.temp}</p>
+            
+
         </div>
     )
 }

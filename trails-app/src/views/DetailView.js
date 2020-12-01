@@ -12,7 +12,7 @@ export default function DetailView(props) {
   var gear = new Gear(hike);
 
   return (
-    <div className ="detail-row-container" id= {hike.id}>
+    <div className ="detail-row-main-container" id= {hike.id}>
       <img className="detail-img" src = {hike.largeimgURL}/>
       <div className="detail-column-container" style={{alignItems:"center"}}>
         <h1 className="detail-text">{hike.title}</h1>
