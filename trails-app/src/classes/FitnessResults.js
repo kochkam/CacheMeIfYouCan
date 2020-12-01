@@ -1,12 +1,12 @@
 class FitnessResults{
     constructor() {
-        this.name = null;
-        this.age = null;
+        this.name = '';
+        this.age = '';
         this.hikingXP = null;
         this.exerciseFrequency = null;
-        this.fitnessLevel = null
-        this.description = ''
-        this.fitnessScore = 15
+        this.fitnessLevel = null;
+        this.description = '';
+        this.fitnessScore = 15;
     }
 
     Agecalc(){

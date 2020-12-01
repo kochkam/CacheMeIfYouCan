@@ -11,11 +11,6 @@ class FitnessForm extends React.Component{
             hikingXP: 'Beginner',
             exerciseFrequency: 'Low',
         };
-        //this.onInputChange = this.onInputChange.bind(this);
-        //this.onNameChange = this.onNameChange.bind(this);
-        //this.onAgeChange = this.onAgeChange.bind(this);
-        //this.onXPChange = this.onXPChange.bind(this);
-        //this.onFrequencyChange = this.onFrequencyChange.bind(this);
     }
 
     /*
@@ -28,17 +23,6 @@ class FitnessForm extends React.Component{
         });
     }
     */
-
-    onNameChange = (event) => {
-        this.setState({
-            name: event.target.value,
-        });
-    }
-    onAgeChange = (event) => {
-        this.setState({
-            age: event.target.value,
-        });
-    }
     onXPChange = (event) => {
         this.setState({
             hikingXP: event.target.value,
@@ -50,17 +34,18 @@ class FitnessForm extends React.Component{
         });
     }
 
-
-
-
     onFormSubmit = async (event) => {
         event.preventDefault();
         const name = this.state.name;
         const age = this.state.age;
         const hikingXP = this.state.hikingXP;
         const exerciseFrequency = this.state.exerciseFrequency;
-        this.props.fitnessObj.name = name;
-        this.props.fitnessObj.age = age;
+        if(name !== ''){
+            this.props.fitnessObj.name = name;
+        }
+        if(age !== ''){
+            this.props.fitnessObj.age = age;
+        }
         this.props.fitnessObj.hikingXP = hikingXP;
         this.props.fitnessObj.exerciseFrequency = exerciseFrequency;
         this.props.fitnessObj.calculateFitness()
@@ -83,7 +68,7 @@ class FitnessForm extends React.Component{
             <label>First Name:<div class="tooltip">&#10067;<span class="tooltiptext"><div>This info will help customize your experince.</div></span></div>
                 <input
                     className="input2"
-                    value = {this.state.name}
+                    defaultValue={this.props.fitnessObj.name}
                     onChange={e => {
                         this.setState({name:e.target.value})
                         this.value = this.state.name
@@ -99,8 +84,11 @@ class FitnessForm extends React.Component{
             <label>Age:<div class="tooltip">&#10067;<span class="tooltiptext"><div>Your age will help us in calculating hikes customized for your abilities.</div></span></div>
                 <input
                     className="input2"
-                    onChange={this.onAgeChange}
-                    value={this.state.age}
+                    defaultValue={this.props.fitnessObj.age}
+                    onChange={e => {
+                        this.setState({age:e.target.value})
+                        this.value = this.state.age
+                    }}
                     id='age's
                     name='age'
                     type='number'
@@ -110,7 +98,7 @@ class FitnessForm extends React.Component{
             <br></br>
             <br></br>
             <label>Hiking Experience:<div class="tooltip">&#10067;<span class="tooltiptext"><div>Select a hiking experince level that mirrors your familiarity with hiking to help us match you with the best hike possible.</div></span></div></label>
-            <select selected={this.state.hikingXP} onChange={this.onXPChange}>
+            <select onChange={this.onXPChange}>
                     <option value = "Beginner">Beginner</option>
                     <option value = "Intermediate">Intermediate</option>
                     <option value="Advanced">Advanced</option>
@@ -118,7 +106,7 @@ class FitnessForm extends React.Component{
             <br></br>
             <br></br>
             <label>Exercise Frequency:<div class="tooltip">&#10067;<span class="tooltiptext"><div>Select exercise frequency that best matches your current fitness level to help match you with hikes based on your fitness level.</div></span></div></label> 
-                <select selected={this.state.exerciseFrequency} onChange={this.onFrequencyChange}>
+            <select onChange={this.onFrequencyChange}>
                     <option value = "Low">Low</option>
                     <option value = "Medium">Medium</option>
                     <option value="High">High</option>
