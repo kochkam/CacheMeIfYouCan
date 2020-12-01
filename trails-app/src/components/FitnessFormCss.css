@@ -11,12 +11,7 @@
     box-sizing: border-box;
   }
 
-  label{
-
-    font-size: 16px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
-    font-weight: bold;
-  }
+  c
   select{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
     border: 2px solid black;

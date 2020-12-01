@@ -9,6 +9,7 @@ class UserProfile extends Component {
         <h2>Fitness Level Calculator</h2>
         <br></br>
         <p>Use the form below to provide information that will help us in calculating your fitness level.</p>
+        <br></br>
         <p>Please provide your first name, age, hiking experience, and current exercise frequency.</p>
         <br></br>
         <FitnessForm fitnessObj = {this.props.fitnessObj} searchObj = {this.props.searchObj}/>
