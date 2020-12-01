@@ -1,7 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import FitnessResults from '../classes/FitnessResults';
-import './FitnessFormCss.css'
 
 class FitnessForm extends React.Component{
     state = {

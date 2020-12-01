@@ -1,7 +1,10 @@
+
+
 .detail-row-container{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    
   }
   
   .detail-column-container-center{
@@ -27,6 +30,8 @@
   
   .detail-img{
     margin: 10px;
+    max-width:500px;
+    max-height:600px;
   }
   
   .detail-text{
@@ -72,8 +77,8 @@
   }
 
   .google-image {
-    width: 60%;
-    height: 60%;
+    width: 25%;
+    height: 25%;
     margin-left: auto;
     margin-right: auto;
   }
