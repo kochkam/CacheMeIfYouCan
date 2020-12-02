@@ -71,6 +71,12 @@ class SearchFormAdv extends React.Component{
         if(this.state.maxDifficultyChoice){
             maxDifficulty = 1;
         }
+        if(this.state.numberOfResults>500){
+            this.state.numberOfResults=500
+        }
+        if(this.state.distanceChoice>200){
+            this.state.distanceChoice=200
+        }
         this.props.history.push('/');
         this.props.searchObj.applyFilters(
             this.state.difficultyChoice,
