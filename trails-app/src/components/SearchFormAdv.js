@@ -4,8 +4,7 @@ import Slider from 'react-rangeslider'
 import 'react-rangeslider/lib/index.css'
 import CheckBoxComponent from "./FormComponents/CheckBoxComponent"
 import RadioComponent from "./FormComponents/RadioComponent.js"
-import DropDownComponent from "./FormComponents/DropDownComponent.js"
-import TextBoxComponent from "./FormComponents/TextBoxComponent"
+import {RatingDropDown, ResultsDropDown} from "./FormComponents/DropDownComponent.js"
 
 class SearchFormAdv extends React.Component{
 
@@ -111,7 +110,7 @@ class SearchFormAdv extends React.Component{
                         id="distance"
                     />
                 </div>
-                <TextBoxComponent searchObj ={this.props.searchObj} resultsChange={this.resultsChange}/>
+                <ResultsDropDown searchObj ={this.props.searchObj} resultsChange={this.resultsChange}/>
                 <br></br>
                 <RadioComponent searchObj ={this.props.searchObj} difficultyChange={this.difficultyChange}/>
                 <br></br>

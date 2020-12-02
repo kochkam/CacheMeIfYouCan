@@ -59,6 +59,10 @@ class SearchResults{
         this.filter.maxDifficulty = oldMaxDifficulty;
     }
 
+    clearFilter(){
+        this.filter = new Filter();
+    }
+
     async _getCoords(){
         let url = "https://maps.googleapis.com/maps/api/geocode/json?address="
                     + this.zip
