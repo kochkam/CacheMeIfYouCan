@@ -104,11 +104,9 @@ class SearchFormAdv extends React.Component{
                 <div className="DistanceFilters">
                     <h3>I want hikes within the following total length: </h3>
                     <Slider name="distanceChosen" 
-                        min="1" 
-                        max="200" 
-                        step="1"
-
-                        value={this.state.distanceChoice} 
+                        min={0}
+                        max={200} 
+                        value={this.props.searchObj.filter.distanceFilter || this.state.distanceChoice}
                         onChange={this.distanceChange} 
                         id="distance"
                     />
