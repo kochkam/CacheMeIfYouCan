@@ -1,22 +1,11 @@
 import React from "react";
 import Select from 'react-select';
 
-class DropDownComponent extends React.Component {
+class RatingDropDown extends React.Component {
   constructor(props) {
     super(props);
     this.state = {ratingChoice:"5"};
   }
-
-  /*
-<select DefaultValue = {this.props.searchObj.filter.ratingFilter || this.state.ratingChice} onChange={this.changeValue} id="rating" name="rating">
-                                <option value="1">One Star</option>
-                                <option value="2">Two Stars</option>
-                                <option value="3">Three stars</option>
-                                <option value="4">Four stars</option>
-                                <option value="5">Five stars</option>
-                            </select>
-  */
-
 
   ratingOptions = () => {
     return [
@@ -56,4 +45,47 @@ class DropDownComponent extends React.Component {
   }
 }
 
-export default DropDownComponent
+class ResultsDropDown extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {resultsChoice:"10"};
+  }
+
+  resultsOptions = () => {
+    return [
+      {value:"5", label:"5"},
+      {value:"10", label:"10"},
+      {value:"50", label:"50"},
+      {value:"100", label:"100"},
+    ]
+  }
+  
+  changeValue = (option) => {
+    this.setState({
+        resultsChoice: option.value,
+    });
+    this.props.resultsChange(option.value);
+}
+
+  render() {
+    var currentSelection = this.props.searchObj.filter.resultsFilter
+    if(currentSelection ==  null){
+      currentSelection = this.state.resultsChoice
+    }
+    return (
+        <div className="ResultsFilters">
+                        <p>I don't want to see more than this many hikes: </p>
+                            
+                            <Select onChange={this.changeValue} id="results" name="results"
+                              value={this.resultsOptions().find(op => {
+                                return op.value === currentSelection
+                              })}
+                              options={this.resultsOptions()}
+                            />
+                        </div>
+        
+    );
+  }
+}
+
+export {RatingDropDown, ResultsDropDown}
