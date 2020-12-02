@@ -30,7 +30,18 @@ class SearchFormBasic extends React.Component{
 
     validate = (zip) => {
         const zipLength = zip.trim().length;
+        var currentZip = zip.trim();
         if (zipLength === 0) return 'Please enter a ZIP code';
+        if (zipLength === 9) {
+            return '9 digit ZIP codes must include a \'-\', e.g. 11111-1111';
+        }
+        if (zipLength === 10) {
+            if (currentZip[5] != '-') {
+                return 'Please enter a valid ZIP code';
+            } else {
+                return '';
+            }
+        }
         if (zipLength !== 5) return 'Please enter a valid ZIP code';
         if (isNaN(zipLength)) return 'Please enter a ZIP code';
         return '';
