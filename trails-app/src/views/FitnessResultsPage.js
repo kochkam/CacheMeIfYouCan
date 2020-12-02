@@ -11,7 +11,7 @@ class FitnessResultsPage extends Component {
         <p>This is where the user will see there results.</p>
         <p>Your name is {this.props.fitnessObj.name}.</p>
         <p>Your age is {this.props.fitnessObj.age}</p>
-        <p>Your experience is is {this.props.fitnessObj.hikingXP}</p>
+        <p>Your experience is {this.props.fitnessObj.hikingXP}</p>
         <p>Your exercise frequency is {this.props.fitnessObj.exerciseFrequency}</p>
         <p>{this.props.fitnessObj.description}</p>
         <br></br>
