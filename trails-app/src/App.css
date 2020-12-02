@@ -101,7 +101,6 @@ body{
 
 .result-detail-text {
   display: flex;
-  font-weight: normal;
   border-style: solid;
   border-width: .1em;
 }
@@ -114,6 +113,9 @@ body{
 
 .result-temp-small {
   display: none;
+}
+
+.txt-content {
   font-weight: normal;
 }
 

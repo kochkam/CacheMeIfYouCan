@@ -10,11 +10,11 @@ export default function ListItem(props){
                 <h3 className = 'result-title-text'>{props.title}</h3>
                 <div className= "result-detail-text">
                     <span className= "result-act-dist">
-                    <p className = 'result-activity'>Activity Level: {props.activityLevel}</p>
-                    <p className = 'result-distance'>Distance: {props.distance}</p>
-                    <p className = 'result-temp-small'>Current Temp: {props.temp}</p>
+                    <p className = 'result-activity'>Activity Level: <span className="txt-content">{props.activityLevel}</span></p>
+                    <p className = 'result-distance'>Distance: <span className="txt-content">{props.distance}</span></p>
+                    <p className = 'result-temp-small'>Current Temp: <span className="txt-content">{props.temp}</span></p>
                     </span>
-                    <span className = 'result-summary'>Summary: {props.summary}</span>  
+                    <span className = 'result-summary'>Summary: <span className="txt-content">{props.summary}</span></span>  
                 </div>
             </div>
             <p className = 'result-temp'>Current Temp: {props.temp}</p>
