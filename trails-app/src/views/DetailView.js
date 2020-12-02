@@ -35,22 +35,22 @@ export default function DetailView(props) {
         <div className = "detail-row-container">
           <div className = "detail-column-container-left">
             <i class="fas fa-hat-cowboy-side tooltip"> Head: {gear.head}
-              <span class="tooltiptext">
+              <span class="tooltiptext" style={{top:"-21px"}}>
                 This is the type of head covering you should wear due to current weather conditions.
               </span>
             </i>
             <i class="fas fa-tshirt tooltip"> Top: {gear.top}
-              <span class="tooltiptext">
+              <span class="tooltiptext" style={{top:"-21px"}}>
                 This is the type of top you should wear due to current weather conditions.
               </span>
             </i>
             <i class="fas fa-socks tooltip"> Bottom: {gear.bottom}
-              <span class="tooltiptext">
+              <span class="tooltiptext" style={{top:"-21px"}}>
                 This is the type of bottom you should wear due to current weather condionts. 
               </span>
             </i>
             <i class="fas fa-mitten tooltip"> Other: {gear.other}
-              <span class="tooltiptext">
+              <span class="tooltiptext" style={{top:"-21px"}}>
                 Additional items you may need given current weather weather conditions.
               </span>
             </i>
