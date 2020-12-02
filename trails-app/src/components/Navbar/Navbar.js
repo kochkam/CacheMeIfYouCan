@@ -8,7 +8,7 @@ class Navbar extends React.Component {
             <nav className="navbar">
                 <LinkButton className="home-logo" exact to='/'>
                     <i className="fas fa-hiking"></i>
-                    Trails App
+                    Trail Blazin'
                 </LinkButton>
                 <LinkButton className="profile-logo" exact to='/user-profile'>
                     <i class="far fa-user-circle"></i>
