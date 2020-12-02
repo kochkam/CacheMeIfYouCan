@@ -88,6 +88,7 @@ class SearchFormAdv extends React.Component{
         this.props.searchObj.update(zip).then(() => {
             this.props.history.push('/results-list');
         });
+
     }
 
     validate = (zip) => {
@@ -106,7 +107,7 @@ class SearchFormAdv extends React.Component{
                     <Slider name="distanceChosen" 
                         min={0}
                         max={200} 
-                        value={this.props.searchObj.filter.distanceFilter || this.state.distanceChoice}
+                        value={this.state.distanceChoice}
                         onChange={this.distanceChange} 
                         id="distance"
                     />
