@@ -11,8 +11,8 @@ class Home extends Component {
   }
 
   ToggleDisplay(e) {
+    this.props.searchObj.clearFilter();
     this.setState({ displayAdvSearch: !this.state.displayAdvSearch });
-
   }
 
   render() {
