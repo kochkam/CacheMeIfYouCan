@@ -4,8 +4,7 @@ import Slider from 'react-rangeslider'
 import 'react-rangeslider/lib/index.css'
 import CheckBoxComponent from "./FormComponents/CheckBoxComponent"
 import RadioComponent from "./FormComponents/RadioComponent.js"
-import DropDownComponent from "./FormComponents/DropDownComponent.js"
-import TextBoxComponent from "./FormComponents/TextBoxComponent"
+import {RatingDropDown, ResultsDropDown} from "./FormComponents/DropDownComponent.js"
 
 class SearchFormAdv extends React.Component{
 
@@ -101,7 +100,7 @@ class SearchFormAdv extends React.Component{
     render() {
         return (
             <form className="searchField" onSubmit={this.onFormSubmit}>
-                <DropDownComponent searchObj ={this.props.searchObj} ratingChange= {this.ratingChange}/>
+                <br></br>
                 <div className="DistanceFilters">
                     <h3>I want hikes within the following total length: </h3>
                     <Slider name="distanceChosen" 
@@ -112,10 +111,10 @@ class SearchFormAdv extends React.Component{
                         id="distance"
                     />
                 </div>
-                <TextBoxComponent searchObj ={this.props.searchObj} resultsChange={this.resultsChange}/>
+                <ResultsDropDown searchObj ={this.props.searchObj} resultsChange={this.resultsChange}/>
                 <RadioComponent searchObj ={this.props.searchObj} difficultyChange={this.difficultyChange}/>
-                <h3>Do you also want to see hikes that are easier/harder than your choice above?</h3>
-                <h3>Leave these boxes unchecked if you only want to see the Hard/Medium/Easy option you selected above.</h3>
+                <p>Do you also want to see hikes that are easier/harder than your choice above?</p>
+                <p>Leave these boxes unchecked if you only want to see the Hard/Medium/Easy option you selected above.</p>
                 <div className="MinMaxDifficulty">
                     <CheckBoxComponent handler= {this.minDifficulty} id="Easier"/>
                     <CheckBoxComponent handler= {this.maxDifficulty} id="Harder"/>
