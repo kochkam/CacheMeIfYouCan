@@ -48,13 +48,13 @@ class Filter{
 
             }
             if (this.ratingFilter != null){
-                if (responseData.trails[i].stars < this.ratingFilter){
+                if (Number(responseData.trails[i].stars) < Number(this.ratingFilter)){
                     continue
                 }  
             }
 
             if (this.distanceFilter != null){
-                if (responseData.trails[i].distance > this.distanceFilter){
+                if (Number(responseData.trails[i].length) > Number(this.distanceFilter)){
                     continue
                 }  
             }

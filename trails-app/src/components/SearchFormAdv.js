@@ -71,6 +71,12 @@ class SearchFormAdv extends React.Component{
         if(this.state.maxDifficultyChoice){
             maxDifficulty = 1;
         }
+        if(this.state.numberOfResults>500){
+            this.state.numberOfResults=500
+        }
+        if(this.state.distanceChoice>200){
+            this.state.distanceChoice=200
+        }
         this.props.history.push('/');
         this.props.searchObj.applyFilters(
             this.state.difficultyChoice,
@@ -82,6 +88,7 @@ class SearchFormAdv extends React.Component{
         this.props.searchObj.update(zip).then(() => {
             this.props.history.push('/results-list');
         });
+
     }
 
     validate = (zip) => {
@@ -94,21 +101,19 @@ class SearchFormAdv extends React.Component{
     render() {
         return (
             <form className="searchField" onSubmit={this.onFormSubmit}>
-                <DropDownComponent ratingChange= {this.ratingChange}/>
+                <DropDownComponent searchObj ={this.props.searchObj} ratingChange= {this.ratingChange}/>
                 <div className="DistanceFilters">
                     <h3>I want hikes within the following total length: </h3>
                     <Slider name="distanceChosen" 
-                        min="1" 
-                        max="200" 
-                        step="1"
-
-                        value={this.state.distanceChoice} 
+                        min={0}
+                        max={200} 
+                        value={this.state.distanceChoice}
                         onChange={this.distanceChange} 
                         id="distance"
                     />
                 </div>
-                <TextBoxComponent resultsChange={this.resultsChange}/>
-                <RadioComponent difficultyChange={this.difficultyChange}/>
+                <TextBoxComponent searchObj ={this.props.searchObj} resultsChange={this.resultsChange}/>
+                <RadioComponent searchObj ={this.props.searchObj} difficultyChange={this.difficultyChange}/>
                 <h3>Do you also want to see hikes that are easier/harder than your choice above?</h3>
                 <h3>Leave these boxes unchecked if you only want to see the Hard/Medium/Easy option you selected above.</h3>
                 <div className="MinMaxDifficulty">
