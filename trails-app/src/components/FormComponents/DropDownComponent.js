@@ -1,29 +1,55 @@
 import React from "react";
+import Select from 'react-select';
 
 class DropDownComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {ratingChoice:"5"};
   }
+
+  /*
+<select DefaultValue = {this.props.searchObj.filter.ratingFilter || this.state.ratingChice} onChange={this.changeValue} id="rating" name="rating">
+                                <option value="1">One Star</option>
+                                <option value="2">Two Stars</option>
+                                <option value="3">Three stars</option>
+                                <option value="4">Four stars</option>
+                                <option value="5">Five stars</option>
+                            </select>
+  */
+
+
+  ratingOptions = () => {
+    return [
+      {value:"1", label:"One Star"},
+      {value:"2", label:"Two Stars"},
+      {value:"3", label:"Three Stars"},
+      {value:"4", label:"Four Stars"},
+      {value:"5", label:"Five Stars"},
+    ]
+  }
   
-  changeValue = (event) => {
+  changeValue = (option) => {
     this.setState({
-        ratingChoice: event.target.value,
+        ratingChoice: option.value,
     });
-    this.props.ratingChange(event.target.value);
+    this.props.ratingChange(option.value);
 }
 
   render() {
+    var currentSelection = this.props.searchObj.filter.ratingFilter
+    if(currentSelection ==  null){
+      currentSelection = this.state.ratingChoice
+    }
     return (
         <div className="RatingFilters">
                         <p>I want the rating of the hike to be at least: </p>
-                            <select onChange={this.changeValue} id="rating" name="rating">
-                                <option checked={this.props.searchObj.filter.ratingFilter==="1" || this.state.ratingChoice === "1"} value="1">One Star</option>
-                                <option checked={this.props.searchObj.filter.ratingFilter==="2" || this.state.ratingChoice === "2"} value="2">Two Stars</option>
-                                <option checked={this.props.searchObj.filter.ratingFilter==="3" || this.state.ratingChoice === "3"} value="3">Three stars</option>
-                                <option checked={this.props.searchObj.filter.ratingFilter==="4" || this.state.ratingChoice === "4"} value="4">Four stars</option>
-                                <option checked={this.props.searchObj.filter.ratingFilter==="5" || this.state.ratingChoice === "5"} value="5">Five stars</option>
-                            </select>
+                            
+                            <Select onChange={this.changeValue} id="rating" name="rating"
+                              value={this.ratingOptions().find(op => {
+                                return op.value === currentSelection
+                              })}
+                              options={this.ratingOptions()}
+                            />
                         </div>
         
     );
