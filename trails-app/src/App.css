@@ -14,6 +14,10 @@
   font-size: 50px;
 }
 
+.FilterToggle {
+  display: inline;
+}
+
 body{
   background: url('./images/one.jpg') center center/cover;
   width: 100%;

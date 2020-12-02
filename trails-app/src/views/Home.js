@@ -20,7 +20,10 @@ class Home extends Component {
       return (
         <div className="search-container">
           <h1>Find your next trail....</h1>
-          <button onClick={this.ToggleDisplay} className="FilterToggle">Go To Basic Search</button>
+          <div>
+            <span class="tooltip">&#10067;<span class="tooltiptext"><div>Click here to return to a basic zip code search.</div></span></span>
+            <button onClick={this.ToggleDisplay} className="FilterToggle">Go To Basic Search</button>
+          </div>
           <SearchFormAdv searchObj = {this.props.searchObj}/>
         </div>
       );
@@ -28,7 +31,10 @@ class Home extends Component {
       return (
         <div className="search-container">
           <h1>Find your next trail....</h1>
-          <button onClick={this.ToggleDisplay} className="FilterToggle">Go To Advanced Search</button>
+          <div>
+            <span class="tooltip">&#10067;<span class="tooltiptext"><div>Advanced search will allow you to customize your search results by adding filters.</div></span></span>
+            <button onClick={this.ToggleDisplay} className="FilterToggle">Go To Advanced Search</button>
+          </div>
           <SearchFormBasic searchObj = {this.props.searchObj}/>
         </div>
       );
