@@ -100,7 +100,6 @@ class SearchFormAdv extends React.Component{
     render() {
         return (
             <form className="searchField" onSubmit={this.onFormSubmit}>
-                <RatingDropDown searchObj ={this.props.searchObj} ratingChange={this.ratingChange}/>
                 <div className="DistanceFilters">
                     <h3>I want hikes within the following total length: </h3>
                     <Slider name="distanceChosen" 
@@ -112,9 +111,11 @@ class SearchFormAdv extends React.Component{
                     />
                 </div>
                 <ResultsDropDown searchObj ={this.props.searchObj} resultsChange={this.resultsChange}/>
+                <br></br>
                 <RadioComponent searchObj ={this.props.searchObj} difficultyChange={this.difficultyChange}/>
-                <h3>Do you also want to see hikes that are easier/harder than your choice above?</h3>
-                <h3>Leave these boxes unchecked if you only want to see the Hard/Medium/Easy option you selected above.</h3>
+                <br></br>
+                <p>Do you also want to see hikes that are easier/harder than your choice above?</p>
+                <p>Leave these boxes unchecked if you only want to see the Hard/Medium/Easy option you selected above.</p>
                 <div className="MinMaxDifficulty">
                     <CheckBoxComponent handler= {this.minDifficulty} id="Easier"/>
                     <CheckBoxComponent handler= {this.maxDifficulty} id="Harder"/>

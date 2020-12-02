@@ -10,6 +10,7 @@ class FitnessForm extends React.Component{
             age: '',
             hikingXP: 'Beginner',
             exerciseFrequency: 'Low',
+            error: '',
         };
     }
 
@@ -38,6 +39,12 @@ class FitnessForm extends React.Component{
         event.preventDefault();
         const name = this.state.name;
         const age = this.state.age;
+        if (!this.isPositiveAge(age)) {
+            this.setState({
+                error: 'Age input must be positive',
+            });
+            return;
+        }
         const hikingXP = this.state.hikingXP;
         const exerciseFrequency = this.state.exerciseFrequency;
         if(name !== ''){
@@ -60,6 +67,14 @@ class FitnessForm extends React.Component{
             console.log(this.props.searchObj.userProfileDifficulty)
         }
         this.props.history.push('/fitness-results');
+    }
+
+    isPositiveAge = (age) => {
+        if (parseInt(age) > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     render() {
@@ -115,6 +130,7 @@ class FitnessForm extends React.Component{
             <br></br>
             <button className='Btn' type='submit'>Calculate
             </button>
+            <p className='error'>{ this.state.error }</p>
             </form>
         );
       }
