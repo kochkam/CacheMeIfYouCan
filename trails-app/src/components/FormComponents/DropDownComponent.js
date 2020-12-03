@@ -31,7 +31,7 @@ class RatingDropDown extends React.Component {
     }
     return (
         <div className="RatingFilters">
-                        <p>I want the rating of the hike to be at least: </p>
+                        <h3>I want the rating of the hike to be at least: </h3>
                             
                             <Select onChange={this.changeValue} id="rating" name="rating"
                               value={this.ratingOptions().find(op => {
@@ -74,7 +74,7 @@ class ResultsDropDown extends React.Component {
     }
     return (
         <div className="ResultsFilters">
-                        <p>I don't want to see more than this many hikes: </p>
+                        <h3>I don't want to see more than this many hikes: </h3>
                             
                             <Select onChange={this.changeValue} id="results" name="results"
                               value={this.resultsOptions().find(op => {

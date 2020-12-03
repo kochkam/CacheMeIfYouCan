@@ -112,13 +112,16 @@ class SearchFormAdv extends React.Component{
                     />
                 </div>
                 <ResultsDropDown searchObj ={this.props.searchObj} resultsChange={this.resultsChange}/>
+                <br></br>
                 <RadioComponent searchObj ={this.props.searchObj} difficultyChange={this.difficultyChange}/>
-                <p>Do you also want to see hikes that are easier/harder than your choice above?</p>
-                <p>Leave these boxes unchecked if you only want to see the Hard/Medium/Easy option you selected above.</p>
+                <br></br>
+                <h3>Do you also want to see hikes that are easier/harder than your choice above?
+                Leave these boxes unchecked if you only want to see the Hard/Medium/Easy option you selected above.</h3>
                 <div className="MinMaxDifficulty">
                     <CheckBoxComponent handler= {this.minDifficulty} id="Easier"/>
                     <CheckBoxComponent handler= {this.maxDifficulty} id="Harder"/>
                 </div>
+                <br></br>
                 <input
                     id='zip'
                     className={ this.state.error ? 'error' : '' }
