@@ -73,9 +73,9 @@ class SearchFormAdv extends React.Component{
         if (error.length > 0) return;
         this.setState({zip:''});
 
-        this.props.history.push('/');
+        this.props.history.push('/loading');
         this.props.searchObj.update(zip).then(() => {
-            this.props.history.push('/results-list');
+            this.props.history.push('/search/results-list');
         });
 
     }

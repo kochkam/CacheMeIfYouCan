@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import SearchFormBasic from '../components/SearchFormBasic';
 import SearchFormAdv from '../components/SearchFormAdv';
  
-class Home extends Component {
+class Search extends Component {
 
   constructor(){
     super();
@@ -42,4 +42,4 @@ class Home extends Component {
   }
 }
  
-export default Home;
+export default Search;
