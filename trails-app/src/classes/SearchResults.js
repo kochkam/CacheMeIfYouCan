@@ -29,7 +29,6 @@ class SearchResults{
         var resHikeAPI = await this._callHikeAPI();
         console.log(resHikeAPI)
 
-        var numHikes = resHikeAPI.trails.length;
         var filtered_trails;
         if(this.useFilters){
             filtered_trails = this.filter.getFilteredResults(resHikeAPI.trails);
@@ -38,7 +37,7 @@ class SearchResults{
             filtered_trails = defaults.getFilteredResults(resHikeAPI.trails);
         }
         console.log(filtered_trails);
-        for(var i=0; i<trails_list_length; i++){
+        for(var i=0; i<filtered_trails.length; i++){
             var hike = new Hike();
             hike.id = filtered_trails[i].id;
             hike.index = i;
@@ -61,6 +60,23 @@ class SearchResults{
 
     toggleFilters(){
         this.useFilters = !this.useFilters;
+    }
+
+    updateUser(fitness){
+        this.userProfile = fitness;
+        if(fitness == "Beginner"){
+            this.filter.includeEasy = true;
+            this.filter.includeIntermediate = false;
+            this.filter.includeHard = false;
+        } else if(fitness == "Intermediate"){
+            this.filter.includeEasy = false;
+            this.filter.includeIntermediate = true;
+            this.filter.includeHard = false;
+        } else if(fitness == "Advanced" ){
+            this.filter.includeEasy = false;
+            this.filter.includeIntermediate = false;
+            this.filter.includeHard = true;
+        }
     }
 
     async _getCoords(){
@@ -102,15 +118,13 @@ class SearchResults{
     }
 
 
-    applyFilters(difficultyChoice, ratingChoice, distanceChoice, resultsChoice,  minDifficulty, maxDifficulty){
+    applyFilters(difficultyChoice, distanceChoice, resultsChoice,  minDifficulty, maxDifficulty){
         this.filter.difficultyFilter = difficultyChoice;
-        this.filter.ratingFilter = ratingChoice;
         this.filter.distanceFilter = distanceChoice;
         this.filter.resultNumChoice = resultsChoice;
         this.filter.minDifficulty = minDifficulty;
         this.filter.maxDifficulty = maxDifficulty;
         console.log("difficulty is : " + String(this.filter.difficultyFilter));
-        console.log("minimum trail rating: " + String(this.filter.ratingFilter));
         console.log("maximum trail distance: " + String(this.filter.distanceFilter));
         console.log("number of responses: " + String(this.filter.resultNumChoice));
         console.log("Minimum difficulty boolean is : " + String(this.filter.minDifficulty));

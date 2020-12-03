@@ -8,43 +8,25 @@ import {RatingDropDown, ResultsDropDown} from "./FormComponents/DropDownComponen
 
 class SearchFormAdv extends React.Component{
 
-    constructor () {
-        super();
-
+    constructor(props) {
+        super(props);
+        console.log(this.props.searchObj);
         this.state = {
             zip: '',
             error: '',
-            distanceChoice: this.props.searchObj.filter.distanceFilter,
-            difficultyChoice: '',
-            ratingChoice: 0,
-            numberOfResults: 10,
-            maxDifficultyChoice: true,
-            minDifficultyChoice: true,
+            distance_value: this.props.searchObj.filter.distanceFilter,
+            results_value: this.props.searchObj.filter.resultFilter,
+            easy_value: this.props.searchObj.filter.includeEasy,
+            intermediate_value: this.props.searchObj.filter.includeIntermediate,
+            hard_value: this.props.searchObj.filter.includeHard,
         };
-        this.minDifficulty = this.minDifficulty.bind(this);
-        this.maxDifficulty = this.maxDifficulty.bind(this);
         this.ratingChange = this.ratingChange.bind(this);
         this.resultsChange = this.resultsChange.bind(this);
-        this.difficultyChange = this.difficultyChange.bind(this);
         this.zipChange = this.zipChange.bind(this);
     }
 
-    minDifficulty() {
-        this.setState({minDifficultyChoice:!this.state.minDifficultyChoice})
-    }
-
-    maxDifficulty() {
-        this.setState({maxDifficultyChoice:!this.state.maxDifficultyChoice})
-    }
-
-    ratingChange(val) {
-        this.setState({ratingChoice: val});
-    }
     resultsChange(val) {
         this.setState({numberOfResults: val});
-    }
-    difficultyChange(val) {
-        this.setState({difficultyChoice: val});
     }
     distanceChange = (event) => {
         this.setState({distanceChoice: event});
@@ -74,14 +56,13 @@ class SearchFormAdv extends React.Component{
         if(this.state.numberOfResults>500){
             this.state.numberOfResults=500
         }
-        if(this.state.distanceChoice>200){
-            this.state.distanceChoice=200
+        if(this.state.distance_value>200){
+            this.state.distance_value=200
         }
         this.props.history.push('/');
         this.props.searchObj.applyFilters(
             this.state.difficultyChoice,
-            this.state.ratingChoice,
-            this.state.distanceChoice,
+            this.state.distance_value,
             this.state.numberOfResults,
             minDifficulty,
             maxDifficulty);
@@ -103,11 +84,11 @@ class SearchFormAdv extends React.Component{
             <form className="searchField" onSubmit={this.onFormSubmit}>
                 <br></br>
                 <div className="DistanceFilters">
-                    <h3>I want hikes within the following total length: </h3>
+                    <h3>I don't want a hike longer than: </h3>
                     <Slider name="distanceChosen" 
                         min={0}
                         max={200} 
-                        value={this.state.distanceChoice}
+                        value={this.state.distance_value}
                         onChange={this.distanceChange} 
                         id="distance"
                     />
@@ -116,8 +97,8 @@ class SearchFormAdv extends React.Component{
                 <br></br>
                 <RadioComponent searchObj ={this.props.searchObj} difficultyChange={this.difficultyChange}/>
                 <br></br>
-                <h3>Do you also want to see hikes that are easier/harder than your choice above?
-                Leave these boxes unchecked if you only want to see the Hard/Medium/Easy option you selected above.</h3>
+                <h3>Do you also want to see hikes that are easier/harder than your choice above?</h3>
+                <h3>Leave these boxes unchecked if you only want to see the Hard/Medium/Easy option you selected above.</h3>
                 <div className="MinMaxDifficulty">
                     <CheckBoxComponent handler= {this.minDifficulty} id="Easier"/>
                     <CheckBoxComponent handler= {this.maxDifficulty} id="Harder"/>
