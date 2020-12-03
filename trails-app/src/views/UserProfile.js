@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import LinkButton from "../components/LinkButton";
 import FitnessForm from '../components/FitnessForm';
 import './UserProfile.css'
 
@@ -13,6 +14,7 @@ class UserProfile extends Component {
         <p>Please provide your first name, age, hiking experience, and current exercise frequency.</p>
         <br></br>
         <FitnessForm fitnessObj = {this.props.fitnessObj} searchObj = {this.props.searchObj}/>
+        <a href="/search">Return to Search</a>
       </div>
     );
   }

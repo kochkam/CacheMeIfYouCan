@@ -1,6 +1,5 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import FitnessResults from '../classes/FitnessResults';
 
 class FitnessForm extends React.Component{
     constructor () {
@@ -14,16 +13,6 @@ class FitnessForm extends React.Component{
         };
     }
 
-    /*
-    onInputChange = (event) => {
-        this.setState({
-            name: event.target.value,
-            age: event.target.value,
-            hikingXP: event.target.value,
-            exerciseFrequency: event.target.value,
-        });
-    }
-    */
     onXPChange = (event) => {
         this.setState({
             hikingXP: event.target.value,
@@ -56,16 +45,7 @@ class FitnessForm extends React.Component{
         this.props.fitnessObj.hikingXP = hikingXP;
         this.props.fitnessObj.exerciseFrequency = exerciseFrequency;
         this.props.fitnessObj.calculateFitness()
-        if(this.props.fitnessObj.fitnessLevel == "Beginner"){
-            this.props.searchObj.userProfileDifficulty = 1
-            console.log(this.props.searchObj.userProfileDifficulty)
-        } else if(this.props.fitnessObj.fitnessLevel == "Intermediate"){
-            this.props.searchObj.userProfileDifficulty = 2
-            console.log(this.props.searchObj.userProfileDifficulty)
-        } else if(this.props.fitnessObj.fitnessLevel == "Advanced" ){
-            this.props.searchObj.userProfileDifficulty = 3
-            console.log(this.props.searchObj.userProfileDifficulty)
-        }
+        this.props.searchObj.updateUser(this.props.fitnessObj.fitnessLevel);
         this.props.history.push('/fitness-results');
     }
 

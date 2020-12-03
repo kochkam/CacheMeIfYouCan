@@ -2,16 +2,17 @@ import React, { Component } from "react";
 import SearchFormBasic from '../components/SearchFormBasic';
 import SearchFormAdv from '../components/SearchFormAdv';
  
-class Home extends Component {
+class Search extends Component {
 
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = { displayAdvSearch: false };
+    this.props.searchObj.useFilters = false;
     this.ToggleDisplay = this.ToggleDisplay.bind(this);
   }
 
   ToggleDisplay(e) {
-    this.props.searchObj.clearFilter();
+    this.props.searchObj.toggleFilters();
     this.setState({ displayAdvSearch: !this.state.displayAdvSearch });
   }
 
@@ -42,4 +43,4 @@ class Home extends Component {
   }
 }
  
-export default Home;
+export default Search;

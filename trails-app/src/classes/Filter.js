@@ -2,68 +2,56 @@ class Filter{
     // class represents a collection of hike search results in the form of the results data member
     // which will contain Hike objects. Functions in this class manipulate the results array
     constructor() {
-        this.difficultyFilter = null;
-        this.distanceFilter = null;
-        this.ratingFilter = null;
-        this.resultNumChoice = 10;
-        this.minDifficulty = 1;
-        this.maxDifficulty = 1;
+        this.distanceFilter = 200;
+        this.resultFilter = 200;
+        this.includeEasy = true;
+        this.includeIntermediate = true;
+        this.includeHard = true;
     }
 
     setDefaults() {
-        this.state.difficultyFilter = null;
-        this.state.distanceFilter = null;
-        this.state.ratingFilter = null;
-        this.state.resultNumChoice = 10;
-        this.state.minDifficulty = 1;
-        this.state.maxDifficulty = 1;
+        this.distanceFilter = 200;
+        this.resultFilter = 200;
+        this.includeEasy = true;
+        this.includeIntermediate = true;
+        this.includeHard = true;
     }
 
-    getFilteredResults(responseData, number_of_hikes) {
-        //console.log("Applying filters")
-        //console.log("Difficulty filter is set to: " + String(this.difficultyFilter))
-        //console.log((responseData.trails).length)
-        //console.log(this.difficultyFilter)
-        //console.log(this.resultNumChoice)
-        var filtered_hikes = []
-        // console.log("the number_of_hikes is " + String(number_of_hikes))
-        var n = 0;
-        for (var i = 0; i < number_of_hikes; i++) {
-            var hikeDifficulty = 0
-            if (this.difficultyFilter != null || (this.minDifficulty!==1 && this.maxDifficulty !==1)) {
-                if (responseData.trails[i].difficulty === "green" || responseData.trails[i].difficulty === "greenBlue"){
-                    hikeDifficulty = 1
-                } else if (responseData.trails[i].difficulty === "blue" || responseData.trails[i].difficulty === "blueBlack"){
-                    hikeDifficulty = 2
-                } else {hikeDifficulty = 3}
-                //console.log("This hike is " + String(responseData.trails[i].difficulty) + " which means its value is " + String(hikeDifficulty))
-                if ((hikeDifficulty > Number(this.difficultyFilter) && this.maxDifficulty===0)){
-                    //console.log("If displayed, the above hike should not be added to filtered results because the filter is set to " + String(this.difficultyFilter) + "and the boolean for showing harder hikes is: " + String(this.maxDifficulty))
-                    continue
-                }
-                if ((hikeDifficulty < Number(this.difficultyFilter) && this.minDifficulty===0)){
-                    //console.log("If displayed, the above hike should not be added to filtered results because the filter is set to " + String(this.difficultyFilter) + "and the boolean for showing easier hikes is: " + String(this.minDifficulty))
-                    continue
-                }
+    getFilteredResults(trails) {
+        var filtered_trails = []
+        for (var i = 0; i < trails.length; i++) {
 
-            }
-            if (this.ratingFilter != null){
-                if (Number(responseData.trails[i].stars) < Number(this.ratingFilter)){
-                    continue
-                }  
+            var hike_difficulty;
+            if(trails[i].difficulty === "green" || trails[i].difficulty === "greenBlue") {
+                hike_difficulty = 1;
+            } else if(trails[i].difficulty === "blue" || trails[i].difficulty === "blueBlack") {
+                hike_difficulty = 2;
+            } else {
+                hike_difficulty = 3;
             }
 
-            if (this.distanceFilter != null){
-                if (Number(responseData.trails[i].length) > Number(this.distanceFilter)){
-                    continue
-                }  
+            if(!(this.includeEasy) && hike_difficulty === 1){
+                continue;
             }
-            filtered_hikes.push(responseData.trails[i]);
-            n += 1
-            if(Number(n)===Number(this.resultNumChoice)){
-                break}
+
+            if(!(this.includeIntermediate) && hike_difficulty === 2){
+                continue;
             }
-        return filtered_hikes
+
+            if(!(this.includeHard) && hike_difficulty === 3){
+                continue;
+            }
+
+            if (trails[i].length > this.distanceFilter){
+                continue;
+            }
+
+            filtered_trails.push(trails[i]);
+            if(filtered_trails.length === this.resultFilter){
+                break;
+            }
+        }
+        return filtered_trails
     }
 }
 export default Filter

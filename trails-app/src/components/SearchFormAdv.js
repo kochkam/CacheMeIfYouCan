@@ -3,51 +3,27 @@ import { withRouter } from 'react-router-dom';
 import Slider from 'react-rangeslider'
 import 'react-rangeslider/lib/index.css'
 import CheckBoxComponent from "./FormComponents/CheckBoxComponent"
-import RadioComponent from "./FormComponents/RadioComponent.js"
-import {RatingDropDown, ResultsDropDown} from "./FormComponents/DropDownComponent.js"
 
 class SearchFormAdv extends React.Component{
 
-    constructor () {
-        super();
+    constructor(props) {
+        super(props);
+        console.log(this.props.searchObj);
         this.state = {
             zip: '',
             error: '',
-            distanceChoice: 20,
-            difficultyChoice: '',
-            ratingChoice: 0,
-            numberOfResults: 10,
-            maxDifficultyChoice: true,
-            minDifficultyChoice: true,
+            distance_value: this.props.searchObj.filter.distanceFilter,
+            results_value: this.props.searchObj.filter.resultFilter,
+            easy_value: this.props.searchObj.filter.includeEasy,
+            intermediate_value: this.props.searchObj.filter.includeIntermediate,
+            hard_value: this.props.searchObj.filter.includeHard,
         };
-        this.minDifficulty = this.minDifficulty.bind(this);
-        this.maxDifficulty = this.maxDifficulty.bind(this);
-        this.ratingChange = this.ratingChange.bind(this);
+        console.log(this.state);
         this.resultsChange = this.resultsChange.bind(this);
-        this.difficultyChange = this.difficultyChange.bind(this);
+        this.distanceChange = this.distanceChange.bind(this);
         this.zipChange = this.zipChange.bind(this);
     }
 
-    minDifficulty() {
-        this.setState({minDifficultyChoice:!this.state.minDifficultyChoice})
-    }
-
-    maxDifficulty() {
-        this.setState({maxDifficultyChoice:!this.state.maxDifficultyChoice})
-    }
-
-    ratingChange(val) {
-        this.setState({ratingChoice: val});
-    }
-    resultsChange(val) {
-        this.setState({numberOfResults: val});
-    }
-    difficultyChange(val) {
-        this.setState({difficultyChoice: val});
-    }
-    distanceChange = (event) => {
-        this.setState({distanceChoice: event});
-    }
     zipChange = (event) => {
         this.setState({
             zip: event.target.value,
@@ -55,37 +31,43 @@ class SearchFormAdv extends React.Component{
         });
     }
 
+    resultsChange = (event) => {
+        this.props.searchObj.filter.resultFilter = Number(event.target.value);
+        this.setState({results_value: event.target.value});
+    }
+
+    distanceChange = (val) => {
+        this.props.searchObj.filter.distanceFilter = val;
+        this.setState({distance_value: val});
+    }
+
+    easyChange = (val) => {
+        this.props.searchObj.filter.includeEasy = val;
+        this.setState({easy_value: val});
+    }
+
+    intermediateChange = (val) => {
+        this.props.searchObj.filter.includeIntermediate = val;
+        this.setState({intermediate_value: val});
+    }
+
+    hardChange = (val) => {
+        this.props.searchObj.filter.includeHard = val;
+        this.setState({hard_value: val});
+    }
+
     onFormSubmit = async (event) => {
         event.preventDefault();
+
         const zip = this.state.zip;
         const error = this.validate(zip);
         this.setState({error});
         if (error.length > 0) return;
         this.setState({zip:''});
-        var minDifficulty = 0;
-        var maxDifficulty = 0; 
-        if(this.state.minDifficultyChoice){
-            minDifficulty = 1
-        }
-        if(this.state.maxDifficultyChoice){
-            maxDifficulty = 1;
-        }
-        if(this.state.numberOfResults>500){
-            this.state.numberOfResults=500
-        }
-        if(this.state.distanceChoice>200){
-            this.state.distanceChoice=200
-        }
-        this.props.history.push('/');
-        this.props.searchObj.applyFilters(
-            this.state.difficultyChoice,
-            this.state.ratingChoice,
-            this.state.distanceChoice,
-            this.state.numberOfResults,
-            minDifficulty,
-            maxDifficulty);
+
+        this.props.history.push('/loading');
         this.props.searchObj.update(zip).then(() => {
-            this.props.history.push('/results-list');
+            this.props.history.push('/search/results-list');
         });
 
     }
@@ -98,27 +80,44 @@ class SearchFormAdv extends React.Component{
     }
 
     render() {
+        var profile_text;
+        if(this.props.searchObj.userProfile === null){
+            profile_text = (<h3>You do not have a hiker profile.</h3>);
+        } else{
+            profile_text =(
+                <h3>Your hiker profile: {this.props.searchObj.userProfile}. Default trails have been adjusted.</h3>
+            );
+        }
         return (
             <form className="searchField" onSubmit={this.onFormSubmit}>
                 <br></br>
                 <div className="DistanceFilters">
-                    <h3>I want hikes within the following total length: </h3>
+                    <h3>The longest hike I want to see is {this.state.distance_value} miles.</h3>
                     <Slider name="distanceChosen" 
                         min={0}
                         max={200} 
-                        value={this.state.distanceChoice}
+                        value={this.state.distance_value}
                         onChange={this.distanceChange} 
                         id="distance"
                     />
                 </div>
-                <ResultsDropDown searchObj ={this.props.searchObj} resultsChange={this.resultsChange}/>
-                <RadioComponent searchObj ={this.props.searchObj} difficultyChange={this.difficultyChange}/>
-                <p>Do you also want to see hikes that are easier/harder than your choice above?</p>
-                <p>Leave these boxes unchecked if you only want to see the Hard/Medium/Easy option you selected above.</p>
+                <h3>I don't want to see more than <select value={this.state.results_value} onChange={this.resultsChange}>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="200">200</option>
+                </select> hikes.</h3>
+                <br></br>
+                {profile_text}
+                <h3>Adjust the difficulty of the hikes you would like to see.</h3>
                 <div className="MinMaxDifficulty">
-                    <CheckBoxComponent handler= {this.minDifficulty} id="Easier"/>
-                    <CheckBoxComponent handler= {this.maxDifficulty} id="Harder"/>
+                    <CheckBoxComponent handler={this.easyChange} currentVal={this.state.easy_value} id="Easy"/>
+                    <CheckBoxComponent handler={this.intermediateChange} currentVal={this.state.intermediate_value} id="Intermediate"/>
+                    <CheckBoxComponent handler={this.hardChange} currentVal={this.state.hard_value} id="Hard"/>
+
                 </div>
+                <br></br>
                 <input
                     id='zip'
                     className={ this.state.error ? 'error' : '' }

@@ -12,7 +12,7 @@ class Navbar extends React.Component {
                 </LinkButton>
                 <LinkButton className="profile-logo" exact to='/user-profile'>
                     <i class="far fa-user-circle"></i>
-                    Sign Up
+                    Hiker Profile
                 </LinkButton>
             </nav>
         )
