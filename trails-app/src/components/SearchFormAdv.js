@@ -3,8 +3,6 @@ import { withRouter } from 'react-router-dom';
 import Slider from 'react-rangeslider'
 import 'react-rangeslider/lib/index.css'
 import CheckBoxComponent from "./FormComponents/CheckBoxComponent"
-import RadioComponent from "./FormComponents/RadioComponent.js"
-import {RatingDropDown, ResultsDropDown} from "./FormComponents/DropDownComponent.js"
 
 class SearchFormAdv extends React.Component{
 
@@ -20,6 +18,7 @@ class SearchFormAdv extends React.Component{
             intermediate_value: this.props.searchObj.filter.includeIntermediate,
             hard_value: this.props.searchObj.filter.includeHard,
         };
+        console.log(this.state);
         this.resultsChange = this.resultsChange.bind(this);
         this.distanceChange = this.distanceChange.bind(this);
         this.zipChange = this.zipChange.bind(this);
@@ -32,9 +31,10 @@ class SearchFormAdv extends React.Component{
         });
     }
 
-    resultsChange = (val) => {
-        this.props.searchObj.filter.resultFilter = val;
-        this.setState({results_value: val});
+    resultsChange = (event) => {
+        this.props.searchObj.filter.resultFilter = Number(event.target.value);
+        console.log(this.props.searchObj);
+        this.setState({results_value: event.target.value});
     }
 
     distanceChange = (val) => {
@@ -44,16 +44,23 @@ class SearchFormAdv extends React.Component{
 
     easyChange = (val) => {
         this.props.searchObj.filter.includeEasy = val;
+        console.log(val);
+        console.log(this.props.searchObj.filter.includeEasy);
         this.setState({easy_value: val});
     }
 
     intermediateChange = (val) => {
         this.props.searchObj.filter.includeIntermediate = val;
+        console.log(val);
+        console.log(this.props.searchObj.filter.includeIntermediate);
+
         this.setState({intermediate_value: val});
     }
 
     hardChange = (val) => {
         this.props.searchObj.filter.includeHard = val;
+        console.log(val);
+        console.log(this.props.searchObj.filter.includeHard);
         this.setState({hard_value: val});
     }
 
@@ -93,7 +100,7 @@ class SearchFormAdv extends React.Component{
             <form className="searchField" onSubmit={this.onFormSubmit}>
                 <br></br>
                 <div className="DistanceFilters">
-                    <h3>I don't want a hike longer than: </h3>
+                    <h3>The longest hike I want to see is: </h3>
                     <Slider name="distanceChosen" 
                         min={0}
                         max={200} 
@@ -102,14 +109,21 @@ class SearchFormAdv extends React.Component{
                         id="distance"
                     />
                 </div>
-                <ResultsDropDown searchObj={this.props.searchObj} resultsChange={this.resultsChange}/>
+                <h3>I don't want to see more than this many hikes: </h3>
+                <select value={this.state.results_value} onChange={this.resultsChange}>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="200">200</option>
+                </select>
                 <br></br>
                 {profile_text}
                 <h3>Adjust the difficulty of the hikes you would like to see.</h3>
                 <div className="MinMaxDifficulty">
-                    <CheckBoxComponent handler={this.easyChange} searchObj={this.props.searchObj} id="Easy"/>
-                    <CheckBoxComponent handler={this.intermediateChange} searchObj={this.props.searchObj} id="Intermediate"/>
-                    <CheckBoxComponent handler={this.hardChange} searchObj={this.props.searchObj} id="Hard"/>
+                    <CheckBoxComponent handler={this.easyChange} currentVal={this.state.easy_value} id="Easy"/>
+                    <CheckBoxComponent handler={this.intermediateChange} currentVal={this.state.intermediate_value} id="Intermediate"/>
+                    <CheckBoxComponent handler={this.hardChange} currentVal={this.state.hard_value} id="Hard"/>
 
                 </div>
                 <br></br>

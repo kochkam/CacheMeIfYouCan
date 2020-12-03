@@ -3,14 +3,15 @@ import React from "react";
 class CheckboxComponent extends React.Component {
   constructor(props) {
     super(props);
+    console.log(this.props);
     this.state = {
-      checked: true,
+      checked: this.props.currentVal,
     };
   }
   
   handleCheckClick = () => {
+    this.props.handler(!this.state.checked);
     this.setState({ checked: !this.state.checked });
-    this.props.handler();
   }
   
   render() {

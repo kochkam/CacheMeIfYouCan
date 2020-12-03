@@ -47,7 +47,7 @@ class Filter{
             }
 
             filtered_trails.push(trails[i]);
-            if(filtered_trails === this.resultFilter){
+            if(filtered_trails.length === this.resultFilter){
                 break;
             }
         }

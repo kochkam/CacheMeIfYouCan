@@ -96,10 +96,7 @@ class SearchResults{
     async _callHikeAPI(){
         let apiKey = "&key=200964805-fbbd50c01b329d117306d1834dfd6a2d";
         var numResults = "&maxResults=200"
-        var maxDistance = "&maxDistance=200"
-        if (this.distanceFilter != null) {
-            maxDistance = "&maxDistance=" + String(this.distanceFilter);
-        } 
+        var maxDistance = "&maxDistance=20"
         
         let url = "https://www.hikingproject.com/data/get-trails"
                     + "?lat=" + this.lat
