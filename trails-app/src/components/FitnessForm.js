@@ -1,6 +1,5 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import FitnessResults from '../classes/FitnessResults';
 
 class FitnessForm extends React.Component{
     constructor () {
@@ -14,16 +13,6 @@ class FitnessForm extends React.Component{
         };
     }
 
-    /*
-    onInputChange = (event) => {
-        this.setState({
-            name: event.target.value,
-            age: event.target.value,
-            hikingXP: event.target.value,
-            exerciseFrequency: event.target.value,
-        });
-    }
-    */
     onXPChange = (event) => {
         this.setState({
             hikingXP: event.target.value,

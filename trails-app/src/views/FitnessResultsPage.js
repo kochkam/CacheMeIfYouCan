@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import LinkButton from "../components/LinkButton";
+import {Link} from "react-router-dom";
 
 class FitnessResultsPage extends Component {
 
@@ -26,10 +26,9 @@ class FitnessResultsPage extends Component {
         <br></br>
         <p>Feel free to change your results by resubmitting the form. Click the button below to do so.</p>
         <br></br>
-        <button>
-        <LinkButton exact to={"/user-profile"}><p>Modify Results</p>
-          </LinkButton>
-        </button>
+        <Link exact to={"/user-profile"}><button type="button">Modify Results</button></Link>
+        <br></br>
+        <Link exact to={"/search"}><button type="button">Back to Search</button></Link>
       </div>
     );
   }
