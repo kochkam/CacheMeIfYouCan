@@ -100,7 +100,7 @@ class SearchFormAdv extends React.Component{
             <form className="searchField" onSubmit={this.onFormSubmit}>
                 <br></br>
                 <div className="DistanceFilters">
-                    <h3>The longest hike I want to see is: </h3>
+                    <h3>The longest hike I want to see is {this.state.distance_value} miles.</h3>
                     <Slider name="distanceChosen" 
                         min={0}
                         max={200} 
@@ -109,14 +109,13 @@ class SearchFormAdv extends React.Component{
                         id="distance"
                     />
                 </div>
-                <h3>I don't want to see more than this many hikes: </h3>
-                <select value={this.state.results_value} onChange={this.resultsChange}>
+                <h3>I don't want to see more than <select value={this.state.results_value} onChange={this.resultsChange}>
                     <option value="5">5</option>
                     <option value="10">10</option>
                     <option value="50">50</option>
                     <option value="100">100</option>
                     <option value="200">200</option>
-                </select>
+                </select> hikes.</h3>
                 <br></br>
                 {profile_text}
                 <h3>Adjust the difficulty of the hikes you would like to see.</h3>
