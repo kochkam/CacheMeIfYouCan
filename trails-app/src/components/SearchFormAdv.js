@@ -33,7 +33,6 @@ class SearchFormAdv extends React.Component{
 
     resultsChange = (event) => {
         this.props.searchObj.filter.resultFilter = Number(event.target.value);
-        console.log(this.props.searchObj);
         this.setState({results_value: event.target.value});
     }
 
@@ -44,23 +43,16 @@ class SearchFormAdv extends React.Component{
 
     easyChange = (val) => {
         this.props.searchObj.filter.includeEasy = val;
-        console.log(val);
-        console.log(this.props.searchObj.filter.includeEasy);
         this.setState({easy_value: val});
     }
 
     intermediateChange = (val) => {
         this.props.searchObj.filter.includeIntermediate = val;
-        console.log(val);
-        console.log(this.props.searchObj.filter.includeIntermediate);
-
         this.setState({intermediate_value: val});
     }
 
     hardChange = (val) => {
         this.props.searchObj.filter.includeHard = val;
-        console.log(val);
-        console.log(this.props.searchObj.filter.includeHard);
         this.setState({hard_value: val});
     }
 

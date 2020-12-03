@@ -4,9 +4,10 @@ import SearchFormAdv from '../components/SearchFormAdv';
  
 class Search extends Component {
 
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = { displayAdvSearch: false };
+    this.props.searchObj.useFilters = false;
     this.ToggleDisplay = this.ToggleDisplay.bind(this);
   }
 
