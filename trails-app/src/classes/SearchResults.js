@@ -11,7 +11,8 @@ class SearchResults{
         this.zip = null;
         this.lat = null;
         this.long = null;
-        this.userProfileDifficulty = null;
+        this.userProfile = null;
+        this.useFilters = false;
         this.weather = new Weather();
         this.filter = new Filter();
     }
@@ -24,30 +25,31 @@ class SearchResults{
         this.lat = coords.lat;
         this.long = coords.lng;
         await this.weather.update(this.lat, this.long);
+
         var resHikeAPI = await this._callHikeAPI();
         console.log(resHikeAPI)
+
         var numHikes = resHikeAPI.trails.length;
-        if(this.userProfileDifficulty != null){
-            var oldMinDifficulty = this.filter.minDifficulty;
-            var oldMaxDifficulty = this.filter.maxDifficulty;
-            this.filter.minDifficulty = 0;
-            this.filter.maxDifficulty = 0;
-            this.filter.difficultyFilter = this.userProfileDifficulty;
+        var filtered_trails;
+        if(this.useFilters){
+            filtered_trails = this.filter.getFilteredResults(resHikeAPI.trails);
+        } else {
+            var defaults = new Filter();
+            filtered_trails = defaults.getFilteredResults(resHikeAPI.trails);
         }
-        var filtered_results = this.filter.getFilteredResults(resHikeAPI, numHikes);
-        console.log(filtered_results)
-        for(var i=0; i<filtered_results.length; i++){
+        console.log(filtered_trails);
+        for(var i=0; i<trails_list_length; i++){
             var hike = new Hike();
-            hike.id = filtered_results[i].id;
+            hike.id = filtered_trails[i].id;
             hike.index = i;
-            hike.title = filtered_results[i].name;
-            hike.summary = filtered_results[i].summary;
-            hike.activityLevel = filtered_results[i].difficulty;
-            hike.largeimgURL = filtered_results[i].imgMedium;
-            hike.distance = filtered_results[i].length;
-            hike.ascent = filtered_results[i].ascent;
-            hike.long = filtered_results[i].longitude;
-            hike.lat = filtered_results[i].latitude;
+            hike.title = filtered_trails[i].name;
+            hike.summary = filtered_trails[i].summary;
+            hike.activityLevel = filtered_trails[i].difficulty;
+            hike.largeimgURL = filtered_trails[i].imgMedium;
+            hike.distance = filtered_trails[i].length;
+            hike.ascent = filtered_trails[i].ascent;
+            hike.long = filtered_trails[i].longitude;
+            hike.lat = filtered_trails[i].latitude;
             // get temp using weather api
             hike.temp = this.weather.temp;
             hike.tempFeelsLike = this.weather.tempFeelsLike;
@@ -55,12 +57,10 @@ class SearchResults{
             // add hike object to results
             this.results.push(hike);
         }
-        this.filter.minDifficulty = oldMinDifficulty;
-        this.filter.maxDifficulty = oldMaxDifficulty;
     }
 
-    clearFilter(){
-        this.filter = new Filter();
+    toggleFilters(){
+        this.useFilters = !this.useFilters;
     }
 
     async _getCoords(){
@@ -80,7 +80,7 @@ class SearchResults{
     async _callHikeAPI(){
         let apiKey = "&key=200964805-fbbd50c01b329d117306d1834dfd6a2d";
         var numResults = "&maxResults=200"
-        var maxDistance = "&maxDistance=20"
+        var maxDistance = "&maxDistance=200"
         if (this.distanceFilter != null) {
             maxDistance = "&maxDistance=" + String(this.distanceFilter);
         } 
@@ -117,39 +117,5 @@ class SearchResults{
         console.log("maximum difficulty boolean is :  " + String(this.filter.maxDifficulty));
     }
     
-    // will need to update hike index for sorting and filtering
-    // function to filter results
-    /*
-    getFilteredResults(responseData, number_of_hikes) {
-        console.log("Applying filters")
-        console.log(this.difficultyFilter)
-        var filtered_hikes = []
-        for (var i = 0; i < number_of_hikes; i++) {
-            var hikeDifficulty = 0
-            if (this.difficultyFilter != null) {
-                console.log(responseData.trails[i].difficulty)
-                if (responseData.trails[i].difficulty === "green" || responseData.trails[i].difficulty === "greenBlue"){
-                    hikeDifficulty = 1
-                } else if (responseData.trails[i].difficulty === "blue" || responseData.trails[i].difficulty === "blueBlack"){
-                    hikeDifficulty = 2
-                } else {hikeDifficulty = 3}
-
-                if (hikeDifficulty > this.difficultyFilter){
-                    console.log(responseData.trails[i].name)
-                    console.log("this one above should not be added...")
-                    continue
-                }
-            }
-            if (this.ratingFilter != null){
-                if (responseData.trails[i].stars < this.ratingFilter){
-                    continue
-                }  
-            }
-            filtered_hikes.push(responseData.trails[i]);
-            }
-        return filtered_hikes
-    }
-    */
-
 }
 export default SearchResults

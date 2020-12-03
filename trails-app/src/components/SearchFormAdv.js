@@ -10,10 +10,11 @@ class SearchFormAdv extends React.Component{
 
     constructor () {
         super();
+
         this.state = {
             zip: '',
             error: '',
-            distanceChoice: 20,
+            distanceChoice: this.props.searchObj.filter.distanceFilter,
             difficultyChoice: '',
             ratingChoice: 0,
             numberOfResults: 10,
