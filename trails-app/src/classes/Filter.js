@@ -20,6 +20,7 @@ class Filter{
     getFilteredResults(trails) {
         var filtered_trails = []
         for (var i = 0; i < trails.length; i++) {
+
             var hike_difficulty;
             if(trails[i].difficulty === "green" || trails[i].difficulty === "greenBlue") {
                 hike_difficulty = 1;
@@ -29,15 +30,15 @@ class Filter{
                 hike_difficulty = 3;
             }
 
-            if(this.includeEasy && hike_difficulty !== 1){
+            if(!(this.includeEasy) && hike_difficulty === 1){
                 continue;
             }
 
-            if(this.includeIntermediate && hike_difficulty !== 2){
+            if(!(this.includeIntermediate) && hike_difficulty === 2){
                 continue;
             }
 
-            if(this.includeHard && hike_difficulty !== 3){
+            if(!(this.includeHard) && hike_difficulty === 3){
                 continue;
             }
 

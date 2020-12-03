@@ -20,17 +20,11 @@ class SearchFormAdv extends React.Component{
             intermediate_value: this.props.searchObj.filter.includeIntermediate,
             hard_value: this.props.searchObj.filter.includeHard,
         };
-        this.ratingChange = this.ratingChange.bind(this);
         this.resultsChange = this.resultsChange.bind(this);
+        this.distanceChange = this.distanceChange.bind(this);
         this.zipChange = this.zipChange.bind(this);
     }
 
-    resultsChange(val) {
-        this.setState({numberOfResults: val});
-    }
-    distanceChange = (event) => {
-        this.setState({distanceChoice: event});
-    }
     zipChange = (event) => {
         this.setState({
             zip: event.target.value,
@@ -38,34 +32,41 @@ class SearchFormAdv extends React.Component{
         });
     }
 
+    resultsChange = (val) => {
+        this.props.searchObj.filter.resultFilter = val;
+        this.setState({results_value: val});
+    }
+
+    distanceChange = (val) => {
+        this.props.searchObj.filter.distanceFilter = val;
+        this.setState({distance_value: val});
+    }
+
+    easyChange = (val) => {
+        this.props.searchObj.filter.includeEasy = val;
+        this.setState({easy_value: val});
+    }
+
+    intermediateChange = (val) => {
+        this.props.searchObj.filter.includeIntermediate = val;
+        this.setState({intermediate_value: val});
+    }
+
+    hardChange = (val) => {
+        this.props.searchObj.filter.includeHard = val;
+        this.setState({hard_value: val});
+    }
+
     onFormSubmit = async (event) => {
         event.preventDefault();
+
         const zip = this.state.zip;
         const error = this.validate(zip);
         this.setState({error});
         if (error.length > 0) return;
         this.setState({zip:''});
-        var minDifficulty = 0;
-        var maxDifficulty = 0; 
-        if(this.state.minDifficultyChoice){
-            minDifficulty = 1
-        }
-        if(this.state.maxDifficultyChoice){
-            maxDifficulty = 1;
-        }
-        if(this.state.numberOfResults>500){
-            this.state.numberOfResults=500
-        }
-        if(this.state.distance_value>200){
-            this.state.distance_value=200
-        }
+
         this.props.history.push('/');
-        this.props.searchObj.applyFilters(
-            this.state.difficultyChoice,
-            this.state.distance_value,
-            this.state.numberOfResults,
-            minDifficulty,
-            maxDifficulty);
         this.props.searchObj.update(zip).then(() => {
             this.props.history.push('/results-list');
         });
@@ -80,6 +81,14 @@ class SearchFormAdv extends React.Component{
     }
 
     render() {
+        var profile_text;
+        if(this.props.searchObj.userProfile === null){
+            profile_text = (<h3>You do not have a hiker profile.</h3>);
+        } else{
+            profile_text =(
+                <h3>Your hiker profile: {this.props.searchObj.userProfile}. Default trails have been adjusted.</h3>
+            );
+        }
         return (
             <form className="searchField" onSubmit={this.onFormSubmit}>
                 <br></br>
@@ -93,15 +102,15 @@ class SearchFormAdv extends React.Component{
                         id="distance"
                     />
                 </div>
-                <ResultsDropDown searchObj ={this.props.searchObj} resultsChange={this.resultsChange}/>
+                <ResultsDropDown searchObj={this.props.searchObj} resultsChange={this.resultsChange}/>
                 <br></br>
-                <RadioComponent searchObj ={this.props.searchObj} difficultyChange={this.difficultyChange}/>
-                <br></br>
-                <h3>Do you also want to see hikes that are easier/harder than your choice above?</h3>
-                <h3>Leave these boxes unchecked if you only want to see the Hard/Medium/Easy option you selected above.</h3>
+                {profile_text}
+                <h3>Adjust the difficulty of the hikes you would like to see.</h3>
                 <div className="MinMaxDifficulty">
-                    <CheckBoxComponent handler= {this.minDifficulty} id="Easier"/>
-                    <CheckBoxComponent handler= {this.maxDifficulty} id="Harder"/>
+                    <CheckBoxComponent handler={this.easyChange} searchObj={this.props.searchObj} id="Easy"/>
+                    <CheckBoxComponent handler={this.intermediateChange} searchObj={this.props.searchObj} id="Intermediate"/>
+                    <CheckBoxComponent handler={this.hardChange} searchObj={this.props.searchObj} id="Hard"/>
+
                 </div>
                 <br></br>
                 <input
